@@ -5,6 +5,8 @@ Rails.application.routes.draw do
     post   '/login',   to: 'sessions#create'
     delete '/logout',  to: 'sessions#destroy'
 
+    get    '/users/:user_id/courses/:id/flashcard',  to: 'courses#flashcard'
+
     resources :users do
         resources :courses do
             resources :students
