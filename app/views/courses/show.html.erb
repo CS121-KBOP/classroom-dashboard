@@ -1,0 +1,27 @@
+<center>
+  <br>
+    <div>
+      <%= link_to "Edit Course", edit_user_course_path(@user, @course) %>
+      <%= link_to "All Courses", user_courses_path(@user) %>
+      <%= link_to "Account", user_path(@user) %>
+      <%= link_to "Add Student", new_user_course_student_path(@user, @course) %>
+      <h1><%= @course.title %></h1>
+      <hr>
+      <div class = "container">
+        <div class="row">
+          <div class="col-lg-7 border-right">
+          <h2>Students</h2>
+          <table class="experiment-table">
+            <tbody>
+              <% @course.students.each do |student| %>
+                <tr>
+                  <td><%= student.name %></td>
+                  <td><%= link_to "See Student", user_course_student_path(@user, @course, student) %></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+          </div>
+        </div>
+      </div>
+    </div>

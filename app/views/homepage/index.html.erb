@@ -1,0 +1,8 @@
+<center><br>
+        <h1>Welcome to the Classroom Dashboard!</h2>
+        <% if logged_in? %>
+            <%= link_to "See My Courses", user_courses_path(current_user) %>
+        <% else %>
+            <%= link_to "Get Started", { controller: 'sessions', action: 'new' } %>
+        <% end %>
+</center>
