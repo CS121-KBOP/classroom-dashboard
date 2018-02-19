@@ -1,4 +1,4 @@
-class CoursesController < ApplicationController
+class CoursesController < ApplicationController    
     def index
         @user = User.find(params[:user_id])
         proper_user(@user)
@@ -53,6 +53,14 @@ class CoursesController < ApplicationController
         @course = @user.courses.find(params[:id])
         @course.destroy
         redirect_to user_courses_path(@user)
+    end
+
+    def flashcard
+        @user = User.find(params[:user_id])
+        proper_user(@user)
+        @course = @user.courses.find(params[:id])
+        @student = @course.students.sample
+        render(json:  @student.to_json)
     end
 
     private
