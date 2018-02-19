@@ -59,7 +59,7 @@ class CoursesController < ApplicationController
         @user = User.find(params[:user_id])
         proper_user(@user)
         @course = @user.courses.find(params[:id])
-        @student = @course.students[0]
+        @student = @course.students.sample
         render(json:  @student.to_json)
     end
 
