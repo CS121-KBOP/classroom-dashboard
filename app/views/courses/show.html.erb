@@ -30,8 +30,26 @@ function populateFlashcard(json) {
             <%= link_to "All Courses", user_courses_path(@user) %><br>
             <%= link_to "Account", user_path(@user) %><br>
             <%= link_to "Add Student", new_user_course_student_path(@user, @course) %><br>
+            <%= link_to "Add Assignment", new_user_course_assignment_path(@user, @course) %>
           </div>
-          <div class = "col-lg-4"></div>
+          <div class = "col-lg-4">
+            <h2>Assignments</h2>
+            <table>
+              <thead>
+                <tr><th>Name</th><th>Description</th><th>ID</th><th></th>
+              </thead>
+              <tbody>
+                <% @course.assignments[0..5].each do |assignment| %>
+                  <tr>
+                    <td><%= assignment.name %></td>
+                    <td><%= truncate assignment.description, length: 30, separator: /\w+/ %></td>
+                    <td><%= assignment.id %></td>
+                    <td><%= link_to "View", user_course_assignment_path(@user, @course, assignment) %></td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
           <div class = "col-lg-4">
             <h3>Flashcards</h3>
             <div id="flashcard-info">

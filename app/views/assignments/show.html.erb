@@ -1,0 +1,15 @@
+<center>
+  <br>
+    <div>
+      <%= link_to "Edit Assignment", edit_user_course_assignment_path(@user, @course, @assignment) %>
+      <%= link_to "Back to Course", user_course_path(@user, @course) %>
+      <%= link_to "Account", user_path(@user) %>
+      <%= link_to 'Obliterate', user_course_assignment_path(@user, @course, @assignment),
+              method: :delete,
+              data: { confirm: 'Are you sure?' } %>
+      <h2><%= @assignment.name %></h2>
+      <p>ID: <%= @assignment.id %></p>
+      <p><%= @assignment.description %></p>
+      <hr>
+    </div>
+
