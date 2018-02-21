@@ -5,6 +5,10 @@ window.onload = function load(){
   var searchBox = document.getElementById("email");
   searchBox.addEventListener("input", searchEmail);
   searchEmail(); // initially populate the list
+  var startingID = document.getElementById("id-field").value; // the id if the form is prepopulated
+  if (startingID != null){
+    handleNameClick(startingID);
+  }
 }
 
 // send an AJAX request for a list of names corresponding to this email

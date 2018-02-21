@@ -1,7 +1,6 @@
 class SubmissionsController < ApplicationController
     def new
         @user = User.find(params[:user_id])
-        proper_user(@user)
         @course = @user.courses.find(params[:course_id])
         @assignment = @course.assignments.find(params[:assignment_id])
         @submission = @assignment.submissions.new
@@ -9,12 +8,11 @@ class SubmissionsController < ApplicationController
 
     def create
         @user = User.find(params[:user_id])
-        proper_user(@user)
         @course = @user.courses.find(params[:course_id])
         @assignment = @course.assignments.find(params[:assignment_id])
         @submission = @assignment.submissions.create(submission_params)
         if @assignment.save
-            redirect_to user_course_assignment_path(@user, @course, @assignment)
+            render 'new'
         else
             render 'new'
       end
