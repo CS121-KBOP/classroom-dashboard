@@ -7,6 +7,8 @@ Rails.application.routes.draw do
 
     get    '/users/:user_id/courses/:id/flashcard',  to: 'courses#flashcard'
 
+    get    '/users/:user_id/courses/:course_id/assignments/:assignment_id/submissions/search',  to: 'submissions#search'
+
     resources :users do
         resources :courses do
             resources :students

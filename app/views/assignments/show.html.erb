@@ -11,5 +11,25 @@
       <p>ID: <%= @assignment.id %></p>
       <p><%= @assignment.description %></p>
       <hr>
+      <h2>Submissions</h2>
+            <table>
+              <thead>
+                <tr><th>Student</th><th>Answer</th><th></th><th></th>
+              </thead>
+              <tbody>
+                <% @assignment.submissions.each do |submission| %>
+                  <tr>
+                    <td><% if submission.student_id != nil %>
+                      <%= Student.find(submission.student_id).name %>
+                      <% else %>
+                      UNKNOWN
+                      <% end %>
+                    </td>
+                    <td><%= submission.answer %></td>
+                    <td><%= link_to "Edit", edit_user_course_assignment_submission_path(@user, @course, @assignment, submission) %></td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
     </div>
 

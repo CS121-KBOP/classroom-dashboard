@@ -1,0 +1,94 @@
+<script>
+var selectedStudent = null;
+// when the window loads, we give the email box an event listener, so when its value is changed, searchEmail will be called
+window.onload = function load(){
+  var searchBox = document.getElementById("email");
+  searchBox.addEventListener("input", searchEmail);
+  searchEmail(); // initially populate the list
+}
+
+// send an AJAX request for a list of names corresponding to this email
+function searchEmail(){
+  var searchTerm = document.getElementById("email").value;
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    console.log(this.status);
+    if (this.readyState == 4 && this.status == 200) {
+     populateResults(this.responseText)
+    }
+  };
+  xhttp.open("GET", '<%= url_for(controller: 'submissions', action: 'search') %>?email='+searchTerm, true);
+  xhttp.send();
+}
+// responds to the user clicking on a name by highlighting that name and filling in the appropriate id to the form
+function handleNameClick(id){
+  var previouslyHighlighted = document.getElementById("student-results-"+selectedStudent)
+  if (previouslyHighlighted != null) {
+    previouslyHighlighted.setAttribute("style", "color: black;");
+  }
+  selectedStudent = id;
+  var previouslyHighlighted = document.getElementById("student-results-"+selectedStudent)
+  if (previouslyHighlighted != null) {
+    previouslyHighlighted.setAttribute("style", "color: red;");
+  }
+  document.getElementById("id-field").value = id;
+}
+// creates a line of html to be used in the results table
+function studentLine(id, name){
+  return "<tr id=student-results-"+id+" onclick='handleNameClick("+id+")'><td>"+name+"</td></tr>"
+}
+// populate the list with new entries
+function populateResults(json) {
+  var students = JSON.parse(json);
+  var html = "";
+  if (students.length > 0) {
+    html = "<table>\n";
+    for (i = 0; i < students.length; i++) { 
+      html += studentLine(students[i].id, students[i].name);
+    }
+  } else {
+    html = "No student matches that email"
+  }
+  document.getElementById("suggestions").innerHTML = html;
+  if (selectedStudent != null) { handleNameClick(selectedStudent); } // make sure that reloading the list doesn't undo selection
+}
+</script>
+
+<p>enter your email and tap your name when it appears</p>
+<div id="suggestions">
+  No Emails Found
+</div>
+<table>
+    <tr class="field">
+      <td><label class="control-label" for="submission[email]">Email</label></td>
+      <td><input class="email" type="email" name="submission[email]" id="email" onload="load()"/></td>
+    </tr>
+</table>
+<%= form_for [@user, @course, @assignment, @submission], local: true, html: {:class => "form-horizontal"} do |form| %>
+  <% if @submission.errors.any? %>
+    <div id="error_explanation" class="alert alert-danger">
+      <h2>
+        <%= pluralize(@submission.errors.count, "error") %> prohibited
+        this submission from being saved:
+      </h2>
+      <ul>
+        <% @submission.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <table>
+    <tr class="field">
+      <td><%= form.label :student_id,  :class => "hidden"  %></td>
+      <td><%= form.number_field :student_id,  :class => "hidden", :id => "id-field" %></td>
+    </tr>
+   
+    <tr class="field">
+      <td><%= form.label :answer,  :class => "control-label"  %></td>
+      <td><%= form.text_field :answer, :class => "description" %></td>
+    </tr>
+  </table>
+  <%= form.submit "Confirm" %>
+  <%= link_to cancel_text, cancel_path %>
+<% end %>
