@@ -25,8 +25,14 @@ body {
   }
 
   .btn {
+    
     background-color: whitesmoke;
     color: rgb(78, 55, 100);
+    a:hover
+    {
+      color: whitesmoke;
+      
+    }
   }
   
   .navbar-default {
