@@ -68,7 +68,7 @@ function populateResults(json) {
       <td><input class="email" type="email" name="submission[email]" id="email" onload="load()"/></td>
     </tr>
 </table>
-<%= form_for [@user, @course, @assignment, @submission], local: true, html: {:class => "form-horizontal"} do |form| %>
+<%= form_for :submission, local: true, html: {:class => "form-horizontal"} do |form| %>
   <% if @submission.errors.any? %>
     <div id="error_explanation" class="alert alert-danger">
       <h2>

@@ -1,15 +1,11 @@
 class SubmissionsController < ApplicationController
     def new
-        @user = User.find(params[:user_id])
-        @course = @user.courses.find(params[:course_id])
-        @assignment = @course.assignments.find(params[:assignment_id])
+        @assignment = Assignment.find(unhashTag(params[:assignment_id]))
         @submission = @assignment.submissions.new
     end
 
     def create
-        @user = User.find(params[:user_id])
-        @course = @user.courses.find(params[:course_id])
-        @assignment = @course.assignments.find(params[:assignment_id])
+        @assignment = Assignment.find(unhashTag(params[:assignment_id]))
         @submission = @assignment.submissions.create(submission_params)
         if @assignment.save
             render 'new'
@@ -37,24 +33,47 @@ class SubmissionsController < ApplicationController
     end
 
     def update
-        @user = User.find(params[:user_id])
-        proper_user(@user)
-        @course = @user.courses.find(params[:course_id])
-        @assignment = @course.assignments.find(params[:assignment_id])
+        @assignment = Assignment.find(params[:assignment_id])
      	@submission = @assignment.submissions.find(params[:id])
      	puts submission_params
         if @submission.update(submission_params)
-            redirect_to user_course_assignment_path(@user, @course, @assignment)
+            redirect_to user_course_assignment_path(@assignment.course.user, @assignment.course, @assignment)
         else
             render 'edit'
         end
     end
 
     def search
-        @user = User.find(params[:user_id])
-        @course = @user.courses.find(params[:course_id])
-        @students = @course.students.where('email LIKE ?', "%#{params[:email]}%").order('email ASC').limit(5)
+    	begin
+        	@assignment = Assignment.find(params[:assignment_id])
+        rescue
+        	@assignment = Assignment.find(unhashTag(params[:assignment_id]))
+		end
+        @students = @assignment.course.students.where('email LIKE ?', "%#{params[:email]}%").order('email ASC').limit(5)
         render(json:  @students.to_json)
+    end
+
+    # a helper function that unhashes an assignment tag
+    def unhashTag(hash)
+    	hash = (hash[1]+hash[3]+hash[0]+hash[2]).downcase;
+    	max = 456976;
+    	codestring = "ydlgknmzxjbctfiaqsrwoevuhp";
+    	newnumber = 0;
+    	for i in (3).downto(0)
+    		newnumber *= 26;
+    		newnumber += codestring.index(hash[i]);
+    	end
+    	if (newnumber <= max/4)
+    		newnumber = (max/4 - newnumber)*4;
+    	elsif (newnumber <= max/2)
+    		newnumber = (max/2 - newnumber) * 4 + 2;
+    	elsif (newnumber <= 3 * max / 4)
+    		newnumber = (3*max/4 - newnumber) * 4 + 1;
+    	else
+    		newnumber = (max - newnumber) * 4 + 3;
+    	end
+
+    	return newnumber;
     end
      
     private

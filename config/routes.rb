@@ -7,7 +7,11 @@ Rails.application.routes.draw do
 
     get    '/users/:user_id/courses/:id/flashcard',  to: 'courses#flashcard'
 
-    get    '/users/:user_id/courses/:course_id/assignments/:assignment_id/submissions/search',  to: 'submissions#search'
+    get    '/users/:assignment_id/search',  to: 'submissions#search'
+
+    get    '/:assignment_id', to: 'submissions#new'
+    post   '/:assignment_id', to: 'submissions#create'
+    post   '/users/:user_id/courses/:id/assignments/:assignment_id/submissions/:id/edit', to: 'submissions#update'
 
     resources :users do
         resources :courses do
