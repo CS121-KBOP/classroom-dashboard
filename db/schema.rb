@@ -10,16 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180220033829) do
-
-  create_table "assignments", force: :cascade do |t|
-    t.string "name"
-    t.text "description"
-    t.integer "course_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["course_id"], name: "index_assignments_on_course_id"
-  end
+ActiveRecord::Schema.define(version: 20180220221357) do
 
   create_table "courses", force: :cascade do |t|
     t.string "title"
@@ -39,20 +30,13 @@ ActiveRecord::Schema.define(version: 20180220033829) do
     t.index ["course_id"], name: "index_students_on_course_id"
   end
 
-  create_table "submissions", force: :cascade do |t|
-    t.string "answer"
-    t.integer "assignment_id"
-    t.integer "student_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["assignment_id"], name: "index_submissions_on_assignment_id"
-    t.index ["student_id"], name: "index_submissions_on_student_id"
-  end
-
   create_table "users", force: :cascade do |t|
+    t.string "provider"
     t.string "name"
     t.string "email"
-    t.string "password_digest"
+    t.string "oauth_token"
+    t.datetime "oauth_expires_at"
+    t.integer "oauth_id", limit: 12
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
