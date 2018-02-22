@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180216222946) do
+ActiveRecord::Schema.define(version: 20180220221357) do
 
   create_table "courses", force: :cascade do |t|
     t.string "title"
@@ -31,9 +31,12 @@ ActiveRecord::Schema.define(version: 20180216222946) do
   end
 
   create_table "users", force: :cascade do |t|
+    t.string "provider"
     t.string "name"
     t.string "email"
-    t.string "password_digest"
+    t.string "oauth_token"
+    t.datetime "oauth_expires_at"
+    t.integer "oauth_id", limit: 12
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
