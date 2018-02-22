@@ -1,8 +1,29 @@
-<center><br>
-        <h1>Welcome to the Classroom Dashboard!</h2>
-        <% if logged_in? %>
-            <%= link_to "See My Courses", user_courses_path(current_user) %>
-        <% else %>
-            <%= link_to "Get Started", { controller: 'sessions', action: 'new' } %>
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Classroom Dashboard</title>
+  </head>
+  <body>
+          <% if logged_in? %>
+            <li><%= link_to "My Courses", user_courses_path(current_user) %></li>
+          <% end %>
+        </ul>
+          <% if logged_in? %>
+            <span>
+              <%= current_user.name %>
+              <%= current_user.email %>
+              <%= link_to "(logout)", logout_path %>
+            </span>
+          <% else %>
+            <%= link_to "Login", login_path %>
+          <% end %>
+    <div class="container">
+      <% if flash.any? %>
+        <% flash.each do |type, message| %>
+          <div class="alert alert-<%= type %>"><%= message %></div>
         <% end %>
-</center>
+      <% end %>
+      <%= yield %>
+    </div>
+  </body>
+</html

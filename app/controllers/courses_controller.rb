@@ -1,25 +1,21 @@
 class CoursesController < ApplicationController    
     def index
         @user = User.find(params[:user_id])
-        proper_user(@user)
         @courses = @user.courses
     end
 
     def show
         @user = User.find(params[:user_id])
-        proper_user(@user)
         @course = @user.courses.find(params[:id])
     end
 
     def new
         @user = User.find(params[:user_id])
-        proper_user(@user)
         @course = @user.courses.new
     end
 
     def create
         @user = User.find(params[:user_id])
-        proper_user(@user)
         @course = @user.courses.create(course_params)
 
         if @course.save
@@ -31,13 +27,11 @@ class CoursesController < ApplicationController
 
     def edit
         @user = User.find(params[:user_id])
-        proper_user(@user)
         @course = @user.courses.find(params[:id])
     end
 
     def update
         @user = User.find(params[:user_id])
-        proper_user(@user)
         @course = @user.courses.find(params[:id])
 
         if @course.update(course_params)
@@ -49,7 +43,6 @@ class CoursesController < ApplicationController
 
     def destroy
         @user = User.find(params[:user_id])
-        proper_user(@user)
         @course = @user.courses.find(params[:id])
         @course.destroy
         redirect_to user_courses_path(@user)
@@ -57,7 +50,6 @@ class CoursesController < ApplicationController
 
     def flashcard
         @user = User.find(params[:user_id])
-        proper_user(@user)
         @course = @user.courses.find(params[:id])
         @student = @course.students.sample
         render(json:  @student.to_json)
