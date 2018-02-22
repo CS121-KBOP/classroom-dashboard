@@ -23,7 +23,4 @@
 # ignore DS_STORE
 .DS_Store
 
-# ignore schema.rb
-/db/schema.rb
-
 .byebug_history
