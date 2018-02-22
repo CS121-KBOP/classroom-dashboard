@@ -5,14 +5,14 @@
   </head>
   <body>
           <% if logged_in? %>
-            <li><%= link_to "My Courses", user_courses_path(User.find_by(oauth_id: current_user["oauth_id"]).id) %></li>
+            <li><%= link_to "My Courses", user_courses_path(current_user["id"]) %></li>
           <% end %>
         </ul>
           <% if logged_in? %>
             <span>
               <%= current_user["name"] %>
               <%= current_user["email"] %>
-              <%= link_to "(logout)", logout_path %>
+              <%= link_to "logout", logout_path %>
             </span>
           <% else %>
             <%= link_to "Login", login_path %>
