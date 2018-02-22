@@ -21,7 +21,7 @@
 /yarn-error.log
 
 # ignore DS_STORE
-.DS_STORE
+.DS_Store
 
 # ignore schema.rb
 /db/schema.rb
