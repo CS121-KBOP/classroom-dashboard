@@ -23,7 +23,6 @@ function populateFlashcard(json) {
       <h1> <%= @course.code %>: <%= @course.title %></h1>
       <ul class="nav nav-pills nav-justified">
       <li><%= link_to "Edit Course", edit_user_course_path(@user, @course) %><br></li>
-      <li><%= link_to "All Courses", user_courses_path(@user) %><br></li>
       <li><%= link_to "Add Student", new_user_course_student_path(@user, @course) %><br></li>
       </ul>
       
@@ -35,7 +34,7 @@ function populateFlashcard(json) {
             <div id="flashcard-info">
               <h4 id="student-name">Name</h4>
               <p id="student-info">info</p>
-              <div class="btn" onclick="drawFlashcard()">Draw Flashcard</div>
+              <button type="button" onclick="drawFlashcard()">Draw Flashcard</button>
             </div>
           </div>
         </div>

@@ -10,8 +10,8 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 
-
-    <nav class="navbar navbar-default">
+  <% if logged_in? %>
+  <nav class="navbar navbar-default">
   <div class="navbar-container">
     <div class="navbar-header">
       <button class="navbar-toggle collapsed" data-target="#bs-navbar-collapse-1" data-toggle="collapse" type="button">
@@ -20,7 +20,7 @@
         <span class="icon-bar"></span>
       </button>
       <div class="navbar-brand">
-        <h>Classroom Dashboard</h>
+      <%= link_to "Classroom Dashboard", root_path %>
       </div>
       
     </div>
@@ -40,6 +40,7 @@
   </div>
 </nav>
 
+<% end %>
   </head>
 
   <body>

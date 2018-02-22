@@ -12,7 +12,7 @@ body {
         color: rgb(78, 55, 100);
       }
       a:hover{
-        color: white;
+        color: rgb(78, 55, 100);
         background-color: rgb(78, 55, 100);
       }
   }
@@ -22,6 +22,11 @@ body {
       color: whitesmoke;
     }
 
+  }
+
+  .btn {
+    background-color: whitesmoke;
+    color: rgb(78, 55, 100);
   }
   
   .navbar-default {
