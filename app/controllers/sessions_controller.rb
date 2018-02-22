@@ -4,15 +4,19 @@ class SessionsController < ApplicationController
 
     def create
         user_info = request.env["omniauth.auth"]
-
+        puts "\n\n\n\n\n\n\n\n\n======================\n\n\n\n\n\n\n\n\n"
+        puts user_info
+        puts "\n\n\n\n\n\n\n\n\n======================\n\n\n\n\n\n\n\n\n"
         user           = User.new
         user.oauth_id  = user_info["uid"]
         user.name      = user_info["info"]["name"]
         user.email     = user_info["info"]["email"]
-        session[:user]  = user
+        user.provider  = user_info["provider"]
         if !User.where(oauth_id: user.oauth_id).exists?
             user.save
         end
+        user.id = User.find_by(oauth_id: user.oauth_id).id
+        session[:user]  = user
 
         redirect_to root_path
     end
