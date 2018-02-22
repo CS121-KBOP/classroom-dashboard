@@ -10,7 +10,11 @@ Rails.application.routes.draw do
 
     resources :users do
         resources :courses do
-            resources :students
+            resources :students do
+                collection do
+                    post :import
+                end
+            end
         end
     end
 

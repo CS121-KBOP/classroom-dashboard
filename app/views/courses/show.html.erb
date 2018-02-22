@@ -44,6 +44,11 @@ function populateFlashcard(json) {
         <div class="row">
           <div class="col-lg-10 offset-lg-1">
           <h2>Student Roster</h2>
+          <h2>Import Students</h2>
+            <%= form_tag import_user_course_students_path(@user, @course), multipart: true do %>
+              <%= file_field_tag :file %>
+              <%= submit_tag "Import" %>
+            <% end %>
           <table>
             <tbody>
               <% @course.students.each do |student| %>
