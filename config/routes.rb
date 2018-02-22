@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
     get "/login", to: redirect("/auth/google_oauth2")
     get "/auth/google_oauth2/callback", to: "sessions#create"
+    delete "/logout", to: "sessions#destroy"
     get "/logout", to: "sessions#destroy"
 
     get    '/users/:user_id/courses/:id/flashcard',  to: 'courses#flashcard'
