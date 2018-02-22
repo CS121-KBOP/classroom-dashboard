@@ -1,11 +1,45 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>ClassroomDashboard</title>
+    <title>Classroom Dashboard</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <%= csrf_meta_tags %>
 
+    <%= stylesheet_link_tag "application.css" %>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+
+    <nav class="navbar navbar-default">
+  <div class="navbar-container">
+    <div class="navbar-header">
+      <button class="navbar-toggle collapsed" data-target="#bs-navbar-collapse-1" data-toggle="collapse" type="button">
+        <span class="sr-only">Toggle Navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <div class="navbar-brand">
+        <h>Classroom Dashboard</h>
+      </div>
+      
+    </div>
+    <div class="collapse navbar-collapse" id="bs-navbar-collapse-1">
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+        <%= link_to "Courses", user_courses_path(@user) %>
+        </li>
+        <li>
+        <%= link_to "Profile", user_path(@user) %>
+        </li>
+        <li>
+        <%= link_to "Log Out", "/logout", method: :delete %>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
   </head>
 
   <body>

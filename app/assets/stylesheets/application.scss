@@ -1,0 +1,41 @@
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+body {
+    background-color: rgb(236, 225, 248);
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+  }
+
+  .nav-pills{
+    color:  rgb(78, 55, 100);
+    li a {
+        color: rgb(78, 55, 100);
+      }
+      a:hover{
+        color: white;
+        background-color: rgb(78, 55, 100);
+      }
+  }
+
+  .navbar-brand {
+    a {
+      color: whitesmoke;
+    }
+
+  }
+  
+  .navbar-default {
+    h{
+        color: whitesmoke;
+    }
+    background-color: rgb(78, 55, 100);
+    height: 54px;
+    .navbar-nav li a {
+      color: whitesmoke;
+    }
+  }
+  
+  .navbar-container {
+    width: 800x;
+    margin: 0 auto;
+  }
