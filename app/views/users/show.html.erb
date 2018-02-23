@@ -1,16 +1,16 @@
 <center>
-    <br>
-    <div>
-        <% flash.each do |message_type, message| %>
-            <div class="alert alert-<%= message_type %>"><%= message %></div>
-        <% end %>
-        <h1><%= @user.name %>'s Profile</h1>
+  <br>
+  <div>
+    <% flash.each do |message_type, message| %>
+      <div class="alert alert-<%= message_type %>"><%= message %></div>
+    <% end %>
+    <h1><%= @user.name %>'s Profile</h1>
 
-        <p>
-            email: <%= @user.email %>
-        </p>
-        <%= link_to "Courses", user_courses_path(@user) %>
-        <%= link_to "Edit Profile", edit_user_path(@user) %>
-        <%= link_to "Log Out", "/logout", method: :delete %>
-    </div>
+    <p>
+      email: <%= @user.email %>
+    </p>
+    <%= link_to "Courses", user_courses_path(@user) %>
+    <%= link_to "Edit Profile", edit_user_path(@user) %>
+    <%= link_to "Log Out", "/logout", method: :delete %>
+  </div>
 </center>
