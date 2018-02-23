@@ -1,29 +1,26 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Classroom Dashboard</title>
-  </head>
-  <body>
-          <% if logged_in? %>
+    <head>
+        <title>Classroom Dashboard</title>
+    </head>
+    <body>
+        <% if logged_in? %>
             <li><%= link_to "My Courses", user_courses_path(current_user["id"]) %></li>
-          <% end %>
-        </ul>
-          <% if logged_in? %>
             <span>
-              <%= current_user["name"] %>
-              <%= current_user["email"] %>
-              <%= link_to "logout", logout_path %>
+                <%= current_user["name"] %>
+                <%= current_user["email"] %>
+                <%= link_to "logout", logout_path %>
             </span>
-          <% else %>
+        <% else %>
             <%= link_to "Login", login_path %>
-          <% end %>
-    <div class="container">
-      <% if flash.any? %>
-        <% flash.each do |type, message| %>
-          <div class="alert alert-<%= type %>"><%= message %></div>
         <% end %>
-      <% end %>
-      <%= yield %>
-    </div>
-  </body>
+        <div class="container">
+            <% if flash.any? %>
+                <% flash.each do |type, message| %>
+                    <div class="alert alert-<%= type %>"><%= message %></div>
+                <% end %>
+            <% end %>
+            <%= yield %>
+        </div>
+    </body>
 </html

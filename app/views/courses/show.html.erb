@@ -1,65 +1,65 @@
 <script>
 function drawFlashcard() {
-  var xhttp = new XMLHttpRequest();
-  xhttp.onreadystatechange = function() {
-    console.log(this.status);
-    if (this.readyState == 4 && this.status == 200) {
-     populateFlashcard(this.responseText)
-    }
-  };
-  xhttp.open("GET", '<%= url_for(controller: 'courses', action: 'flashcard') %>', true);
-  xhttp.send();
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        console.log(this.status);
+        if (this.readyState == 4 && this.status == 200) {
+         populateFlashcard(this.responseText)
+        }
+    };
+    xhttp.open("GET", '<%= url_for(controller: 'courses', action: 'flashcard') %>', true);
+    xhttp.send();
 }
 
 function populateFlashcard(json) {
-  var student = JSON.parse(json);
-  document.getElementById("student-name").innerHTML = student.name;
-  document.getElementById("student-info").innerHTML = student.email;
+    var student = JSON.parse(json);
+    document.getElementById("student-name").innerHTML = student.name;
+    document.getElementById("student-info").innerHTML = student.email;
 }
 </script>
 <center>
-  <br>
-    <div>
-      <h1> <%= @course.code %>: <%= @course.title %></h1>
-      <hr>
-      <div class = "container">
-        <div class="row">
-          <div class="col-lg-4">
-            <h3> Actions</h3>
-            <%= link_to "Edit Course", edit_user_course_path(@user, @course) %><br>
-            <%= link_to "All Courses", user_courses_path(@user) %><br>
-            <%= link_to "Account", user_path(@user) %><br>
-            <%= link_to "Add Student", new_user_course_student_path(@user, @course) %><br>
-          </div>
-          <div class = "col-lg-4"></div>
-          <div class = "col-lg-4">
-            <h3>Flashcards</h3>
-            <div id="flashcard-info">
-              <h4 id="student-name">Name</h4>
-              <p id="student-info">info</p>
-              <div class="btn" onclick="drawFlashcard()">Draw Flashcard</div>
+    <br>
+        <div>
+            <h1> <%= @course.code %>: <%= @course.title %></h1>
+            <hr>
+            <div class = "container">
+                <div class="row">
+                    <div class="col-lg-4">
+                        <h3> Actions</h3>
+                        <%= link_to "Edit Course", edit_user_course_path(@user, @course) %><br>
+                        <%= link_to "All Courses", user_courses_path(@user) %><br>
+                        <%= link_to "Account", user_path(@user) %><br>
+                        <%= link_to "Add Student", new_user_course_student_path(@user, @course) %><br>
+                    </div>
+                    <div class = "col-lg-4"></div>
+                    <div class = "col-lg-4">
+                        <h3>Flashcards</h3>
+                        <div id="flashcard-info">
+                            <h4 id="student-name">Name</h4>
+                            <p id="student-info">info</p>
+                            <div class="btn" onclick="drawFlashcard()">Draw Flashcard</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-10 offset-lg-1">
+                        <h4>Import Students</h4>
+                        <%= form_tag import_user_course_students_path(@user, @course), multipart: true do %>
+                            <%= file_field_tag :file %>
+                            <%= submit_tag "Import Students" %>
+                        <% end %>
+                    <h1>Student Roster</h1>
+                    <table>
+                        <tbody>
+                            <% @course.students.each do |student| %>
+                                <tr>
+                                    <td><%= student.name %></td>
+                                    <td><%= link_to "See Student", user_course_student_path(@user, @course, student) %></td>
+                                </tr>
+                            <% end %>
+                        </tbody>
+                    </table>
+                    </div>
+                </div>
             </div>
-          </div>
         </div>
-        <div class="row">
-          <div class="col-lg-10 offset-lg-1">
-            <h4>Import Students</h4>
-            <%= form_tag import_user_course_students_path(@user, @course), multipart: true do %>
-              <%= file_field_tag :file %>
-              <%= submit_tag "Import Students" %>
-            <% end %>
-          <h1>Student Roster</h1>
-          <table>
-            <tbody>
-              <% @course.students.each do |student| %>
-                <tr>
-                  <td><%= student.name %></td>
-                  <td><%= link_to "See Student", user_course_student_path(@user, @course, student) %></td>
-                </tr>
-              <% end %>
-            </tbody>
-          </table>
-          </div>
-        </div>
-      </div>
-    </div>
