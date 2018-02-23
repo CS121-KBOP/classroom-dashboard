@@ -67,7 +67,7 @@ class StudentsController < ApplicationController
         @course = @user.courses.find(params[:course_id])
         Student.import(params[:file], @course)
 
-        redirect_to user_course_path(@user, @course), notice: 'Students imported.'
+        redirect_to user_course_path(@user, @course)
     end
      
     private
