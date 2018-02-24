@@ -6,6 +6,7 @@
       <%= link_to "Account", user_path(@user) %>
       <h1>Student Information</h1>
       <h2><%= @student.name %></h2>
+      <%= image_tag @student.portrait.url(:flashcard) %>
       <h2><%= @student.email %></h2>
       <hr>
     </div>

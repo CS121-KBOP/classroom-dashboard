@@ -48,6 +48,7 @@ function populateFlashcard(json) {
             <tbody>
               <% @course.students.each do |student| %>
                 <tr>
+                  <td><%= image_tag student.portrait.url(:small) %></td>
                   <td><%= student.name %></td>
                   <td><%= link_to "See Student", user_course_student_path(@user, @course, student) %></td>
                 </tr>

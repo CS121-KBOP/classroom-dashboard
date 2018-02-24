@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180216222946) do
+ActiveRecord::Schema.define(version: 20180224101324) do
 
   create_table "courses", force: :cascade do |t|
     t.string "title"
@@ -27,6 +27,10 @@ ActiveRecord::Schema.define(version: 20180216222946) do
     t.integer "course_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "portrait_file_name"
+    t.string "portrait_content_type"
+    t.integer "portrait_file_size"
+    t.datetime "portrait_updated_at"
     t.index ["course_id"], name: "index_students_on_course_id"
   end
 
