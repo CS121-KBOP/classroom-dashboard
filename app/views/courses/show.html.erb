@@ -15,6 +15,7 @@ function populateFlashcard(json) {
   var student = JSON.parse(json);
   document.getElementById("student-name").innerHTML = student.name;
   document.getElementById("student-info").innerHTML = student.email;
+  document.getElementById("student-portrait").alt = student.name;
 }
 </script>
 <center>
