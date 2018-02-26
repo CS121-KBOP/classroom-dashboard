@@ -2,19 +2,29 @@
 @import "bootstrap";
 
 body {
-    background-color: rgb(236, 225, 248);
+    background-color: whitesmoke;
+    background-image: linear-gradient(rgb(236, 225, 248), whitesmoke);
     font-family: Verdana, Geneva, Tahoma, sans-serif;
   }
 
-  .nav-pills{
+  .nav-pills > li > a{
     color:  rgb(78, 55, 100);
-    li a {
-        color: rgb(78, 55, 100);
-      }
-      a:hover{
-        color: rgb(78, 55, 100);
-        background-color: rgb(78, 55, 100);
-      }
+    background-color: transparent;
+      
+  }
+
+  .nav-pills > li.active > a{
+    color: rgb(236, 225, 248);
+    background-color: rgb(78, 55, 100);
+  }
+  .nav-pills > li.active > a:hover{
+    color: rgb(236, 225, 248);
+    background-color: rgb(78, 55, 100);
+  }
+
+  .nav-pills > li > a:hover{
+    background-color: rgb(78, 55, 100);
+    color: rgb(236, 225, 248);
   }
 
   .navbar-brand {
@@ -24,17 +34,26 @@ body {
 
   }
 
+  .flashcard {
+    width: 280px;
+    padding: 20px;
+    border: 5px solid rgb(78, 55, 100);
+    margin: 0;
+  }
+
   .btn {
     
-    background-color: whitesmoke;
-    color: rgb(78, 55, 100);
-    a:hover
-    {
-      color: whitesmoke;
-      
-    }
+    background-color: rgb(78, 55, 100);
+    color: whitesmoke;
+    border: solid;
+    border-width: thin;
+    
   }
-  
+  .btn:hover{
+    color: rgb(78, 55, 100);
+    background-color: rgb(236, 225, 248);
+  }
+
   .navbar-default {
     h{
         color: whitesmoke;
