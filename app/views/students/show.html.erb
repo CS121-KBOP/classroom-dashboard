@@ -1,12 +1,14 @@
 <center>
   <br>
     <div>
-      <%= link_to "Edit Student", edit_user_course_student_path(@user, @course, @student) %>
-      <%= link_to "Back to Course", user_course_path(@user, @course) %>
-      <%= link_to "Account", user_path(@user) %>
-      <h1>Student Information</h1>
+      <ul class="nav nav-pills nav-justified">
+      <li class = "active"><%= link_to "Edit Student", edit_user_course_student_path(@user, @course, @student) %><br></li>
+      <li><%= link_to "Back to Course", user_course_path(@user, @course)%><br></li>
+      </ul>
+
+
       <h2><%= @student.name %></h2>
-      <h2><%= @student.email %></h2>
+      <h4><%= @student.email %></h4>
       <hr>
     </div>
 

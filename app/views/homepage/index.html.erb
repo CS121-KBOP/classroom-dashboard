@@ -5,17 +5,14 @@
   </head>
   <body>
           <% if logged_in? %>
-            <li><%= link_to "My Courses", user_courses_path(current_user["id"]) %></li>
-          <% end %>
-        </ul>
-          <% if logged_in? %>
-            <span>
-              <%= current_user["name"] %>
-              <%= current_user["email"] %>
-              <%= link_to "logout", logout_path %>
-            </span>
+            <h1><%= current_user["name"] %></h1>
+            <div class="btn-group">
+            <%= link_to "View Courses", user_courses_path(current_user["id"]), :class => "btn" %>
+            </div>
           <% else %>
-            <%= link_to "Login", login_path %>
+            <div class="btn-group">
+              <%= link_to "Login with Google", login_path, :class => "btn" %>
+            </div>
           <% end %>
     <div class="container">
       <% if flash.any? %>
