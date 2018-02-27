@@ -13,7 +13,7 @@ class SessionsController < ApplicationController
             user.save
         end
         user.id = User.find_by(oauth_id: user.oauth_id).id
-        session[:user]  = user
+        session[:user] = user
 
         redirect_to root_path
     end
