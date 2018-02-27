@@ -23,6 +23,7 @@
       <td><%= form.text_field :code, :class => "code" %></td>
     </tr>
   </table>
-  <%= form.submit "Confirm" %>
-  <%= link_to cancel_text, cancel_path %>
+  
+  <%= form.submit "Confirm", :class => "btn" %>
+  <%= link_to cancel_text, cancel_path, :class => "btn btn-danger" %>
 <% end %>
