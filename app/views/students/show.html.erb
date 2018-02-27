@@ -7,7 +7,9 @@
       <%= link_to "Delete Student", user_course_student_path(@user, @course), method: :delete, data: { confirm: 'Are you sure?' } %>
       <h1>Student Information</h1>
       <h2><%= @student.name %></h2>
+      <%= image_tag @student.portrait.url(:flashcard) %>
       <h2><%= @student.email %></h2>
+      <p><%= @student.notes %></p>
       <hr>
     </div>
 </center>
