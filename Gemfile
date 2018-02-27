@@ -18,8 +18,12 @@ gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
-gem "omniauth"
-gem "omniauth-google-oauth2"
+# gems for Google OAuth
+gem 'omniauth'
+gem 'omniauth-google-oauth2'
+
+# gem for csv upload
+gem 'roo'
 
 
 # Use CoffeeScript for .coffee assets and views
