@@ -60,9 +60,18 @@ class StudentsController < ApplicationController
             render 'edit'
         end
     end
+
+    def import
+        @user = User.find(params[:user_id])
+        proper_user(@user)
+        @course = @user.courses.find(params[:course_id])
+        Student.import(params[:file], @course)
+
+        redirect_to user_course_path(@user, @course)
+    end
      
     private
         def student_params
-            params.require(:student).permit(:name, :email)
+            params.require(:student).permit(:name, :email, :portrait, :notes)
         end
 end

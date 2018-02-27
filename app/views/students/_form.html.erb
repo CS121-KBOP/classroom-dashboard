@@ -17,11 +17,22 @@
       <td><%= form.label :name,  :class => "control-label"  %></td>
       <td><%= form.text_field :name,  :class => "name" %></td>
     </tr>
-   
+
     <tr class="field">
       <td><%= form.label :email,  :class => "control-label"  %></td>
       <td><%= form.text_field :email, :class => "email" %></td>
     </tr>
+
+    <tr class="field">
+      <td><%= form.label :notes,  :class => "control-label"  %></td>
+      <td><%= form.text_field :notes %></td>
+    </tr>
+
+    <tr class="field">
+      <td><%= form.label :portrait,  :class => "control-label"  %></td>
+      <td><%= form.file_field :portrait %></td>
+    </tr>
+   
   </table>
   <%= form.submit "Confirm" %>
   <%= link_to cancel_text, cancel_path %>

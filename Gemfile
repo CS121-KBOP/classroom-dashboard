@@ -18,8 +18,12 @@ gem 'sass-rails', '>= 3.2'
 gem 'uglifier', '>= 1.3.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
-gem "omniauth"
-gem "omniauth-google-oauth2"
+# gems for Google OAuth
+gem 'omniauth'
+gem 'omniauth-google-oauth2'
+
+# gem for csv upload
+gem 'roo'
 
 
 # Use CoffeeScript for .coffee assets and views
@@ -33,9 +37,14 @@ gem 'jbuilder', '~> 2.5'
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.11'
 
+<<<<<<< HEAD
 gem 'bootstrap-sass', '~> 3.3.7'
 
 gem 'jquery-rails'
+=======
+# Use paperclip for image control, requires imageMagick
+gem 'paperclip'
+>>>>>>> dev
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

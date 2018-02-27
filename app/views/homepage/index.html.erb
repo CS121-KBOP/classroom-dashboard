@@ -4,6 +4,7 @@
     <title>Classroom Dashboard</title>
   </head>
   <body>
+<<<<<<< HEAD
           <% if logged_in? %>
             <h1><%= current_user["name"] %></h1>
             <div class="btn-group">
@@ -14,6 +15,18 @@
               <%= link_to "Login with Google", login_path, :class => "btn" %>
             </div>
           <% end %>
+=======
+    <% if logged_in? %>
+      <li><%= link_to "My Courses", user_courses_path(current_user["id"]) %></li>
+      <span>
+        <%= current_user["name"] %>
+        <%= current_user["email"] %>
+        <%= link_to "logout", logout_path %>
+      </span>
+    <% else %>
+      <%= link_to "Login", login_path %>
+    <% end %>
+>>>>>>> dev
     <div class="container">
       <% if flash.any? %>
         <% flash.each do |type, message| %>

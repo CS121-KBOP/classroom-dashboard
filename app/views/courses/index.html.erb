@@ -1,12 +1,16 @@
 <h1>Listing Courses</h1>
 
+<<<<<<< HEAD
 <table class="table table-hover table-responsive">
+=======
+<table>
+>>>>>>> dev
   <tr>
     <th style="width: 30%; text-align: left;">Title</th>
     <th style="width: 30%; text-align: left;">Code</th>
     <th style="width: 10%; text-align: center;" colspan="3">Options</th>
   </tr>
- 
+
   <% @courses.each do |course| %>
     <tr >
       <td><%= course.title %></td>
@@ -19,5 +23,9 @@
 
     </tr>
   <% end %>
+<<<<<<< HEAD
   <%= link_to "New Course", new_user_course_path(@user), :class => "btn"%>
+=======
+  <%= link_to "New Course", new_user_course_path(@user) %>
+>>>>>>> dev
 </table>
