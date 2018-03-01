@@ -60,7 +60,9 @@ class CoursesController < ApplicationController
         proper_user(@user)
         @course = @user.courses.find(params[:id])
         @student = @course.students.sample
-        render(json:  @student.to_json)
+        @student_hash = @student.attributes
+        @student_hash[:portrait_url] = @student.portrait.url(:flashcard)
+        render(json:  @student_hash.to_json)
     end
 
     private
