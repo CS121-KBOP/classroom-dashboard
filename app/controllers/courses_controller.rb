@@ -56,12 +56,23 @@ class CoursesController < ApplicationController
     end
 
     def flashcard
+        # get the user and course paramaters
         @user = User.find(params[:user_id])
         proper_user(@user)
         @course = @user.courses.find(params[:id])
+        # randomly select one student from the course roster
         @student = @course.students.sample
-        @student_hash = @student.attributes
-        @student_hash[:portrait_url] = @student.portrait.url(:flashcard)
+        # if there is a student to show
+        if @student != nil
+            # convert the student object to a hash
+            @student_hash = @student.attributes
+            # add the student's portrait url to the hash
+            @student_hash[:portrait_url] = @student.portrait.url(:flashcard)
+        else
+            # otherwise send back an empty object
+            @student_hash = {};
+        end
+        # send the json back to the client
         render(json:  @student_hash.to_json)
     end
 
