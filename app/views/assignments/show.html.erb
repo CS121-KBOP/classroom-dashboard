@@ -1,3 +1,50 @@
+<script>
+var submission = 0;
+var num_subs = <%= @assignment.submissions.length %>;
+
+window.onload = function load(){
+  getNewSub();
+}
+
+function prevSub(){
+  submission -= 1;
+  if (submission < 0){ 
+    submission += num_subs;
+  }
+  getNewSub();
+}
+
+function nextSub(){
+  submission += 1;
+  if (submission >= num_subs){ 
+    submission -= num_subs;
+  }
+  getNewSub();
+}
+
+function getNewSub() {
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    console.log(this.status);
+    if (this.readyState == 4 && this.status == 200) {
+     populateSub(this.responseText)
+    }
+  };
+  xhttp.open("GET", '<%= url_for(controller: 'assignments', action: 'submission_view') %>?submission='+submission, true);
+  xhttp.send();
+}
+
+function populateSub(json) {
+  if (json != "{}"){
+    var submission = JSON.parse(json);
+    document.getElementById("submission-student").innerHTML = submission.student_name;
+    document.getElementById("submission-picture").src = submission.picture_url;
+    document.getElementById("submission-created").innerHTML = submission.created;
+    document.getElementById("submission-edited").innerHTML = submission.edited;
+
+  }
+}
+</script>
 <center>
   <br>
     <div>
@@ -11,25 +58,14 @@
       <p>ACCESS TAG: <%= @submissionTag %></p>
       <p><%= @assignment.description %></p>
       <hr>
-      <h2>Submissions</h2>
-            <table>
-              <thead>
-                <tr><th>Student</th><th>Answer</th><th></th><th></th>
-              </thead>
-              <tbody>
-                <% @assignment.submissions.each do |submission| %>
-                  <tr>
-                    <td><% if submission.student_id != nil %>
-                      <%= Student.find(submission.student_id).name %>
-                      <% else %>
-                      UNKNOWN
-                      <% end %>
-                    </td>
-                    <td><%= submission.answer %></td>
-                    <td><%= link_to "Edit", edit_user_course_assignment_submission_path(@user, @course, @assignment, submission) %></td>
-                  </tr>
-                <% end %>
-              </tbody>
-            </table>
+      <span>
+      <p onclick="prevSub()">Previous</p>
+      <h2>Submissions</h2><p onclick="nextSub()">Next</p></span>
+      <div>
+        <%= image_tag " ", :id => "submission-picture", :style => "height: 300px;"%>
+        <h3 id="submission-student">Placeholder</h3>
+        <p id="submission-created">Placeholder</p>
+        <p id="submission-edited">Placeholder</p>
+      </div>
     </div>
 

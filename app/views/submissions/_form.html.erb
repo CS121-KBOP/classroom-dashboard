@@ -90,7 +90,8 @@ function populateResults(json) {
    
     <tr class="field">
       <td><%= form.label :answer,  :class => "control-label"  %></td>
-      <td><%= form.text_field :answer, :class => "description" %></td>
+      <td><%= form.file_field :answer, :class => "description" %></td>
+      
     </tr>
   </table>
   <%= form.submit "Confirm" %>

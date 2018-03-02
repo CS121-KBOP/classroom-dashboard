@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180220033829) do
+ActiveRecord::Schema.define(version: 20180224101324) do
 
   create_table "assignments", force: :cascade do |t|
     t.string "name"
@@ -33,14 +33,22 @@ ActiveRecord::Schema.define(version: 20180220033829) do
   create_table "students", force: :cascade do |t|
     t.string "name"
     t.string "email"
+    t.text "notes"
     t.integer "course_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "portrait_file_name"
+    t.string "portrait_content_type"
+    t.integer "portrait_file_size"
+    t.datetime "portrait_updated_at"
     t.index ["course_id"], name: "index_students_on_course_id"
   end
 
   create_table "submissions", force: :cascade do |t|
-    t.string "answer"
+    t.string "answer_file_name"
+    t.string "answer_content_type"
+    t.integer "answer_file_size"
+    t.datetime "answer_updated_at"
     t.integer "assignment_id"
     t.integer "student_id"
     t.datetime "created_at", null: false

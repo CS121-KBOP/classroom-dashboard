@@ -13,6 +13,7 @@ Rails.application.routes.draw do
     get    '/:assignment_id', to: 'submissions#new'
     post   '/:assignment_id', to: 'submissions#create'
     post   '/users/:user_id/courses/:id/assignments/:assignment_id/submissions/:id/edit', to: 'submissions#update'
+    get    '/users/:user_id/courses/:course_id/assignments/:id/submissions', to: 'assignments#submission_view'
 
     resources :users do
         resources :courses do
