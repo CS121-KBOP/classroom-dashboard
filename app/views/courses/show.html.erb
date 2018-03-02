@@ -3,7 +3,7 @@
 function drawFlashcard() {
   // create a new AJAX request object
   var xhttp = new XMLHttpRequest();
-  // tell the request object that when it's state changes, it should check if it good a good reply back, and then call populateFlashcard
+  // tell the request object that when its state changes, it should check if it good a good reply back, and then call populateFlashcard
   xhttp.onreadystatechange = function() {
     // readyState == 4 if response received. status == 200 if server gave back a good response
     if (this.readyState == 4 && this.status == 200) {
