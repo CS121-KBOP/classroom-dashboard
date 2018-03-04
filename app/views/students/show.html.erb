@@ -2,7 +2,8 @@
   <br>
     <div>
       <ul class="nav nav-pills nav-justified">
-      <li class = "active"><%= link_to "Edit Student", edit_user_course_student_path(@user, @course, @student) %><br></li>
+      <li class = "active"><a href="#">Show Student</a><br></li>
+      <li ><%= link_to "Edit Student", edit_user_course_student_path(@user, @course, @student) %><br></li>
       <li><%= link_to "Back to Course", user_course_path(@user, @course)%><br></li>
       </ul>
 

@@ -34,6 +34,7 @@
     </tr>
    
   </table>
-  <%= form.submit "Confirm" %>
-  <%= link_to cancel_text, cancel_path %>
+  <br>
+  <%= form.submit "Confirm", :class => "btn"  %>
+  <%= link_to cancel_text, cancel_path, :class => "btn btn-danger" %>
 <% end %>
