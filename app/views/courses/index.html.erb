@@ -1,14 +1,24 @@
-<h1>Listing Courses</h1>
+<table class="table">
+  <thead class="thead-default">
+    <tr>
+      <th style = "width 80%"><h1>Listing Courses</h1></th>
+      <th style="width 20%; text-align:right;"><%= link_to "New Course", new_user_course_path(@user), :class => "btn"%></th>
+    <tr>
+    </tr>
+  </thead>
+</table>
 
 <table class="table table-hover table-responsive">
-  <tr>
-    <th style="width: 30%; text-align: left;">Title</th>
-    <th style="width: 30%; text-align: left;">Code</th>
-    <th style="width: 10%; text-align: center;" colspan="3">Options</th>
-  </tr>
+  <thead class="thead-default">
+    <tr style="background-color:rgb(78,55,100,.5);">
+      <th style="width: 40%; text-align: left;">Title</th>
+      <th style="width: 30%; text-align: left;">Code</th>
+      <th style="width: 10%; text-align: center;" colspan="3">Options</th>
+    </tr>
+  </thead>
 
   <% @courses.each do |course| %>
-    <tr >
+    <tr>
       <td><%= course.title %></td>
       <td><%= course.code %></td>
       <td><%= link_to 'Show', user_course_path(@user, course) %></td>
@@ -19,5 +29,5 @@
 
     </tr>
   <% end %>
-  <%= link_to "New Course", new_user_course_path(@user), :class => "btn"%>
+  
 </table>
