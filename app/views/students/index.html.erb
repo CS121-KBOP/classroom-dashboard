@@ -1,23 +1,26 @@
 <h1>Student Roster</h1>
 
 <table class="table table-hover table-responsive">
-  <tr>
-    <th style="width: 30%; text-align: left;">Title</th>
-    <th style="width: 30%; text-align: left;">Code</th>
+  <tr style="background-color:rgb(78,55,100,.5);">
+    <th style="width: 30%; text-align: left;">Name</th>
+    <th style="width: 30%; text-align: left;">Notes</th>
     <th style="width: 10%; text-align: center;" colspan="3">Options</th>
   </tr>
 
   <% @students.each do |student| %>
     <tr >
-      <td><%= course.title %></td>
-      <td><%= course.code %></td>
-      <td><%= link_to 'Show', user_course_path(@user, course) %></td>
-      <td><%= link_to 'Edit', edit_user_course_path(@user, course) %></td>
-      <td><%= link_to 'Destroy', user_course_path(@user, course),
+      <td>
+        <%= image_tag student.portrait.url(:small)%>
+        <%= student.name %>
+      </td>
+      <td><%= student.notes %></td>
+      <td><%= link_to 'Show', user_course_student_path(@user, @course, student) %></td>
+      <td><%= link_to 'Edit', edit_user_course_student_path(@user, @course, student) %></td>
+      <td><%= link_to 'Remove', user_course_student_path(@user, @course, student),
               method: :delete,
               data: { confirm: 'Are you sure?' } %></td>
 
     </tr>
   <% end %>
-  <%= link_to "New Course", new_user_course_path(@user), :class => "btn"%>
+  <%= link_to "Add Student", new_user_course_student_path(@user, @course), :class => 'btn'%>
 </table>

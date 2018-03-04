@@ -24,3 +24,6 @@
 .DS_Store
 
 .byebug_history
+
+# ignore user-uploaded images
+public/system/*
