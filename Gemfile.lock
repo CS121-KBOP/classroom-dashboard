@@ -238,12 +238,8 @@ DEPENDENCIES
   paperclip
   puma (~> 3.7)
   rails (~> 5.1.4)
-<<<<<<< HEAD
-  sass-rails (>= 3.2)
-=======
   roo
-  sass-rails (~> 5.0)
->>>>>>> dev
+  sass-rails (>= 3.2)
   selenium-webdriver
   spring
   spring-watcher-listen (~> 2.0.0)

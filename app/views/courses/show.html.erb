@@ -42,22 +42,6 @@ function populateFlashcard(json) {
               
             </div>
           </div>
-<<<<<<< HEAD
-          <div class="row">
-            <div class="col-lg-10 offset-lg-1">
-            <h3>Student Roster</h3>
-            <table class = "table table-hover">
-              <tbody>
-                <% @course.students.each do |student| %>
-                  <tr>
-                    <th scope="row" style="text-align: center;"><%= student.name %></td>
-                    <td style="text-align: center;"><%= link_to "See Student", user_course_student_path(@user, @course, student), :class=>"btn btn-outline-primary" %></td>
-                  </tr>
-                <% end %>
-              </tbody>
-            </table>
-            </div>
-=======
         </div>
         <div class="row">
           <div class="col-lg-10 offset-lg-1">
@@ -78,7 +62,6 @@ function populateFlashcard(json) {
               <% end %>
             </tbody>
           </table>
->>>>>>> dev
           </div>
         </div>
       </center>
