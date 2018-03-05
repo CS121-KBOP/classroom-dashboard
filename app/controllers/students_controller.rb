@@ -61,8 +61,8 @@ class StudentsController < ApplicationController
         end
     end
 
-    # handles batch upload for students
-    # The name of the file (minus the file extension) will be the name of the student
+    # Handles batch upload for students.
+    # The name of the file (minus the file extension) will be the name of the student.
     def import
         @user = User.find(params[:user_id])
         proper_user(@user)
@@ -73,7 +73,7 @@ class StudentsController < ApplicationController
         student.portrait = params[:file]
         # The name of the student is the name of the image
         student.name = student.portrait_file_name
-        # Check that an image was actually grabbed my ensuring name is not empty or nil
+        # Check that an image was actually grabbed by ensuring name is not empty or nil
         if student.name != "" and student.name != nil
             # Replace all underscores with spaces, as file names convert spaces to underscores
             if student.name.include? '_'
