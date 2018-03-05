@@ -67,7 +67,7 @@ class StudentsController < ApplicationController
         @user = User.find(params[:user_id])
         proper_user(@user)
         @course = @user.courses.find(params[:course_id])
-        # Create a new student
+        # Create a new student to be populated
         student = Student.new
         student.course_id = @course.id
         student.portrait = params[:file]
