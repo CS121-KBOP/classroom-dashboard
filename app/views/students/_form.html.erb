@@ -1,3 +1,4 @@
+<center>
 <%= form_for [@user, @course, @student], local: true, html: {:class => "form-horizontal"} do |form| %>
   <% if @student.errors.any? %>
     <div id="error_explanation" class="alert alert-danger">
@@ -38,3 +39,12 @@
   <%= form.submit "Confirm", :class => "btn"  %>
   <%= link_to cancel_text, cancel_path, :class => "btn btn-danger" %>
 <% end %>
+</center>
+<br>
+<center>
+<h3>Batch Upload</h3>
+<%= form_tag import_user_course_students_path(@user, @course), multipart: true do %>
+  <%= file_field_tag :file %>
+  <%= submit_tag "Import Students" %>
+<% end %>
+</center>
