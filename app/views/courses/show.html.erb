@@ -29,6 +29,7 @@ function populateFlashcard(json) {
   }
 }
 </script>
+<%= javascript_include_tag "dropzone.js" %>
 <center>
   <br>
     <div>
@@ -57,10 +58,10 @@ function populateFlashcard(json) {
         <div class="row">
           <div class="col-lg-10 offset-lg-1">
             <h4>Import Students</h4>
-            <%= form_tag import_user_course_students_path(@user, @course), multipart: true do %>
-              <%= file_field_tag :file %>
+            <%= form_tag import_user_course_students_path(@user, @course), class: "dropzone", multipart: true do %>
               <%= submit_tag "Import Students" %>
             <% end %>
+          </div>
           <h1>Student Roster</h1>
           <table>
             <tbody>

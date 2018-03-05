@@ -53,7 +53,7 @@ class StudentsController < ApplicationController
         proper_user(@user)
         @course = @user.courses.find(params[:course_id])
         @student = @course.students.find(params[:id])
-     
+
         if @student.update(student_params)
             redirect_to user_course_path(@user, @course)
         else
@@ -65,11 +65,15 @@ class StudentsController < ApplicationController
         @user = User.find(params[:user_id])
         proper_user(@user)
         @course = @user.courses.find(params[:course_id])
-        Student.import(params[:file], @course)
+        student = Student.new
+        student.course_id = @course.id
+        student.portrait = params[:file]
+        student.name = student.portrait_file_name
+        student.save
 
         redirect_to user_course_path(@user, @course)
     end
-     
+
     private
         def student_params
             params.require(:student).permit(:name, :email, :portrait, :notes)
