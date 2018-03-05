@@ -62,7 +62,7 @@ class StudentsController < ApplicationController
     end
 
     # handles batch upload for students
-    # The name of the file (minus the file extension, hopefully) will be the name of the student
+    # The name of the file (minus the file extension) will be the name of the student
     def import
         @user = User.find(params[:user_id])
         proper_user(@user)
@@ -79,11 +79,8 @@ class StudentsController < ApplicationController
             if student.name.include? '_'
                 student.name.gsub!('_', ' ')
             end
-            # Get rid of the file extension. There is likely a better, more general way to do this,
-            # but for simple applications this brute force way works
-            if student.name.include? ".pdf" or student.name.include? ".jpg" or student.name.include? ".png" or student.name.include? ".JPG"
-                student.name = student.name[0..-5]
-            end
+            # Get rid of the file extension
+            student.name = student.name.split('.')[0]
             student.save
         end
 
