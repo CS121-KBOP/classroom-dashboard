@@ -1,33 +1,32 @@
-<table class="table">
-  <thead class="thead-default">
-    <tr>
-      <th style = "width 80%"><h1>Listing Courses</h1></th>
-      <th style="width 20%; text-align:right;"><%= link_to "New Course", new_user_course_path(@user), :class => "btn"%></th>
-    <tr>
-    </tr>
-  </thead>
-</table>
+<div class="container-fluid">
+  <div class="row">
+      <div class="col-lg-8 col-md-6 col-sm-4"><h1>Listing Courses</h1></div>
+      <div class="col-lg-4 col-md-6 col-sm-8" style="text-align:right;"><h1><%= link_to "New Course", new_user_course_path(@user), :class => "btn"%></h1></div>
+  </div>
 
 <table class="table table-hover table-responsive">
-  <thead class="thead-default">
-    <tr style="background-color:rgb(78,55,100,.5);">
-      <th style="width: 40%; text-align: left;">Title</th>
-      <th style="width: 30%; text-align: left;">Code</th>
-      <th style="width: 10%; text-align: center;" colspan="3">Options</th>
+  <thead >
+    <tr class= "row"; style="background-color:rgb(78,55,100,.5);">
+      <th class="col-lg-4">Title</th>
+      <th class="col-lg-4">Code</th>
+      <th class="col-lg-4"> <center>Options</center></th>
     </tr>
   </thead>
 
   <% @courses.each do |course| %>
-    <tr>
-      <td><%= course.title %></td>
-      <td><%= course.code %></td>
-      <td><%= link_to 'Show', user_course_path(@user, course) %></td>
-      <td><%= link_to 'Edit', edit_user_course_path(@user, course) %></td>
-      <td><%= link_to 'Destroy', user_course_path(@user, course),
+    <tr class= "row">
+      <td class="col-lg-4"><%= course.title %></td>
+      <td class="col-lg-4"><%= course.code %></td>
+      <td class="col-lg-4" align="center"> 
+            <a ><%= link_to 'Show', user_course_path(@user, course) %></a>
+            <a ><%= link_to 'Edit', edit_user_course_path(@user, course) %></a>
+            <a ><%= link_to 'Destroy', user_course_path(@user, course),
               method: :delete,
-              data: { confirm: 'Are you sure?' } %></td>
+              data: { confirm: 'Are you sure?' } %> </a>
+      </td>
 
     </tr>
   <% end %>
   
 </table>
+</div>
