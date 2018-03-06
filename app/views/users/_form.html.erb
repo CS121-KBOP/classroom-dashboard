@@ -17,20 +17,9 @@
       <td><%= form.label :name,  :class => "control-label"  %></td>
       <td><%= form.text_field :name,  :class => "user_input user_name" %></td>
     </tr>
-
     <tr>
       <td><%= form.label :email,  :class => "control-label"  %></td>
       <td><%= form.email_field :email, :class => "user_input email" %></td>
-    </tr>
-
-    <tr>
-      <td><%= form.label :password,  :class => "control-label"  %></td>
-      <td><%= form.password_field :password, :class => "user_input password" %></td>
-    </tr>
-
-    <tr>
-      <td><%= form.label :password_confirmation,  :class => "control-label"  %></td>
-      <td><%= form.password_field :password_confirmation, :class => "user_input password" %></td>
     </tr>
   </table>
   <%= form.submit "Confirm" %>
