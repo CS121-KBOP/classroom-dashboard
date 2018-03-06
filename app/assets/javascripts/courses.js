@@ -39,7 +39,7 @@ function toggleShow(){
   }
 }
 
-// show the name and email
+// show the name, email, and notes
 function show(){
   $("#student-name").html(current_student.name);
   $("#student-info").html(current_student.email);
@@ -47,7 +47,7 @@ function show(){
   shown = true;
 }
 
-// hide the name and email
+// hide the name, email, and notes
 function hide(){
   $("#student-name").html(".");
   $("#student-info").html(".");
@@ -57,15 +57,16 @@ function hide(){
 
 // called when the notes text field is updated
 function updateNotes(){
-  console.log(current_student);
+  // if we are looking at a student
   if (!$.isEmptyObject(current_student)){
+    // get the new notes
     var text = $("#student-notes").val();
+    // send a post request
     $.ajax({
         type: "POST",
-        beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
+        beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))}, // needed so that rails will accept the post
         url: note_upload_url,
         data: { student_id: current_student.id, notes: text },
-
       });
   }
 }
