@@ -10,6 +10,9 @@
 
       <h2><%= @student.name %></h2>
       <h4><%= @student.email %></h4>
+      <%= image_tag @student.portrait.url(:flashcard)%>
+      <h4>Notes</h4>
+      <p> <%= @student.notes %> </p>
       <hr>
     </div>
 </center>
