@@ -55,6 +55,12 @@ class CoursesController < ApplicationController
         redirect_to user_courses_path(@user)
     end
 
+    def quiz
+        @user = User.find(params[:user_id])
+        proper_user(@user)
+        @course = @user.courses.find(params[:id])
+    end
+
     def flashcard
         # get the user and course paramaters
         @user = User.find(params[:user_id])

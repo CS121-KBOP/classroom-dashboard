@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     get "/logout", to: "sessions#destroy"
 
     get    '/users/:user_id/courses/:id/flashcard',  to: 'courses#flashcard'
+    get    '/users/:user_id/courses/:id/quiz',  to: 'courses#quiz'
 
     resources :users do
         resources :courses do
