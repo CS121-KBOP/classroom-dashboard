@@ -1,35 +1,9 @@
-<script>
-// called when the "draw flashcard" button is pressed
-function drawFlashcard() {
-  // create a new AJAX request object
-  var xhttp = new XMLHttpRequest();
-  // tell the request object that when its state changes, it should check if it good a good reply back, and then call populateFlashcard
-  xhttp.onreadystatechange = function() {
-    // readyState == 4 if response received. status == 200 if server gave back a good response
-    if (this.readyState == 4 && this.status == 200) {
-     populateFlashcard(this.responseText)
-    }
-  };
-  // prepare to send the AJAX request to courses/flashcard
-  xhttp.open("GET", '<%= url_for(controller: 'courses', action: 'flashcard') %>', true);
-  // send the ajax request
-  xhttp.send();
-}
-
-function populateFlashcard(json) {
-  // if the json is not empty
-  if (json != "{}"){
-    // parse the returned JSON
-    var student = JSON.parse(json);
-    // populate the fields
-    document.getElementById("student-name").innerHTML = student.name;
-    document.getElementById("student-info").innerHTML = student.email;
-    document.getElementById("student-picture").src = student.portrait_url;
-    document.getElementById("student-picture").alt = student.name;
-  }
-}
+<%= csrf_meta_tag %>
+<script> 
+// so we can access the correct urls in the .js files
+var flashcard_url = "<%= url_for(controller:'courses', action:'flashcard') %>";
+var note_upload_url = "<%= url_for(controller:'courses', action:'updateNotes') %>";
 </script>
-
 <center>
   <br>
     <div>
@@ -38,6 +12,7 @@ function populateFlashcard(json) {
         <li class = "active"><%= link_to "Course", user_course_path(@user, @course) %><br></li>
         <li><%= link_to "Edit Course", edit_user_course_path(@user, @course) %><br></li>
         <li><%= link_to "Student Roster", user_course_students_path(@user, @course) %><br></li>
+        <li><%= link_to "Face/Name Quiz", {controller:"courses", action:"quiz"} %><br></li>
       </ul>
       <div class = "container">
         <div class="row">
@@ -73,8 +48,9 @@ function populateFlashcard(json) {
                 <%= image_tag "/images/defaults/flashcard/missing.png", :id => "student-picture", :style => "width:300px;height:300px;" %>
                 <h4 id="student-name">Name</h4>
                 <p id="student-info">info</p>
+                <textarea rows=5 id="student-notes" onkeyup="updateNotes()"></textarea>
               </div>
-              <button type="button" class ="btn" onclick="drawFlashcard()">Draw Flashcard</button>
+              <button type="button" class ="btn" onclick="drawFlashcard('dashboard')">Draw Flashcard</button>
             </div>
           </div>
         </div>
