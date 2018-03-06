@@ -21,12 +21,14 @@ function populateFlashcard(student, source) {
     $("#student-info").html(student.email);
     $("#student-picture").attr("src", student.portrait_url);
     $("#student-picture").attr("alt", student.name);
+    // if this is on the quiz, hide the name and email immediately. 
     if (source == "quiz") {
       hide();
     }
   }
 }
 
+// switch on/off the name and email
 function toggleShow(){
   if (shown) {
     hide();
@@ -35,12 +37,14 @@ function toggleShow(){
   }
 }
 
+// show the name and email
 function show(){
   $("#student-name").html(current_student.name);
   $("#student-info").html(current_student.email);
   shown = true;
 }
 
+// hide the name and email
 function hide(){
   $("#student-name").html(".");
   $("#student-info").html(".");
