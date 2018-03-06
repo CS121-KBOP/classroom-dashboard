@@ -4,23 +4,25 @@
     <title>Classroom Dashboard</title>
   </head>
   <body>
-    <% if logged_in? %>
-      <li><%= link_to "My Courses", user_courses_path(current_user["id"]) %></li>
-      <span>
-        <%= current_user["name"] %>
-        <%= current_user["email"] %>
-        <%= link_to "logout", logout_path %>
-      </span>
-    <% else %>
-      <%= link_to "Login", login_path %>
-    <% end %>
-    <div class="container">
-      <% if flash.any? %>
-        <% flash.each do |type, message| %>
-          <div class="alert alert-<%= type %>"><%= message %></div>
-        <% end %>
+    <div align="center">
+      <% if logged_in? %>
+        <h1><%= current_user["name"] %></h1>
+        <h4><%= current_user["email"] %></h4>
+        <%= link_to "View All Courses", user_courses_path(current_user["id"]), :class => "btn btn-lg" %>
+        <br>
+        <%= link_to "Log Out", logout_path, :class => "btn btn-danger" %>
+        
+      <% else %>
+        <%= link_to "Login", login_path, :class => "btn btn-lg" %>
       <% end %>
-      <%= yield %>
+      <div class="container">
+        <% if flash.any? %>
+          <% flash.each do |type, message| %>
+            <div class="alert alert-<%= type %>"><%= message %></div>
+          <% end %>
+        <% end %>
+        <%= yield %>
+      </div>
     </div>
   </body>
 </html
