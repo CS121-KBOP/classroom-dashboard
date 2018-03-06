@@ -7,4 +7,4 @@ test:
 production:
   adapter: redis
   url: redis://localhost:6379/1
-  channel_prefix: classroom-dashboard_production
+  channel_prefix: ClassroomDashboard_production

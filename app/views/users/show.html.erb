@@ -1,0 +1,19 @@
+<center>
+  <br>
+  <div>
+    <% flash.each do |message_type, message| %>
+      <div class="alert alert-<%= message_type %>"><%= message %></div>
+    <% end %>
+    <div>
+    <h1><%= @user.name %>'s Profile</h1>
+    <p>
+      Email: <%= @user.email %>
+    </p>
+    <ul class="nav nav-pills nav-justified">
+      <li><%= link_to "Courses", user_courses_path(@user), :class => "btn"%></li>
+      <li><%= link_to "Edit Profile", edit_user_path(@user), :class => "btn"%></li>
+      <li><%= link_to "Log Out", "/logout", method: :delete, :class => "btn"%></li>
+    </ul>
+  </div>
+  </div>
+</center>
