@@ -8,6 +8,7 @@ Rails.application.routes.draw do
 
     get    '/users/:user_id/courses/:id/flashcard',  to: 'courses#flashcard'
     get    '/users/:user_id/courses/:id/quiz',  to: 'courses#quiz'
+    post    '/users/:user_id/courses/:id/update_notes',  to: 'courses#updateNotes'
 
     resources :users do
         resources :courses do

@@ -82,6 +82,19 @@ class CoursesController < ApplicationController
         render(json:  @student_hash.to_json)
     end
 
+    def updateNotes
+        @user = User.find(params[:user_id])
+        proper_user(@user)
+        @course = @user.courses.find(params[:id])
+        @student = @course.students.find(params[:student_id])
+        @student.notes = params[:notes]
+        if @student.save
+            render(json:  {status: "ok"})
+        else
+            render(json:  {status: "failure"})
+        end
+    end
+
     private
         def course_params
             params.require(:course).permit(:title, :code)

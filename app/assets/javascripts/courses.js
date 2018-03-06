@@ -1,5 +1,5 @@
 var shown = false;
-var current_student;
+var current_student = {};
 // called when the "draw flashcard" button is pressed
 function drawFlashcard(source) {
   // send an AJAX GET request to the flashcard controller
@@ -13,7 +13,7 @@ function drawFlashcard(source) {
 
 function populateFlashcard(student, source) {
   // if the returned student exists is not empty
-  if (student != {}){
+  if (!$.isEmptyObject(student)){
     // save the current student
     current_student = student;
     // populate the fields
@@ -24,6 +24,8 @@ function populateFlashcard(student, source) {
     // if this is on the quiz, hide the name and email immediately. 
     if (source == "quiz") {
       hide();
+    } else if (source == "dashboard") {
+      $("#student-notes").val(student.notes);
     }
   }
 }
@@ -41,6 +43,7 @@ function toggleShow(){
 function show(){
   $("#student-name").html(current_student.name);
   $("#student-info").html(current_student.email);
+  $("#student-notes").html(current_student.notes);
   shown = true;
 }
 
@@ -48,5 +51,21 @@ function show(){
 function hide(){
   $("#student-name").html(".");
   $("#student-info").html(".");
+  $("#student-notes").html(".");
   shown = false;
+}
+
+// called when the notes text field is updated
+function updateNotes(){
+  console.log(current_student);
+  if (!$.isEmptyObject(current_student)){
+    var text = $("#student-notes").val();
+    $.ajax({
+        type: "POST",
+        beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
+        url: note_upload_url,
+        data: { student_id: current_student.id, notes: text },
+
+      });
+  }
 }
