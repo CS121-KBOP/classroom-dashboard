@@ -3,6 +3,6 @@
   <div>
     <h1>Edit Student</h1>
     <hr>
-    <%= render partial: 'form', locals: {cancel_path: user_path(@user), cancel_text: "Cancel"} %>
+    <%= render partial: 'form', locals: {cancel_path: user_course_path(@user, @course), cancel_text: "Cancel"} %>
   </div>
 </center>
