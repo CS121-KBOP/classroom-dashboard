@@ -61,7 +61,7 @@ class StudentsController < ApplicationController
         end
     end
 
-    # Handles batch upload for students.
+    # Handles batch upload for students. imports single student by image file
     # The name of the file (minus the file extension) will be the name of the student.
     def import
         @user = User.find(params[:user_id])
@@ -89,6 +89,6 @@ class StudentsController < ApplicationController
 
     private
         def student_params
-            params.require(:student).permit(:name, :email, :portrait, :notes)
+            params.require(:student).permit(:name, :email, :portrait, :notes, :show)
         end
 end

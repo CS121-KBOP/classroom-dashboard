@@ -34,6 +34,11 @@
       <td><%= form.file_field :portrait %></td>
     </tr>
 
+    <tr class="field">
+      <td><%= form.check_box :show, :checked => true %></td>
+      <td><%= form.label :show,  :class => "control-label"  %> in flashcards</td>
+    </tr>
+
   </table>
   <br>
   <%= form.submit "Confirm", :class => "btn"  %>
