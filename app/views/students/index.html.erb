@@ -18,6 +18,7 @@
     </div>
   </div>
 
+<body>
 
 <table class="table table-hover table-responsive">
   <tr style="background-color:rgb(78,55,100,.5);">
@@ -46,14 +47,16 @@
   <% end %>
 
 </table>
-
 </div>
 
-<div class="row" align="center">
-  <div class="col-lg-10 offset-lg-1">
+<center>
     <h4>Import Students</h4>
-    <%= form_tag import_user_course_students_path(@user, @course), class: "dropzone", multipart: true do %>
+    <div >
+      <%= form_tag import_user_course_students_path(@user, @course), 
+        :class => "dropzone",
+        multipart: true do %>
       <%= submit_tag "Import Students" %>
-    <% end %>
-  </div>
-</div>
+      <% end %>
+    </div>
+</center>
+</body>
