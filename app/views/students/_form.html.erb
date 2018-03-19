@@ -43,7 +43,9 @@
 <br>
 <center>
 <h3>Batch Upload</h3>
-<%= form_tag import_user_course_students_path(@user, @course), :class => "dropzone", multipart: true do %>
-  <%= submit_tag "Import Students" %>
+<div class="drop-area">
+  <%= form_tag import_user_course_students_path(@user, @course), :class => "dropzone", multipart: true do %>
+</div>
+  <%= submit_tag "Import" %>
 <% end %>
 </center>

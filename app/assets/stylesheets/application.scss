@@ -89,3 +89,19 @@ body {
 .col-lg-10 {
   align-content: center;
 }
+
+.drop-area {
+  min-height: 70px;
+  border: 2px solid rgba(0, 0, 0, 0.3);
+  background: white;
+  padding: 20px 20px;
+  margin: 20px 80px 20px 80px;
+}
+
+.medium-purple{
+  background-color: rgb(160,148,172);
+}
+
+.right-align{
+  float: right
+}

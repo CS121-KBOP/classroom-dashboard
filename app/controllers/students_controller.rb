@@ -38,7 +38,7 @@ class StudentsController < ApplicationController
         @course = @user.courses.find(params[:course_id])
         @student = @course.students.find(params[:id])
         @student.destroy
-        redirect_to user_course_path(@user, @course)
+        redirect_to user_course_students_path(@user, @course)
     end
 
     def edit
@@ -55,7 +55,7 @@ class StudentsController < ApplicationController
         @student = @course.students.find(params[:id])
 
         if @student.update(student_params)
-            redirect_to user_course_path(@user, @course)
+            redirect_to user_course_students_path(@user, @course)
         else
             render 'edit'
         end

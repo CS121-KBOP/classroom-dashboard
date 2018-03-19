@@ -241,10 +241,12 @@
   * {
     box-sizing: border-box;
   }
-  min-height: 150px;
+  
+  min-height: 200px;
   border: 2px solid rgba(0, 0, 0, 0.3);
   background: white;
   padding: 20px 20px;
+
   &.dz-clickable {
     cursor: pointer;
     * {
