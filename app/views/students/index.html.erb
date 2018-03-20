@@ -1,48 +1,53 @@
-<div class="container-fluid">
+<center>
+  <br> 
+  <div>
+    <h1> <%= @course.code %>: <%= @course.title %></h1>
+    <ul class="nav nav-pills nav-justified">
+      <li><%= link_to "Course", user_course_path(@user, @course) %><br></li>
+      <li><%= link_to "Edit Course", edit_user_course_path(@user, @course) %><br></li>
+      <li class = "active"><%= link_to "Student Roster", user_course_students_path(@user, @course) %><br></li>
+     <li><%= link_to "Face/Name Quiz", {controller:"courses", action:"quiz", id:@course.id} %><br></li>
+    </ul>
+  <div>
+  <h1 ><%= link_to "Add Student", new_user_course_student_path(@user, @course), :class => 'btn'%></h1>
+
+
+  <table class="table table-hover table-responsive">
+    <tr style="background-color:rgb(78,55,100,.5);">
+      <th class="col-lg-3 col-md-3 col-sm-4">Name</th>
+      <th class="col-lg-6 col-md-6 col-sm-4">Notes</th>
+      <th class="col-lg-3 col-md-3 col-sm-4" > <center>Options</center></th>
+    </tr>
+
+    <% @students.each do |student| %>
+      <tr >
+        <td class="col-lg-3 col-md-3 col-sm-4">
+          <%= image_tag student.portrait.url(:small)%>
+          <%= student.name %>
+        </td>
+        <td class="col-lg-6 col-md-6 col-sm-4"><%= student.notes %></td>
+        <td class="col-lg-3 col-md-3 col-sm-4" align="center">
+          <div class="row">
+            <a class="col-4"><%= link_to 'Show', user_course_student_path(@user, @course, student) %></a>
+            <a class="col-4"><%= link_to 'Edit', edit_user_course_student_path(@user, @course, student) %></a>
+            <a class="col-4"><%= link_to 'Remove', user_course_student_path(@user, @course, student),
+                method: :delete,
+                data: { confirm: 'Are you sure?' } %></a>
+          </div>
+        </td>
+      </tr>
+    <% end %>
+
+  </table>
+
+  </div>
+
   <div class="row">
-    <div class="col-lg-8 col-md-8 col-sm-4"><h1>Student Roster</h1></div>
-    <div class="col-lg-4 col-md-4 col-sm-8" align="right" >
-      <h1 ><%= link_to "Add Student", new_user_course_student_path(@user, @course), :class => 'btn'%></h1>
+    <div class="col-lg-10 offset-lg-1">
+      <h4>Import Students</h4>
+      <%= form_tag import_user_course_students_path(@user, @course), class: "dropzone", multipart: true do %>
+        <%= submit_tag "Import Students" %>
+      <% end %>
     </div>
   </div>
-
-
-<table class="table table-hover table-responsive">
-  <tr style="background-color:rgb(78,55,100,.5);">
-    <th class="col-lg-3 col-md-3 col-sm-4">Name</th>
-    <th class="col-lg-6 col-md-6 col-sm-4">Notes</th>
-    <th class="col-lg-3 col-md-3 col-sm-4" > <center>Options</center></th>
-  </tr>
-
-  <% @students.each do |student| %>
-    <tr >
-      <td class="col-lg-3 col-md-3 col-sm-4">
-        <%= image_tag student.portrait.url(:small)%>
-        <%= student.name %>
-      </td>
-      <td class="col-lg-6 col-md-6 col-sm-4"><%= student.notes %></td>
-      <td class="col-lg-3 col-md-3 col-sm-4" align="center">
-        <div class="row">
-          <a class="col-4"><%= link_to 'Show', user_course_student_path(@user, @course, student) %></a>
-          <a class="col-4"><%= link_to 'Edit', edit_user_course_student_path(@user, @course, student) %></a>
-          <a class="col-4"><%= link_to 'Remove', user_course_student_path(@user, @course, student),
-              method: :delete,
-              data: { confirm: 'Are you sure?' } %></a>
-        </div>
-      </td>
-    </tr>
-  <% end %>
-
-</table>
-
-</div>
-
-<div class="row" align="center">
-  <div class="col-lg-10 offset-lg-1">
-    <h4>Import Students</h4>
-    <%= form_tag import_user_course_students_path(@user, @course), multipart: true do %>
-      <%= file_field_tag :file %>
-      <%= submit_tag "Import Students", :class => "btn" %>
-    <% end %>
-  </div>
-</div>
+</center>

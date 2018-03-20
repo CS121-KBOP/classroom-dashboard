@@ -4,6 +4,9 @@
 var flashcard_url = "<%= url_for(controller:'courses', action:'flashcard') %>";
 var note_upload_url = "<%= url_for(controller:'courses', action:'updateNotes') %>";
 </script>
+
+<%= javascript_include_tag "dropzone.js" %>
+
 <center>
   <br>
     <div>
@@ -49,6 +52,7 @@ var note_upload_url = "<%= url_for(controller:'courses', action:'updateNotes') %
               <button type="button" class ="btn" onclick="drawFlashcard('dashboard')">Draw Flashcard</button>
             </div>
           </div>
+        </div>
         </div>
       </div>
     </div>
