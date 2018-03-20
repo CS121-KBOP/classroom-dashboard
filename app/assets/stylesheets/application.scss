@@ -82,12 +82,10 @@ body {
     background-attachment: fixed;
   }
 
-.row {
+.container {
   align-content: center;
-}
-
-.col-lg-10 {
-  align-content: center;
+  float: none;
+  margin: 0 auto;
 }
 
 .drop-area {
