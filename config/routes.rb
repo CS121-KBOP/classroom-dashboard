@@ -8,9 +8,9 @@ Rails.application.routes.draw do
 
     get    '/users/:user_id/courses/:id/flashcard',  to: 'courses#flashcard'
     get    '/users/:user_id/courses/:id/quiz',  to: 'courses#quiz'
-    post    '/users/:user_id/courses/:id/update_notes',  to: 'courses#updateNotes'
+    post   '/users/:user_id/courses/:id/update_notes',  to: 'courses#updateNotes'
 
-    get    '/users/:assignment_id/search',  to: 'submissions#search'
+    get    '/:assignment_id/search',  to: 'submissions#search'
 
     get    '/:assignment_id', to: 'submissions#new'
     post   '/:assignment_id', to: 'submissions#create'

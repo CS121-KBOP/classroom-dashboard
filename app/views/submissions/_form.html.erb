@@ -1,10 +1,10 @@
 <script>
 var selectedStudent = null;
-// when the window loads, we give the email box an event listener, so when its value is changed, searchEmail will be called
+// when the window loads, we give the email box an event listener, so when its value is changed, searchStudents will be called
 window.onload = function load(){
-  var searchBox = document.getElementById("email");
-  searchBox.addEventListener("input", searchEmail);
-  searchEmail(); // initially populate the list
+  var searchBox = document.getElementById("name");
+  searchBox.addEventListener("input", searchStudents);
+  searchStudents(); // initially populate the list
   var startingID = document.getElementById("id-field").value; // the id if the form is prepopulated
   if (startingID != null){
     handleNameClick(startingID);
@@ -12,8 +12,8 @@ window.onload = function load(){
 }
 
 // send an AJAX request for a list of names corresponding to this email
-function searchEmail(){
-  var searchTerm = document.getElementById("email").value;
+function searchStudents(){
+  var searchTerm = document.getElementById("name").value;
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
     console.log(this.status);
@@ -21,7 +21,7 @@ function searchEmail(){
      populateResults(this.responseText)
     }
   };
-  xhttp.open("GET", '<%= url_for(controller: 'submissions', action: 'search') %>?email='+searchTerm, true);
+  xhttp.open("GET", '<%= url_for(controller: 'submissions', action: 'search') %>?name='+searchTerm, true);
   xhttp.send();
 }
 // responds to the user clicking on a name by highlighting that name and filling in the appropriate id to the form
@@ -51,21 +51,21 @@ function populateResults(json) {
       html += studentLine(students[i].id, students[i].name);
     }
   } else {
-    html = "No student matches that email"
+    html = "No student matches that name"
   }
   document.getElementById("suggestions").innerHTML = html;
   if (selectedStudent != null) { handleNameClick(selectedStudent); } // make sure that reloading the list doesn't undo selection
 }
 </script>
 
-<p>enter your email and tap your name when it appears</p>
+<p>enter part of your name and tap your name when it appears</p>
 <div id="suggestions">
-  No Emails Found
+  No Names Found
 </div>
 <table>
     <tr class="field">
-      <td><label class="control-label" for="submission[email]">Email</label></td>
-      <td><input class="email" type="email" name="submission[email]" id="email" onload="load()"/></td>
+      <td><label class="control-label" for="submission[name]">Search Name</label></td>
+      <td><input class="name" type="name" name="submission[name]" id="name" onload="load()"/></td>
     </tr>
 </table>
 <%= form_for :submission, local: true, html: {:class => "form-horizontal"} do |form| %>

@@ -49,7 +49,7 @@ class SubmissionsController < ApplicationController
         rescue
         	@assignment = Assignment.find(unhashTag(params[:assignment_id]))
 		end
-        @students = @assignment.course.students.where('email LIKE ?', "%#{params[:email]}%").order('email ASC').limit(5)
+        @students = @assignment.course.students.where('name LIKE ?', "%#{params[:name]}%").order('name ASC').limit(5)
         render(json:  @students.to_json)
     end
 
