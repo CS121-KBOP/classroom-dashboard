@@ -10,9 +10,16 @@ class SessionsController < ApplicationController
         user.email     = user_info["info"]["email"]
         user.provider  = user_info["provider"]
         if !User.where(oauth_id: user.oauth_id).exists?
+            # If the User doesn't exist, create the User.
             user.save
+        else
+            # If the User already exists, then use the information from their
+            # account, not from google oauth.
+            user.name = User.find_by(oauth_id: user.oauth_id).name
+            user.email = User.find_by(oauth_id: user.oauth_id).email
         end
         user.id = User.find_by(oauth_id: user.oauth_id).id
+
         session[:user] = user
 
         redirect_to root_path
