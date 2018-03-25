@@ -1,11 +1,4 @@
 class StudentsController < ApplicationController
-    def index
-        @user = User.find(params[:user_id])
-        proper_user(@user)
-        @course = @user.courses.find(params[:course_id])
-        @students = @course.students
-    end
-
     def new
         @user = User.find(params[:user_id])
         proper_user(@user)
