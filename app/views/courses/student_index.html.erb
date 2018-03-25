@@ -13,17 +13,17 @@
           <div class = "col-lg-4"></div>
             <div class = "col-lg-4">
             <h1>Student Roster</h1>
-          <table>
-            <tbody>
-              <% @course.students.each do |student| %>
-                <tr>
-                  <td><%= image_tag student.portrait.url(:small)%></td>
-                  <td><%= student.name %></td>
-                  <td><%= link_to "See Student", user_course_student_path(@user, @course, student) %></td>
-                </tr>
-              <% end %>
-            </tbody>
-          </table>
+            <table>
+              <tbody>
+                <% @course.students.each do |student| %>
+                  <tr>
+                    <td><%= image_tag student.portrait.url(:small)%></td>
+                    <td><%= student.name %></td>
+                    <td><%= link_to "See Student", user_course_student_path(@user, @course, student) %></td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
             </div>
           </div>
         </div>
