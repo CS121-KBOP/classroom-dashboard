@@ -61,7 +61,7 @@ class StudentsController < ApplicationController
         end
     end
 
-    # Handles student upload. Called on a per file basis.
+    # Handles student upload from an image file. Called on a per file basis.
     # The name of the file (minus the file extension) will be the name of the student.
     def import
         @user = User.find(params[:user_id])
