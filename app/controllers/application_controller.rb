@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
         session[:user] if logged_in?
     end
 
-    def proper_user(user)
+    def ensure_proper_user(user)
         if current_user["id"] != user.id
             render 'sessions/unauthorized'
         end
