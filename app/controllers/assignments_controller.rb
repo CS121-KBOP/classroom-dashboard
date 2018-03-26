@@ -79,6 +79,8 @@ class AssignmentsController < ApplicationController
 			else
 				@submission_hash[:edited] = "Not edited since submission"
 			end
+            @submission_hash[:url] = user_course_assignment_submission_path(@user, @course, @assignment, @submission)
+
         else
             @submission_hash = {};
         end
