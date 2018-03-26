@@ -1,7 +1,6 @@
 <center>
     <br>
     <div>
-        <h1>New Submission</h1>
         <hr>
         <%= render partial: 'form', locals: {cancel_path: user_course_path(@submission.assignment.course.user, @submission.assignment.course), cancel_text: "Cancel"} %>
     </div>

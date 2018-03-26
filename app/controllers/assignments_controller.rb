@@ -30,7 +30,7 @@ class AssignmentsController < ApplicationController
         proper_user(@user)
         @course = @user.courses.find(params[:course_id])
         @assignment = @course.assignments.find(params[:id])
-        @submissionTag = hashID(@assignment.id)
+        @submissionTag = helpers.hashID(@assignment.id)
     end
 
     def destroy
@@ -60,30 +60,6 @@ class AssignmentsController < ApplicationController
         else
             render 'edit'
         end
-    end
-
-    # a helper function that hashes an assignment number into a tag
-    def hashID(number)
-    	max = 456976;
-    	codestring = "ydlgknmzxjbctfiaqsrwoevuhp";
-    	newnumber = (number / 4).to_i;
-    	if (number % 4 == 0)
-    		newnumber = max/4 - newnumber;
-    	elsif (number % 4 == 1)
-    		newnumber = 3*max/4 - newnumber;
-    	elsif (number % 4 == 2)
-    		newnumber = max/2 -  newnumber;
-    	else
-    		newnumber = max - newnumber;
-    	end
-    	result = "";
-    	puts newnumber;
-    	for i in 1..4
-    		result += codestring[newnumber % 26];
-    		newnumber /= 26;
-    	end
-  		
-  		return (result[2]+result[0]+result[3]+result[1]).upcase
     end
 
     def submission_view

@@ -1,99 +1,21 @@
+<%= csrf_meta_tag %>
 <script>
-var selectedStudent = null;
-// when the window loads, we give the email box an event listener, so when its value is changed, searchStudents will be called
-window.onload = function load(){
-  var searchBox = document.getElementById("name");
-  searchBox.addEventListener("input", searchStudents);
-  searchStudents(); // initially populate the list
-  var startingID = document.getElementById("id-field").value; // the id if the form is prepopulated
-  if (startingID != null){
-    handleNameClick(startingID);
-  }
-}
-
-// send an AJAX request for a list of names corresponding to this email
-function searchStudents(){
-  var searchTerm = document.getElementById("name").value;
-  var xhttp = new XMLHttpRequest();
-  xhttp.onreadystatechange = function() {
-    console.log(this.status);
-    if (this.readyState == 4 && this.status == 200) {
-     populateResults(this.responseText)
-    }
-  };
-  xhttp.open("GET", '<%= url_for(controller: 'submissions', action: 'search') %>?name='+searchTerm, true);
-  xhttp.send();
-}
-// responds to the user clicking on a name by highlighting that name and filling in the appropriate id to the form
-function handleNameClick(id){
-  var previouslyHighlighted = document.getElementById("student-results-"+selectedStudent)
-  if (previouslyHighlighted != null) {
-    previouslyHighlighted.setAttribute("style", "color: black;");
-  }
-  selectedStudent = id;
-  var previouslyHighlighted = document.getElementById("student-results-"+selectedStudent)
-  if (previouslyHighlighted != null) {
-    previouslyHighlighted.setAttribute("style", "color: red;");
-  }
-  document.getElementById("id-field").value = id;
-}
-// creates a line of html to be used in the results table
-function studentLine(id, name){
-  return "<tr id=student-results-"+id+" onclick='handleNameClick("+id+")'><td>"+name+"</td></tr>"
-}
-// populate the list with new entries
-function populateResults(json) {
-  var students = JSON.parse(json);
-  var html = "";
-  if (students.length > 0) {
-    html = "<table>\n";
-    for (i = 0; i < students.length; i++) { 
-      html += studentLine(students[i].id, students[i].name);
-    }
-  } else {
-    html = "No student matches that name"
-  }
-  document.getElementById("suggestions").innerHTML = html;
-  if (selectedStudent != null) { handleNameClick(selectedStudent); } // make sure that reloading the list doesn't undo selection
-}
+searchURL = "<%= url_for(controller: 'submissions', action: 'search') %>";
+submitURL = "<%= url_for(controller: 'submissions', action: 'create') %>";
 </script>
-
+<h1><%= @assignment.name %></h1>
 <p>enter part of your name and tap your name when it appears</p>
 <div id="suggestions">
   No Names Found
 </div>
 <table>
     <tr class="field">
-      <td><label class="control-label" for="submission[name]">Search Name</label></td>
-      <td><input class="name" type="name" name="submission[name]" id="name" onload="load()"/></td>
+      <td><label class="control-label" for="search">Search Name</label></td>
+      <td><input class="name" type="name" name="search" id="name" onload="load()"/></td>
+    </tr>
+    <tr class="field">
+      <td><label class="control-label" for="file">Image</label></td>
+      <td><input class="name" type="file" name="file" id="answer_file"/></td>
     </tr>
 </table>
-<%= form_for :submission, local: true, html: {:class => "form-horizontal"} do |form| %>
-  <% if @submission.errors.any? %>
-    <div id="error_explanation" class="alert alert-danger">
-      <h2>
-        <%= pluralize(@submission.errors.count, "error") %> prohibited
-        this submission from being saved:
-      </h2>
-      <ul>
-        <% @submission.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-  <table>
-    <tr class="field">
-      <td><%= form.label :student_id,  :class => "hidden"  %></td>
-      <td><%= form.number_field :student_id,  :class => "hidden", :id => "id-field" %></td>
-    </tr>
-   
-    <tr class="field">
-      <td><%= form.label :answer,  :class => "control-label"  %></td>
-      <td><%= form.file_field :answer, :class => "description" %></td>
-      
-    </tr>
-  </table>
-  <%= form.submit "Confirm" %>
-  <%= link_to cancel_text, cancel_path %>
-<% end %>
+<a class="btn btn-danger" onclick="submitForm()" id="submit">Submit</a>
