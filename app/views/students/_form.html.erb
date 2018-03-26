@@ -26,17 +26,17 @@
 
     <tr class="field">
       <td><%= form.label :notes,  :class => "control-label"  %></td>
-      <td><%= form.text_field :notes %></td>
+      <td><%= form.text_field :notes, :class => "notes" %></td>
     </tr>
 
     <tr class="field">
       <td><%= form.label :portrait,  :class => "control-label"  %></td>
-      <td><%= form.file_field :portrait %></td>
+      <td><%= form.file_field :portrait, :class => "portrait" %></td>
     </tr>
 
     <tr class="field">
-      <td><%= form.check_box :show, :checked => true %></td>
-      <td><%= form.label :show,  :class => "control-label"  %> in flashcards</td>
+      <td align="right"><%= form.check_box :show, :checked => @student.show %> </td>
+      <td><%= form.label :show, "Include in flashcards", :class => "control-label"  %> </td>
     </tr>
 
   </table>

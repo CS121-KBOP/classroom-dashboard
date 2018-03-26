@@ -67,7 +67,7 @@ class CoursesController < ApplicationController
         proper_user(@user)
         @course = @user.courses.find(params[:id])
         # randomly select one student from the course roster
-        @student = @course.students.sample
+        @student = @course.students.where(show: true).sample
         # if there is a student to show
         if @student != nil
             # convert the student object to a hash

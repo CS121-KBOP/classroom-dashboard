@@ -19,26 +19,26 @@
       <th class="col-lg-3 col-md-3 col-sm-4" > <center>Options</center></th>
     </tr>
 
-    <% @students.each do |student| %>
-      <tr >
-        <td class="col-lg-3 col-md-3 col-sm-4">
-          <%= image_tag student.portrait.url(:small)%>
-          <%= student.name %>
-        </td>
-        <td class="col-lg-6 col-md-6 col-sm-4"><%= student.notes %></td>
-        <td class="col-lg-3 col-md-3 col-sm-4" align="center">
-          <div class="row">
-            <a class="col-4"><%= link_to 'Show', user_course_student_path(@user, @course, student) %></a>
-            <a class="col-4"><%= link_to 'Edit', edit_user_course_student_path(@user, @course, student) %></a>
-            <a class="col-4"><%= link_to 'Remove', user_course_student_path(@user, @course, student),
-                method: :delete,
-                data: { confirm: 'Are you sure?' } %></a>
-          </div>
-        </td>
-      </tr>
-    <% end %>
-
-  </table>
+      <% @students.each do |student| %>
+        <tr >
+          <td class="col-lg-3 col-md-3 col-sm-4">
+            <%= check_box_tag :hi, student.id, student.show, disabled: true %>
+            <%= image_tag student.portrait.url(:small)%>
+            <%= student.name %>
+          </td>
+          <td class="col-lg-6 col-md-6 col-sm-4"><%= student.notes %></td>
+          <td class="col-lg-3 col-md-3 col-sm-4" align="center">
+            <div class="row">
+              <a class="col-4"><%= link_to 'Show', user_course_student_path(@user, @course, student) %></a>
+              <a class="col-4"><%= link_to 'Edit', edit_user_course_student_path(@user, @course, student) %></a>
+              <a class="col-4"><%= link_to 'Remove', user_course_student_path(@user, @course, student),
+                  method: :delete,
+                  data: { confirm: 'Are you sure?' } %></a>
+            </div>
+          </td>
+        </tr>
+      <% end %>
+    </table>
 
   </div>
 
