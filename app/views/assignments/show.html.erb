@@ -17,13 +17,20 @@ var num_subs = <%= @assignment.submissions.length %>;
       <hr>
       <h2>Submissions</h2>
       <br>
-      <span onclick="prevSub()">Previous</span>
-      <span onclick="nextSub()">Next</span>
+      <div class="selectors">
+        <span onclick="prevSub()"><</span>
+        <span onclick="nextSub()">></span>
+      </div>
       <div>
         <%= image_tag " ", :id => "submission-picture", :style => "height: 300px;"%>
         <h3 id="submission-student">Placeholder</h3>
         <p id="submission-created">Placeholder</p>
         <p id="submission-edited">Placeholder</p>
       </div>
+      <div>
+        <a class="btn btn-danger" id="edit-btn" href="#">Edit</a>
+        <a class="btn btn-danger" id="delete-btn" href="#" data-method="delete" data-confirm="Are you sure?" rel="nofollow">Delete</a>
+      </div>
+      <br><br><br>
     </div>
 

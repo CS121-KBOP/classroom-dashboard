@@ -21,24 +21,23 @@ function nextSub(){
 }
 
 function getNewSub() {
-  var xhttp = new XMLHttpRequest();
-  xhttp.onreadystatechange = function() {
-    console.log(this.status);
-    if (this.readyState == 4 && this.status == 200) {
-     populateSub(this.responseText)
+  $.get(submissionURL+'?submission='+submission, function(data, status){
+    if (status == "success") {
+      // send the returned student object to the populate function
+      populateSub(data);
     }
-  };
-  xhttp.open("GET", submissionURL+'?submission='+submission, true);
-  xhttp.send();
+  });
 }
 
-function populateSub(json) {
-  if (json != "{}"){
-    var submission = JSON.parse(json);
-    document.getElementById("submission-student").innerHTML = submission.student_name;
-    document.getElementById("submission-picture").src = submission.picture_url;
-    document.getElementById("submission-created").innerHTML = submission.created;
-    document.getElementById("submission-edited").innerHTML = submission.edited;
+function populateSub(submission) {
+  if (submission != null){
+    $("#submission-student").html(submission.student_name);
+    $("#submission-picture").attr("src", submission.picture_url);
+    $("#submission-created").html(submission.created);
+    $("#submission-edited").html(submission.edited);
+    $("#edit-btn").attr("href", submission.url+"/edit");
+    $("#delete-btn").attr("href", submission.url);
+  } else {
 
   }
 }

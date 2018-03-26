@@ -20,8 +20,9 @@ class SubmissionsController < ApplicationController
         @user = User.find(params[:user_id])
         proper_user(@user)
         @course = @user.courses.find(params[:course_id])
-        @assignment = @course.assignments.find(params[:id])
-        @assignment.destroy
+        @assignment = @course.assignments.find(params[:assignment_id])
+        @submission = @assignment.submissions.find(params[:id])
+        @submission.destroy
         redirect_to user_course_assignment_path(@user, @course, @assignment)
     end
 
