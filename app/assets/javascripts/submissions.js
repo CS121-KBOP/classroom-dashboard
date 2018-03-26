@@ -10,12 +10,35 @@ $( document ).ready(function() {
   }
 })
 
+// Called when the form is submitted
 function submitForm(){
+  // Ready the alert handler
+  var alert = $("#alert");
+  if (selectedStudent == null) {
+    // Make the alert bar be shown and red
+    alert.removeClass("alert-success");
+    alert.removeClass("hidden");
+    alert.addClass("alert-danger");
+    alert.html("Please select your name");
+    return;
+  }
+
   var file = $("#answer_file")[0].files[0];
+
+  if (file == null) {
+    // Make the alert bar be shown and red
+    alert.removeClass("alert-success");
+    alert.removeClass("hidden");
+    alert.addClass("alert-danger");
+    alert.html("Please select an image to submit");
+    return;
+  }
+
+  // Create the form data, and add the file and student ID
   var data = new FormData();
   data.append("answer", file);
   data.append("student_id", selectedStudent);
-  console.log(data);
+
   //Submit the form via Ajax POST request:
   $.ajax({
     type: 'POST',
@@ -25,21 +48,31 @@ function submitForm(){
     processData: false,
     contentType: false,
   }).done(function(data) {
-    //The code below is executed asynchronously, 
-    //meaning that it does not execute until the
-    //Ajax request has finished, and the response has been loaded.
-    //This code may, and probably will, load *after* any code that
-    //that is defined outside of it.
-    alert("Thanks for the submission!");
-    console.log("Response Data" +data); //Log the server response to console
+    alert.removeClass("alert-danger");
+    alert.removeClass("hidden");
+    alert.addClass("alert-success");
+    alert.html("Submission Received!");
+
+    // Clear the form. wrap/unwrap is a hack to clear the file form
+    $("#answer_file").wrap('<form>').closest('form').get(0).reset();
+    $("#answer_file").unwrap();
+
+    // unhighlight all student names
+    var previouslyHighlighted = $("#student-results-"+selectedStudent)
+    if (previouslyHighlighted != null) {
+      previouslyHighlighted.attr("style", "color: black;");
+    }
+    // reset ids and search bar
+    selectedStudent = null;
+    $("#name").val("");
+
+    searchStudents(); // reset search results
   });
-  return false;
 }
 
-// send an AJAX request for a list of names corresponding to this email
+// send an AJAX request for a list of names corresponding to this name
 function searchStudents(){
   var searchTerm = $("#name").val();
-  console.log(searchTerm);
   $.get(searchURL+'?name='+searchTerm, function(data, status){
     if (status == "success") {
       // send the returned student object to the populate function
