@@ -1,8 +1,8 @@
 var submission = 0;
 
-window.onload = function load(){
+$( document ).ready(function() {
   getNewSub();
-}
+});
 
 function prevSub(){
   submission -= 1;
@@ -29,15 +29,17 @@ function getNewSub() {
   });
 }
 
-function populateSub(submission) {
-  if (submission != null){
-    $("#submission-student").html(submission.student_name);
-    $("#submission-picture").attr("src", submission.picture_url);
-    $("#submission-created").html(submission.created);
-    $("#submission-edited").html(submission.edited);
-    $("#edit-btn").attr("href", submission.url+"/edit");
-    $("#delete-btn").attr("href", submission.url);
+function populateSub(sub) {
+  if (sub.student_name != null){
+    $("#submission-student").html(sub.student_name);
+    $("#submission-picture").attr("src", sub.picture_url);
+    $("#submission-created").html(sub.created);
+    $("#submission-edited").html(sub.edited);
+    $("#edit-btn").attr("href", sub.url+"/edit");
+    $("#delete-btn").attr("href", sub.url);
   } else {
-
+    $("#submission-student").html("No Submissions Yet");
+    $("#submission-created").addClass("hidden");
+    $("#submission-edited").addClass("hidden");
   }
 }

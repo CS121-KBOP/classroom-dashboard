@@ -17,7 +17,7 @@ var num_subs = <%= @assignment.submissions.length %>;
       <hr>
       <h2>Submissions</h2>
       <br>
-      <div class="selectors">
+      <div class="selectors" onload="load()">
         <span onclick="prevSub()"><</span>
         <span onclick="nextSub()">></span>
       </div>
