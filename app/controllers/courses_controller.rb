@@ -1,7 +1,7 @@
 class CoursesController < ApplicationController
     def index
         @user = User.find(params[:user_id])
-        proper_user(@user)
+        ensure_proper_user(@user)
         @courses = @user.courses
     end
 
@@ -14,19 +14,19 @@ class CoursesController < ApplicationController
 
     def show
         @user = User.find(params[:user_id])
-        proper_user(@user)
+        ensure_proper_user(@user)
         @course = @user.courses.find(params[:id])
     end
 
     def new
         @user = User.find(params[:user_id])
-        proper_user(@user)
+        ensure_proper_user(@user)
         @course = @user.courses.new
     end
 
     def create
         @user = User.find(params[:user_id])
-        proper_user(@user)
+        ensure_proper_user(@user)
         @course = @user.courses.create(course_params)
 
         if @course.save
@@ -38,13 +38,13 @@ class CoursesController < ApplicationController
 
     def edit
         @user = User.find(params[:user_id])
-        proper_user(@user)
+        ensure_proper_user(@user)
         @course = @user.courses.find(params[:id])
     end
 
     def update
         @user = User.find(params[:user_id])
-        proper_user(@user)
+        ensure_proper_user(@user)
         @course = @user.courses.find(params[:id])
 
         if @course.update(course_params)
@@ -56,7 +56,7 @@ class CoursesController < ApplicationController
 
     def destroy
         @user = User.find(params[:user_id])
-        proper_user(@user)
+        ensure_proper_user(@user)
         @course = @user.courses.find(params[:id])
         @course.destroy
         redirect_to user_courses_path(@user)
@@ -64,14 +64,14 @@ class CoursesController < ApplicationController
 
     def quiz
         @user = User.find(params[:user_id])
-        proper_user(@user)
+        ensure_proper_user(@user)
         @course = @user.courses.find(params[:id])
     end
 
     def flashcard
         # get the user and course paramaters
         @user = User.find(params[:user_id])
-        proper_user(@user)
+        ensure_proper_user(@user)
         @course = @user.courses.find(params[:id])
         # randomly select one student from the course roster
         @student = @course.students.sample
@@ -91,7 +91,7 @@ class CoursesController < ApplicationController
 
     def updateNotes
         @user = User.find(params[:user_id])
-        proper_user(@user)
+        ensure_proper_user(@user)
         @course = @user.courses.find(params[:id])
         @student = @course.students.find(params[:student_id])
         @student.notes = params[:notes]
