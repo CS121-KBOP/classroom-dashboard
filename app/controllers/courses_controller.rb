@@ -7,7 +7,7 @@ class CoursesController < ApplicationController
 
     def student_index
         @user = User.find(params[:user_id])
-        proper_user(@user)
+        ensure_proper_user(@user)
         @course = @user.courses.find(params[:id])
         @students = @course.students
     end

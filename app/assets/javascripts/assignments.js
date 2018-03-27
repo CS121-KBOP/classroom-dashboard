@@ -1,7 +1,9 @@
 var submission = 0;
 
 $( document ).ready(function() {
-  getNewSub();
+  if (page == "assignment"){
+    getNewSub();
+  }
 });
 
 function prevSub(){

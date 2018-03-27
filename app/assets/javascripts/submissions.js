@@ -1,12 +1,15 @@
 var selectedStudent = null;
 // when the window loads, we give the email box an event listener, so when its value is changed, searchStudents will be called
 $( document ).ready(function() {
-  var searchBox = $("#name");
-  searchBox.on("input", searchStudents);
-  searchStudents(); // initially populate the list
-  var startingID = $("#id-field").val(); // the id if the form is prepopulated
-  if (startingID != null){
-    handleNameClick(startingID);
+  if (page == "submission"){
+    console.log("loaded");
+    var searchBox = $("#search");
+    searchBox.on("input", searchStudents);
+    searchStudents(); // initially populate the list
+    var startingID = $("#id-field").val(); // the id if the form is prepopulated
+    if (startingID != null){
+      handleNameClick(startingID);
+    }
   }
 })
 
@@ -72,7 +75,8 @@ function submitForm(){
 
 // send an AJAX request for a list of names corresponding to this name
 function searchStudents(){
-  var searchTerm = $("#name").val();
+  console.log("hi");
+  var searchTerm = $("#search").val();
   $.get(searchURL+'?name='+searchTerm, function(data, status){
     if (status == "success") {
       // send the returned student object to the populate function

@@ -1,6 +1,7 @@
 <script>
 var submissionURL = '<%= url_for(controller: 'assignments', action: 'submission_view') %>';
 var num_subs = <%= @assignment.submissions.length %>;
+var page = "assignment";
 </script>
 <center>
   <br>
@@ -17,7 +18,7 @@ var num_subs = <%= @assignment.submissions.length %>;
       <hr>
       <h2>Submissions</h2>
       <br>
-      <div class="selectors" onload="load()">
+      <div class="selectors">
         <span onclick="prevSub()"><</span>
         <span onclick="nextSub()">></span>
       </div>
