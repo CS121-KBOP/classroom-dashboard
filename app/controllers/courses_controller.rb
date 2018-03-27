@@ -9,6 +9,7 @@ class CoursesController < ApplicationController
         @user = User.find(params[:user_id])
         proper_user(@user)
         @course = @user.courses.find(params[:id])
+        @students = @course.students
     end
 
     def new

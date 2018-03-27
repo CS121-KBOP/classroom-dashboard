@@ -8,6 +8,7 @@ var note_upload_url = "<%= url_for(controller:'courses', action:'updateNotes') %
 <%= javascript_include_tag "dropzone.js" %>
 
 
+
 <br>
 <center>
   <div>
@@ -18,6 +19,11 @@ var note_upload_url = "<%= url_for(controller:'courses', action:'updateNotes') %
       <li><%= link_to "Student Roster", user_course_students_path(@user, @course) %><br></li>
       <li><%= link_to "Face/Name Quiz", {controller:"courses", action:"quiz"} %><br></li>
     </ul>
+
+
+
+
+
     <center>
       <div class = "container">
         <div class="row">

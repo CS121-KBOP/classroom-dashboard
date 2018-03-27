@@ -18,18 +18,17 @@
       <td class="col-lg-4"><%= course.title %></td>
       <td class="col-lg-4"><%= course.code %></td>
       <td class="col-lg-4" align="center"> 
-            <%= link_to user_course_path(@user, course), class: "btn" do %>
+            <%= link_to user_course_path(@user, course) do %>
               <span class="glyphicon glyphicon-eye-open"></span>
             <% end %>
 
-            <%= link_to edit_user_course_path(@user, course), class: "btn" do %>
-              <span class="glyphicon glyphicon-cog" ></span>
+            <%= link_to edit_user_course_path(@user, course) do %>
+              <span class="glyphicon glyphicon-edit" ></span>
             <% end %>
 
             <%= link_to user_course_path(@user, course),
                 method: :delete,
-                data: { confirm: 'Are you sure?' },
-                class: "btn" do %>
+                data: { confirm: 'Are you sure?' } do %>
               <span class="glyphicon glyphicon-trash" ></span>
             <% end %>
       </td>

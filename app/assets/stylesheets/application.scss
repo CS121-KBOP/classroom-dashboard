@@ -2,9 +2,9 @@
 @import "bootstrap";
 
 body {
-    background-color: whitesmoke;
-    background-image: linear-gradient(rgb(236, 225, 248), whitesmoke);
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    background-color: rgb(78, 55, 100);
+    background-image: linear-gradient(rgb(236, 225, 248), rgb(78, 55, 100));
+    font-family: Arial, Geneva, Tahoma, sans-serif;
   }
 
   .nav-pills > li > a{
@@ -31,7 +31,7 @@ body {
     a {
       color: whitesmoke;
     }
-
+    background: transparent;
   }
 
   .flashcard {
@@ -64,11 +64,13 @@ body {
     .navbar-nav li a {
       color: whitesmoke;
     }
+    border: none;
   }
   
   .navbar-container {
     width: 800x;
     margin: 0 auto;
+    border: none;
   }
 
   html {
@@ -80,6 +82,7 @@ body {
     margin: 0;
     background-repeat: no-repeat;
     background-attachment: fixed;
+    
   }
 
 .container {
@@ -91,7 +94,7 @@ body {
 .drop-area {
   min-height: 70px;
   border: 2px solid rgba(0, 0, 0, 0.3);
-  background: white;
+  background: rgb(200, 200, 200);
   padding: 20px 20px;
   margin: 20px 80px 20px 80px;
 }
@@ -103,3 +106,4 @@ body {
 .right-align{
   float: right
 }
+
