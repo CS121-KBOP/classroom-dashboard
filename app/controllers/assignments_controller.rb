@@ -1,21 +1,21 @@
 class AssignmentsController < ApplicationController
     def index
         @user = User.find(params[:user_id])
-        proper_user(@user)
+        ensure_proper_user(@user)
         @course = @user.courses.find(params[:course_id])
         @assignments = @course.assignments
     end
 
     def new
         @user = User.find(params[:user_id])
-        proper_user(@user)
+        ensure_proper_user(@user)
         @course = @user.courses.find(params[:course_id])
         @assignment = @course.assignments.new
     end
 
     def create
         @user = User.find(params[:user_id])
-        proper_user(@user)
+        ensure_proper_user(@user)
         @course = @user.courses.find(params[:course_id])
         @assignment = @course.assignments.create(assignment_params)
         if @assignment.save
@@ -27,7 +27,7 @@ class AssignmentsController < ApplicationController
 
     def show
         @user = User.find(params[:user_id])
-        proper_user(@user)
+        ensure_proper_user(@user)
         @course = @user.courses.find(params[:course_id])
         @assignment = @course.assignments.find(params[:id])
         @submissionTag = helpers.hashID(@assignment.id)
@@ -35,7 +35,7 @@ class AssignmentsController < ApplicationController
 
     def destroy
         @user = User.find(params[:user_id])
-        proper_user(@user)
+        ensure_proper_user(@user)
         @course = @user.courses.find(params[:course_id])
         @assignment = @course.assignments.find(params[:id])
         @assignment.destroy
@@ -44,14 +44,14 @@ class AssignmentsController < ApplicationController
 
     def edit
         @user = User.find(params[:user_id])
-        proper_user(@user)
+        ensure_proper_user(@user)
         @course = @user.courses.find(params[:course_id])
         @assignment = @course.assignments.find(params[:id])
     end
 
     def update
         @user = User.find(params[:user_id])
-        proper_user(@user)
+        ensure_proper_user(@user)
         @course = @user.courses.find(params[:course_id])
         @assignment = @course.assignments.find(params[:id])
      
@@ -64,7 +64,7 @@ class AssignmentsController < ApplicationController
 
     def submission_view
     	@user = User.find(params[:user_id])
-        proper_user(@user)
+        ensure_proper_user(@user)
         @course = @user.courses.find(params[:course_id])
         @assignment = @course.assignments.find(params[:id])
         @sub_number = params[:submission].to_i
