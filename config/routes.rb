@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     delete "/logout", to: "sessions#destroy"
     get "/logout", to: "sessions#destroy"
 
+    get    '/users/:user_id/courses/:id/student_index', to: 'courses#student_index'
     get    '/users/:user_id/courses/:id/flashcard',  to: 'courses#flashcard'
     get    '/users/:user_id/courses/:id/quiz',  to: 'courses#quiz'
     post   '/users/:user_id/courses/:id/update_notes',  to: 'courses#updateNotes'
