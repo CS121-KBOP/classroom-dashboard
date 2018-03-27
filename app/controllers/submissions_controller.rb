@@ -18,7 +18,7 @@ class SubmissionsController < ApplicationController
 
     def destroy
         @user = User.find(params[:user_id])
-        proper_user(@user)
+        ensure_proper_user(@user)
         @course = @user.courses.find(params[:course_id])
         @assignment = @course.assignments.find(params[:assignment_id])
         @submission = @assignment.submissions.find(params[:id])
@@ -28,7 +28,7 @@ class SubmissionsController < ApplicationController
 
     def edit
         @user = User.find(params[:user_id])
-        proper_user(@user)
+        ensure_proper_user(@user)
         @course = @user.courses.find(params[:course_id])
         @assignment = @course.assignments.find(params[:assignment_id])
         @submission = @assignment.submissions.find(params[:id])
