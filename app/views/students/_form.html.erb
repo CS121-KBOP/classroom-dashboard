@@ -1,0 +1,49 @@
+<center>
+<%= form_for [@user, @course, @student], local: true, html: {:class => "form-horizontal"} do |form| %>
+  <% if @student.errors.any? %>
+    <div id="error_explanation" class="alert alert-danger">
+      <h2>
+        <%= pluralize(@student.errors.count, "error") %> prohibited
+        this student from being saved:
+      </h2>
+      <ul>
+        <% @student.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <table>
+    <tr class="field">
+      <td><%= form.label :name,  :class => "control-label"  %></td>
+      <td><%= form.text_field :name,  :class => "name" %></td>
+    </tr>
+
+    <tr class="field">
+      <td><%= form.label :email,  :class => "control-label"  %></td>
+      <td><%= form.text_field :email, :class => "email" %></td>
+    </tr>
+
+    <tr class="field">
+      <td><%= form.label :notes,  :class => "control-label"  %></td>
+      <td><%= form.text_field :notes %></td>
+    </tr>
+
+    <tr class="field">
+      <td><%= form.label :portrait,  :class => "control-label"  %></td>
+      <td><%= form.file_field :portrait %></td>
+    </tr>
+
+  </table>
+  <br>
+  <%= form.submit "Confirm", :class => "btn"  %>
+  <%= link_to cancel_text, cancel_path, :class => "btn btn-danger" %>
+<% end %>
+</center>
+<br>
+<center>
+<h3>Batch Upload</h3>
+<%= form_tag import_user_course_students_path(@user, @course), class: "dropzone", multipart: true do %>
+  <%= submit_tag "Import Students" %>
+<% end %>
+</center>

@@ -20,4 +20,10 @@
 /node_modules
 /yarn-error.log
 
+# ignore DS_STORE
+.DS_Store
+
 .byebug_history
+
+# ignore user-uploaded images
+public/system/*

@@ -1,0 +1,27 @@
+<%= form_with model: @user, local: true, html: {:class => "form-horizontal"} do |form| %>
+  <% if @user.errors.any? %>
+    <div id="error_explanation" class="alert alert-danger">
+      <h2>
+        <%= pluralize(@user.errors.count, "error") %> prohibited
+        this user from being saved:
+      </h2>
+      <ul>
+        <% @user.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <table>
+    <tr>
+      <td><%= form.label :name,  :class => "control-label"  %></td>
+      <td><%= form.text_field :name,  :class => "user_input user_name" %></td>
+    </tr>
+    <tr>
+      <td><%= form.label :email,  :class => "control-label"  %></td>
+      <td><%= form.email_field :email, :class => "user_input email" %></td>
+    </tr>
+  </table>
+  <%= form.submit "Confirm" %>
+  <%= link_to cancel_text, cancel_path %>
+<% end %>
