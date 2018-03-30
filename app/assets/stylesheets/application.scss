@@ -11,9 +11,13 @@ $lightblue: #60ddfc;
 $blue: #3fa0d9;
 $darkerpurple: #4c4361;
 
+* {
+  border-radius: 0 !important;
+}
+
 body {
     background-color:$background-color;
-    color: $purple;
+    color: $darkerpurple;
     background-image: url("paper_texture_10.png");
     font-family: Arial, Geneva, Tahoma, sans-serif;
     height: 100%;
@@ -26,7 +30,7 @@ body {
     color: whitesmoke;
     background-color: $darkerpurple;
     box-shadow: 2px 2px
-      
+    
   }
 
   .nav-pills > li.active > a{
@@ -55,7 +59,8 @@ body {
     padding: 15px;
     border: 5px solid $darkerpurple;
     margin: 0;
-    background-color: rgb(236, 225, 248);
+    background-color: $darkpurple;
+    color: whitesmoke;
   }
 
   .btn {
@@ -66,7 +71,7 @@ body {
     border-width: thin;
     hover{
       color: $darkerpurple;
-      background-color: rgb(236, 225, 248);
+      background-color: $purple;
     }
   }
   
@@ -117,7 +122,7 @@ body {
 
 .jumbotron{
   background-image: url("5.png");
-  padding:50px;
+  padding:55px;
   margin: 0;
   color:whitesmoke;
 }
