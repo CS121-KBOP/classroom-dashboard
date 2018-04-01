@@ -22,7 +22,8 @@
       <% @students.each do |student| %>
         <tr >
           <td class="col-lg-3 col-md-3 col-sm-4">
-            <%= check_box_tag :hi, student.id, student.show, disabled: true %>
+            <%= check_box_tag :hi, student.id, student.in_flashcards, disabled: true %>
+            <%= check_box_tag :hi, student.id, student.in_quiz, disabled: true %>
             <%= image_tag student.portrait.url(:small)%>
             <%= student.name %>
           </td>

@@ -35,8 +35,13 @@
     </tr>
 
     <tr class="field">
-      <td align="right"><%= form.check_box :show, :checked => @student.show %> </td>
-      <td><%= form.label :show, "Include in flashcards", :class => "control-label"  %> </td>
+      <td align="right"><%= form.check_box :in_flashcards, :checked => @student.in_flashcards %> </td>
+      <td><%= form.label :in_flashcards, "Include in flashcards", :class => "control-label"  %> </td>
+    </tr>
+
+    <tr class="field">
+      <td align="right"><%= form.check_box :in_quiz, :checked => @student.in_quiz %> </td>
+      <td><%= form.label :in_quiz, "Include in quiz", :class => "control-label"  %> </td>
     </tr>
 
   </table>
