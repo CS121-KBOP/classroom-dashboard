@@ -86,34 +86,18 @@ class CoursesController < ApplicationController
         # first see if there is a specified student to be selected
         # if there is, pick the first student from the list
         student_list = @course.flashcard_order.split("\n")
-        puts "\n\n\n\n\n\n\n\n=======================\n\n\n\n\n\n\n\n\n"
-        puts student_list
-        puts "\n\n\n\n\n\n\n\n=======================\n\n\n\n\n\n\n\n\n"
         if student_list.length == 0
             # if the list to draw from is empty, just randomly select one student from the course roster
             @student = @course.students.sample
         else
+            # Get the first name of the list, and remove any leading or trailing white space
             student_name = student_list[0].rstrip
-
-            puts "\n\n\n\n\n\n\n\n=======================\n\n\n\n\n\n\n\n\n"
-            puts "Student Name: "
-            student_name.each_char do |i|
-                puts '-' + i + '-'
-            end
-            puts student_name
-            puts "\n\n\n\n\n\n\n\n=======================\n\n\n\n\n\n\n\n\n"
-
+            student_name = student_name.lstrip
             @student = Student.find_by(name: student_name)
-
-            puts "\n\n\n\n\n\n\n\n=======================\n\n\n\n\n\n\n\n\n"
-            puts "Student after find: "
-            puts @student
-            puts "\n\n\n\n\n\n\n\n=======================\n\n\n\n\n\n\n\n\n"
-
+            # Remove this student from the ordering
             new_flashcard_order = student_list[1..-1].join("\n")
             @course.flashcard_order = new_flashcard_order
             @course.save
-            # TODO: check the student is legit
         end
         # if there is a student to show
         if @student != nil
