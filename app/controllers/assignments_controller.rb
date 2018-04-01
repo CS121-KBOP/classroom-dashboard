@@ -39,7 +39,7 @@ class AssignmentsController < ApplicationController
         @course = @user.courses.find(params[:course_id])
         @assignment = @course.assignments.find(params[:id])
         @assignment.destroy
-        redirect_to user_course_path(@user, @course)
+        redirect_to user_course_assignments_path(@user, @course)
     end
 
     def edit
@@ -56,14 +56,14 @@ class AssignmentsController < ApplicationController
         @assignment = @course.assignments.find(params[:id])
      
         if @assignment.update(assignment_params)
-            redirect_to user_course_path(@user, @course)
+            redirect_to user_course_assignment_path(@user, @course, @assignment)
         else
             render 'edit'
         end
     end
 
     def submission_view
-    	@user = User.find(params[:user_id])
+        @user = User.find(params[:user_id])
         ensure_proper_user(@user)
         @course = @user.courses.find(params[:course_id])
         @assignment = @course.assignments.find(params[:id])

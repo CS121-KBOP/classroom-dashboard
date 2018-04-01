@@ -1,29 +1,29 @@
-var submission = 0;
+var currentSubmission = 0;
 
-$( document ).ready(function() {
+$(document).ready(function() {
   if (page == "assignment"){
     getNewSub();
   }
 });
 
 function prevSub(){
-  submission -= 1;
-  if (submission < 0){ 
-    submission += num_subs;
+  currentSubmission -= 1;
+  if (currentSubmission < 0){ 
+    currentSubmission += numSubs;
   }
   getNewSub();
 }
  
 function nextSub(){
-  submission += 1;
-  if (submission >= num_subs){ 
-    submission -= num_subs;
+  currentSubmission += 1;
+  if (currentSubmission >= numSubs){ 
+    currentSubmission -= numSubs;
   }
   getNewSub();
 }
 
 function getNewSub() {
-  $.get(submissionURL+'?submission='+submission, function(data, status){
+  $.get(submissionURL+'?submission='+currentSubmission, function(data, status){
     if (status == "success") {
       // send the returned student object to the populate function
       populateSub(data);
