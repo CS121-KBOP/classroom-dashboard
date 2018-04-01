@@ -1,91 +1,133 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+$background-color: rgb(250, 250, 250);
+
+$darkpurple: #695573;
+$purple: #775bb5;
+$lightpink: #ffc4fd;
+$pink: #b853a2;
+$lightblue: #60ddfc;
+$blue: #3fa0d9;
+$darkerpurple: #4c4361;
+
+* {
+  border-radius: 0 !important;
+}
+
 body {
-    background-color: whitesmoke;
-    background-image: linear-gradient(rgb(236, 225, 248), whitesmoke);
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-  }
-
-  .nav-pills > li > a{
-    color:  rgb(78, 55, 100);
-    background-color: transparent;
-      
-  }
-
-  .nav-pills > li.active > a{
-    color: rgb(236, 225, 248);
-    background-color: rgb(78, 55, 100);
-  }
-  .nav-pills > li.active > a:hover{
-    color: rgb(236, 225, 248);
-    background-color: rgb(78, 55, 100);
-  }
-
-  .nav-pills > li > a:hover{
-    background-color: rgb(78, 55, 100);
-    color: rgb(236, 225, 248);
-  }
-
-  .navbar-brand {
-    a {
-      color: whitesmoke;
-    }
-
-  }
-
-  .flashcard {
-    width: 340px;
-    padding: 15px;
-    border: 5px solid rgb(78, 55, 100);
-    margin: 0;
-    background-color: rgb(160,148,172);
-  }
-
-  .btn {
-    
-    background-color: rgb(78, 55, 100);
-    color: whitesmoke;
-    border: solid;
-    border-width: thin;
-    
-  }
-  .btn:hover{
-    color: rgb(78, 55, 100);
-    background-color: rgb(236, 225, 248);
-  }
-
-  .navbar-default {
-    .h{
-        color: whitesmoke;
-    }
-    background-color: rgb(78, 55, 100);
-    height: 54px;
-    .navbar-nav li a {
-      color: whitesmoke;
-    }
-  }
-  
-  .navbar-container {
-    width: 800x;
-    margin: 0 auto;
-  }
-
-  html {
-    height: 100%;
-  }
-  
-  body {
+    background-color:$background-color;
+    color: $darkerpurple;
+    background-image: url("paper_texture_10.png");
+    font-family: Arial, Geneva, Tahoma, sans-serif;
     height: 100%;
     margin: 0;
     background-repeat: no-repeat;
     background-attachment: fixed;
   }
 
-.row {
+  .nav-pills > li > a{
+    color: whitesmoke;
+    background-color: $darkerpurple;
+    box-shadow: 2px 2px
+    
+  }
+
+  .nav-pills > li.active > a{
+    color: whitesmoke;
+    background-color:$purple;
+  }
+  .nav-pills > li.active > a:hover{
+    color: whitesmoke;
+    background-color: $purple;
+  }
+
+  .nav-pills > li > a:hover{
+    color: whitesmoke;
+    background-color: $purple;
+  }
+
+  .navbar-brand {
+    a {
+      color: whitesmoke;
+    }
+    background: transparent;
+  }
+
+  .flashcard {
+    width: 340px;
+    padding: 15px;
+    border: 5px solid $darkerpurple;
+    margin: 0;
+    background-color: $darkpurple;
+    color: whitesmoke;
+  }
+
+  .btn {
+    
+    background-color: $darkerpurple;
+    color: whitesmoke;
+    border: solid;
+    border-width: thin;
+    hover{
+      color: $darkerpurple;
+      background-color: $purple;
+    }
+  }
+  
+
+  .navbar-default {
+    .h{
+        color: whitesmoke;
+        
+    }
+    background-color: $darkerpurple;
+    height: 54px;
+    .navbar-nav li a {
+      color: whitesmoke;
+      background-color: $darkerpurple;
+    }
+    border: none;
+    margin: 0;
+  }
+  
+  .navbar-container {
+    width: 800x;
+    margin: 0 auto;
+    border: none;
+    color: $darkerpurple;
+  }
+
+  html {
+    height: 100%;
+  }
+
+.container {
   align-content: center;
+  float: none;
+  margin: 0 auto;
 }
 
-.col-lg-10 {
-  align-content: center;
+.drop-area {
+  min-height: 70px;
+  border: 2px solid rgba(0, 0, 0, 0.3);
+  background: rgb(200, 200, 200);
+  padding: 20px 20px;
+  margin: 20px 80px 20px 80px;
+}
+
+.right-align{
+  float: right
+}
+
+.jumbotron{
+  background-image: url("5.png");
+  padding:55px;
+  margin: 0;
+  color:whitesmoke;
+}
+
+.display-3{
+  color: whitesmoke;
+  text-shadow: -4px 0 black, 0 3px $darkerpurple, 1px 0 black, 0 -1px black;
 }
