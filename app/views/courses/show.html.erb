@@ -19,8 +19,29 @@ var note_upload_url = "<%= url_for(controller:'courses', action:'updateNotes') %
       </ul>
       <div class = "container">
         <div class="row">
-          <div class = "col-lg-4"></div>
-            <div class = "col-lg-4">
+          <div class = "col-lg-4">
+            <h3>Assignments</h3>
+            <hr>
+            <table>
+              <% @course.assignments.each do |assignment| %>
+                <tr class= "row">
+                  <td class="col-lg-6"><%= assignment.name %></td>
+                  <td class="col-lg-6" align="center"> 
+                        <a ><%= link_to 'Show', user_course_assignment_path(@user, @course, assignment) %></a>
+                        <a ><%= link_to 'Edit', edit_user_course_assignment_path(@user, @course, assignment) %></a>
+                        <a ><%= link_to 'Destroy', user_course_assignment_path(@user, @course, assignment),
+                          method: :delete,
+                          data: { confirm: 'Are you sure?' } %> </a>
+                  </td>
+
+                </tr>
+              <% end %>
+            </table>
+            <%= link_to "New Assignment", new_user_course_assignment_path(@user, @course), :class => "btn btn-danger" %>
+            <%= link_to "All Assignments", user_course_assignments_path(@user, @course), :class => "btn btn-danger" %>
+
+          </div>
+          <div class = "col-lg-4">
             <h3>Flashcards</h3>
               <div class = "flashcard" id="flashcard-info">
                 <%= image_tag "/images/defaults/flashcard/missing.png", :id => "student-picture", :style => "width:300px;height:300px;" %>

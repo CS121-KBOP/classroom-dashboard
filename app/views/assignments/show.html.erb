@@ -1,0 +1,37 @@
+<script>
+var submissionURL = '<%= url_for(controller: 'assignments', action: 'submission_view') %>';
+var numSubs = <%= @assignment.submissions.length %>;
+var page = "assignment";
+</script>
+<center>
+  <br>
+    <div>
+      <%= link_to "Edit Assignment", edit_user_course_assignment_path(@user, @course, @assignment) %>
+      <%= link_to "Back to Course", user_course_path(@user, @course) %>
+      <%= link_to "Account", user_path(@user) %>
+      <%= link_to 'Obliterate', user_course_assignment_path(@user, @course, @assignment),
+              method: :delete,
+              data: { confirm: 'Are you sure?' } %>
+      <h2><%= @assignment.name %></h2>
+      <p>ACCESS TAG: <%= @submissionTag %></p>
+      <p><%= @assignment.description %></p>
+      <hr>
+      <h2>Submissions</h2>
+      <br>
+      <div class="selectors">
+        <span onclick="prevSub()"><</span>
+        <span onclick="nextSub()">></span>
+      </div>
+      <div>
+        <%= image_tag " ", :id => "submission-picture", :style => "height: 300px;"%>
+        <h3 id="submission-student">Placeholder</h3>
+        <p id="submission-created">Placeholder</p>
+        <p id="submission-edited">Placeholder</p>
+      </div>
+      <div>
+        <a class="btn btn-danger" id="edit-btn" href="#">Edit</a>
+        <a class="btn btn-danger" id="delete-btn" href="#" data-method="delete" data-confirm="Are you sure?" rel="nofollow">Delete</a>
+      </div>
+      <br><br><br>
+    </div>
+

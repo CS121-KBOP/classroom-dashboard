@@ -10,6 +10,8 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <%= favicon_link_tag asset_path('favicon.ico'), :rel => 'icon', :type =>  'image/x-icon' %>
+    <script>var page = ""; // for dealing with shared JS
+    </script>
 
   <% if logged_in? %>
 

@@ -1,9 +1,7 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  photo: 
-  info: MyText
+  assignment: one
 
 two:
-  photo: 
-  info: MyText
+  assignment: two
