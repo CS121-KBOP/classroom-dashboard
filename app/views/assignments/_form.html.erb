@@ -1,0 +1,33 @@
+<%= form_for [@user, @course, @assignment], local: true, html: {:class => "form-horizontal"} do |form| %>
+  <% if @assignment.errors.any? %>
+    <div id="error_explanation" class="alert alert-danger">
+      <h2>
+        <%= pluralize(@assignment.errors.count, "error") %> prohibited
+        this assignment from being saved:
+      </h2>
+      <ul>
+        <% @assignment.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <table>
+    <tr class="field">
+      <td><%= form.label :name,  :class => "control-label"  %></td>
+      <td><%= form.text_field :name,  :class => "name" %></td>
+    </tr>
+   
+    <tr class="field">
+      <td><%= form.label :description,  :class => "control-label"  %></td>
+      <td><%= form.text_area :description, :class => "description" %></td>
+    </tr>
+
+    <tr class="field">
+      <td><%= form.label :active,  :class => "control-label"  %></td>
+      <td><%= form.check_box :active, :class => "active-box" %></td>
+    </tr>
+  </table>
+  <%= form.submit "Confirm" %>
+  <%= link_to cancel_text, cancel_path %>
+<% end %>

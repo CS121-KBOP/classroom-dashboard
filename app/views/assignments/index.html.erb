@@ -1,0 +1,33 @@
+<center>
+    <br>
+    <div>
+        <h1>Assignments for <%= @course.code %> <%= @course.title %></h1>
+        <%= link_to "Back to Course", user_course_path(@user, @course), :class => "btn btn-danger" %>
+        <table>
+        	 <th class= "row">
+                  <td class="col-lg-3">Name</td>
+                  <td class="col-lg-4">Description</td>
+                  <td class="col-lg-1"></td>
+                  <td class="col-lg-2">Date Created</td>
+                  <td class="col-lg-2"></td>
+              </th>
+              <% @assignments.each do |assignment| %>
+                <tr class= "row">
+                  <td class="col-lg-3"><%= assignment.name %></td>
+                  <td class="col-lg-4"><%= assignment.description %></td>
+                  <td class="col-lg-1"><% if !assignment.active %>Inactive<% end %></td>
+
+                  <td class="col-lg-2"><%= assignment.created_at.strftime("%A, %B %-d, %Y") %></td>
+                  <td class="col-lg-2" align="center"> 
+                        <a ><%= link_to 'Show', user_course_assignment_path(@user, @course, assignment) %></a>
+                        <a ><%= link_to 'Edit', edit_user_course_assignment_path(@user, @course, assignment) %></a>
+                        <a ><%= link_to 'Destroy', user_course_assignment_path(@user, @course, assignment),
+                          method: :delete,
+                          data: { confirm: 'Are you sure?' } %> </a>
+                  </td>
+
+                </tr>
+              <% end %>
+            </table>
+    </div>
+</center>
