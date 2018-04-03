@@ -13,6 +13,7 @@ var page = "assignment";
               method: :delete,
               data: { confirm: 'Are you sure?' } %>
       <h2><%= @assignment.name %></h2>
+      <p><% if @assignment.active %>Currently Active<% else %>Currently Inactive<% end %></p>
       <p>ACCESS TAG: <%= @submissionTag %></p>
       <p><%= @assignment.description %></p>
       <hr>
