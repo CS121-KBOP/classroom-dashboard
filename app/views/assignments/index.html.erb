@@ -6,14 +6,17 @@
         <table>
         	 <th class= "row">
                   <td class="col-lg-3">Name</td>
-                  <td class="col-lg-5">Description</td>
+                  <td class="col-lg-4">Description</td>
+                  <td class="col-lg-1"></td>
                   <td class="col-lg-2">Date Created</td>
                   <td class="col-lg-2"></td>
               </th>
               <% @assignments.each do |assignment| %>
                 <tr class= "row">
                   <td class="col-lg-3"><%= assignment.name %></td>
-                  <td class="col-lg-5"><%= assignment.description %></td>
+                  <td class="col-lg-4"><%= assignment.description %></td>
+                  <td class="col-lg-1"><% if !assignment.active %>Inactive<% end %></td>
+
                   <td class="col-lg-2"><%= assignment.created_at.strftime("%A, %B %-d, %Y") %></td>
                   <td class="col-lg-2" align="center"> 
                         <a ><%= link_to 'Show', user_course_assignment_path(@user, @course, assignment) %></a>
