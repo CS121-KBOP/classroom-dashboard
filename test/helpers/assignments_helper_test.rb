@@ -1,6 +1,6 @@
 class AssignmentsHelperTest < ActionView::TestCase
   test "hashes should be unique" do
-  	max_value = 26**4-1 # 4 letters, 26 options, 0 indexed
+  	max_value = 20**4-1 # 4 letters, 26 options, 0 indexed
   	# collect all hashes
   	hashes = Array.new
   	for i in 0..max_value
@@ -11,7 +11,7 @@ class AssignmentsHelperTest < ActionView::TestCase
   end
 
   test "should hash and unhash properly" do
-  	max_value = 26**4-1 # 4 letters, 26 options, 0 indexed
+  	max_value = 20**4-1 # 4 letters, 26 options, 0 indexed
   	# make sure every number hashes to itself
   	for i in 0..max_value
 	   hashed = hashID(i)
