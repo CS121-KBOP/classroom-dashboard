@@ -1,0 +1,14 @@
+
+<center>
+  <div class = "jumbotron">
+    <h1 class="display-3"> <%= @course.code %>: <%= @course.title %></h1>
+    
+  </div>
+  <ul class="nav nav-pills nav-justified">
+    <li class = <%=course%>><%= link_to "Course", user_course_path(@user, @course) %><br></li>
+    <li class = <%=edit%>><%= link_to "Edit Course", edit_user_course_path(@user, @course) %><br></li>
+    <li class = <%=students%>><%= link_to "Student Roster", {controller:"courses", action:"student_index", id:@course} %><br></li>
+    <li class = <%=quiz%>><%= link_to "Face/Name Quiz", {controller:"courses", action:"quiz", id:@course} %><br></li>
+    <li class = <%=assignments%>><%= link_to "Assignments", user_course_assignments_path(@user, @course) %><br></li>
+  </ul>
+</center>
