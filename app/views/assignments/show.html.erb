@@ -3,15 +3,13 @@ var submissionURL = '<%= url_for(controller: 'assignments', action: 'submission_
 var numSubs = <%= @assignment.submissions.length %>;
 var page = "assignment";
 </script>
+<%= render 'courses/header', course: "", edit: "", students: "", quiz: "", assignments: "active" %>
 <center>
-  <br>
     <div>
-      <%= link_to "Edit Assignment", edit_user_course_assignment_path(@user, @course, @assignment) %>
-      <%= link_to "Back to Course", user_course_path(@user, @course) %>
-      <%= link_to "Account", user_path(@user) %>
-      <%= link_to 'Obliterate', user_course_assignment_path(@user, @course, @assignment),
+      <%= link_to "Edit Assignment", edit_user_course_assignment_path(@user, @course, @assignment), :class=> "btn"%>
+      <%= link_to 'Delete Assignment', user_course_assignment_path(@user, @course, @assignment),
               method: :delete,
-              data: { confirm: 'Are you sure?' } %>
+              data: { confirm: 'Are you sure?' }, :class=> "btn"%>
       <h2><%= @assignment.name %></h2>
       <p><% if @assignment.active %>Currently Active<% else %>Currently Inactive<% end %></p>
       <p>ACCESS TAG: <%= @submissionTag %></p>

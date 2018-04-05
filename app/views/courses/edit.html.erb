@@ -1,14 +1,6 @@
+<%= render 'header', course: "", edit: "active", students: "", quiz: "", assignments: "" %>
 <center>
-  <br>
-  <div>
-    <h1> <%= @course.code %>: <%= @course.title %></h1>
-    <ul class="nav nav-pills nav-justified">
-      <li><%= link_to "Course", user_course_path(@user, @course) %><br></li>
-      <li class = "active"><%= link_to "Edit Course", edit_user_course_path(@user, @course) %><br></li>
-      <li><%= link_to "Student Roster", user_course_students_path(@user, @course) %><br></li>
-     <li><%= link_to "Face/Name Quiz", {controller:"courses", action:"quiz", id:@course.id} %><br></li>
-    </ul>
-  <div>
+    <br>
     <div>
         <h1>Edit Course</h1>
         <hr>
