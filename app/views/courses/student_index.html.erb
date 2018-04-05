@@ -24,3 +24,16 @@
     </div>
   </br>
 </center>
+<center>
+    <h4>Import Students</h4>
+    <div class = "drop-area">
+      <%= form_tag import_user_course_students_path(@user, @course), 
+        :class => "dropzone",
+        multipart: true do %>
+    </div>
+      <%= submit_tag "Import" %>
+      <% end %>
+    <br>
+    <br>
+</center>
+

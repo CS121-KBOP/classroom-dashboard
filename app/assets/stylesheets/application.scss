@@ -18,11 +18,11 @@ $darkerpurple: #4c4361;
 body {
     background-color:$background-color;
     color: $darkerpurple;
-    background-image: url("paper_texture_10.png");
+    background-image: url("pattern.jpg");
     font-family: Arial, Geneva, Tahoma, sans-serif;
     height: 100%;
     margin: 0;
-    background-repeat: no-repeat;
+    //background-repeat: no-repeat;
     background-attachment: fixed;
   }
 
