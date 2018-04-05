@@ -15,7 +15,6 @@ var note_upload_url = "<%= url_for(controller:'courses', action:'updateNotes') %
         <div class = "flashcard" id="flashcard-info">
           <%= image_tag "/images/defaults/flashcard/missing.png", :id => "student-picture", :style => "width:300px;height:300px;" %>
           <h4 id="student-name">Name</h4>
-          <p id="student-info">info</p>
           <textarea rows=5 id="student-notes" onkeyup="updateNotes()"></textarea>
         </div>
         <button type="button" class ="btn" onclick="drawFlashcard('dashboard')">Draw Flashcard</button>
