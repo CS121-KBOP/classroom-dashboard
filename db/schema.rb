@@ -12,6 +12,16 @@
 
 ActiveRecord::Schema.define(version: 20180224101324) do
 
+  create_table "assignments", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.boolean "active", default: true
+    t.integer "course_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["course_id"], name: "index_assignments_on_course_id"
+  end
+
   create_table "courses", force: :cascade do |t|
     t.string "title"
     t.string "code"
@@ -34,6 +44,19 @@ ActiveRecord::Schema.define(version: 20180224101324) do
     t.integer "portrait_file_size"
     t.datetime "portrait_updated_at"
     t.index ["course_id"], name: "index_students_on_course_id"
+  end
+
+  create_table "submissions", force: :cascade do |t|
+    t.string "answer_file_name"
+    t.string "answer_content_type"
+    t.integer "answer_file_size"
+    t.datetime "answer_updated_at"
+    t.integer "assignment_id"
+    t.integer "student_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["assignment_id"], name: "index_submissions_on_assignment_id"
+    t.index ["student_id"], name: "index_submissions_on_student_id"
   end
 
   create_table "users", force: :cascade do |t|

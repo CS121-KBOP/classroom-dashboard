@@ -1,14 +1,8 @@
 <script> var flashcard_url = "<%= url_for(controller:'courses', action:'flashcard') %>"; </script>
 <center>
-  <br>
     <div>
-      <h1> <%= @course.code %>: <%= @course.title %></h1>
-      <ul class="nav nav-pills nav-justified">
-        <li><%= link_to "Course", user_course_path(@user, @course) %><br></li>
-        <li><%= link_to "Edit Course", edit_user_course_path(@user, @course) %><br></li>
-        <li><%= link_to "Student Roster", user_course_students_path(@user, @course) %><br></li>
-        <li class = "active"><%= link_to "Face/Name Quiz", {controller:"courses", action:"quiz"} %><br></li>
-      </ul>
+    <%= render 'header', course: "", edit: "", students: "", quiz: "active", assignments: "" %>
+    <center>
       <div class = "container">
         <div class="row">
           <div class = "col-lg-4"></div>
@@ -17,7 +11,6 @@
               <div class = "flashcard" id="flashcard-info">
                 <%= image_tag "/images/defaults/flashcard/missing.png", :id => "student-picture", :style => "width:300px;height:300px;" %>
                 <h4 id="student-name">Name</h4>
-                <p id="student-info">info</p>
                 <p id="student-notes" style="height: 80px;">info</p>
               </div>
               <button type="button" class ="btn" onclick="toggleShow()">Show/Hide Info</button>
