@@ -67,7 +67,7 @@ class OptionsController < ApplicationController
         @option.votes = @option.votes + 1
         @option.save
 
-        redirect_to root_url
+        render 'options/select'
     end
 
     private
