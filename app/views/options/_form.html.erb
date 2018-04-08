@@ -1,0 +1,28 @@
+<%= form_for [@user, @course, @poll, @option], local: true, html: {:class => "form-horizontal"} do |form| %>
+  <% if @option.errors.any? %>
+    <div id="error_explanation" class="alert alert-danger">
+      <h2>
+        <%= pluralize(@option.errors.count, "error") %> prohibited
+        this option from being saved:
+      </h2>
+      <ul>
+        <% @option.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <table>
+    <tr class="field">
+      <td><%= form.label :label,  :class => "control-label"  %></td>
+      <td><%= form.text_field :label,  :class => "label" %></td>
+    </tr>
+
+    <tr class="field">
+      <td><%= form.label :description,  :class => "control-label"  %></td>
+      <td><%= form.text_area :description, :class => "description" %></td>
+    </tr>
+  </table>
+  <%= form.submit "Confirm" %>
+  <%= link_to cancel_text, cancel_path %>
+<% end %>

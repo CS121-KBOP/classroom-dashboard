@@ -1,0 +1,31 @@
+<center>
+  <br>
+    <div>
+      <%= link_to "Edit Poll", edit_user_course_poll_path(@user, @course, @poll) %>
+      <%= link_to "Back to Course", user_course_path(@user, @course) %>
+      <%= link_to "Account", user_path(@user) %>
+      <%= link_to 'Obliterate', user_course_poll_path(@user, @course, @poll),
+              method: :delete,
+              data: { confirm: 'Are you sure?' } %>
+      <h2><%= @poll.name %></h2>
+      <p>ACCESS TAG: <%= @pollTag %></p>
+      <p><%= @poll.description %></p>
+      <hr>
+      <% @options.each do |option| %>
+        <tr class= "row">
+                  <td class="col-lg-3"><%= option.label %></td>
+                  <td class="col-lg-5"><%= option.description %></td>
+                  <td class="col-lg-2"><%= option.votes %></td>
+                  <td class="col-lg-2" align="center">
+                        <a ><%= link_to 'Show', user_course_poll_option_path(@user, @course, @poll, option) %></a>
+                        <a ><%= link_to 'Edit', edit_user_course_poll_option_path(@user, @course, @poll, option) %></a>
+                        <a ><%= link_to 'Destroy', user_course_poll_option_path(@user, @course, @poll, option),
+                          method: :delete,
+                          data: { confirm: 'Are you sure?' } %> </a>
+                  </td>
+
+                </tr>
+      <% end %>
+      <br><br><br>
+    </div>
+

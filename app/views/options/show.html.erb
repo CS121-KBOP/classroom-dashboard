@@ -1,0 +1,15 @@
+<center>
+  <br>
+    <div>
+      <%= link_to "Edit Option", edit_user_course_poll_option_path(@user, @course, @poll, @option) %>
+      <%= link_to "Back to Poll", user_course_poll_path(@user, @course, @poll) %>
+      <%= link_to "Back to Course", user_course_path(@user, @course) %>
+      <%= link_to "Account", user_path(@user) %>
+      <%= link_to 'Obliterate', user_course_poll_option_path(@user, @course, @poll, @option),
+              method: :delete,
+              data: { confirm: 'Are you sure?' } %>
+      <h2><%= @option.label %></h2> : <h2> @option.votes </h2>
+      <p><%= @poll.description %></p>
+      <hr>
+      <br><br><br>
+    </div>
