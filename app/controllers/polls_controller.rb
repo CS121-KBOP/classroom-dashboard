@@ -10,7 +10,7 @@ class PollsController < ApplicationController
         @user = User.find(params[:user_id])
         ensure_proper_user(@user)
         @course = @user.courses.find(params[:course_id])
-        @poll = @course.poll.new
+        @poll = @course.polls.new
     end
 
     def create
@@ -37,11 +37,7 @@ class PollsController < ApplicationController
 
     # For the students on their phones
     def student_show
-        begin
-            @poll = Poll.find(params[:id])
-        rescue
-            @poll = Poll.find(helpers.unhashTag(params[:id]))
-        end
+        @poll = Poll.find(helpers.unhashTag(params[:poll_id]))
         @options = @poll.options
     end
 

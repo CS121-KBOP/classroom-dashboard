@@ -15,17 +15,16 @@ Rails.application.routes.draw do
     get    '/users/:user_id/courses/:id/quiz',  to: 'courses#quiz'
     post   '/users/:user_id/courses/:id/update_notes',  to: 'courses#updateNotes'
 
+    # Poll routes
+    get    '/:poll_id', to: 'polls#student_show'
+    post   '/:poll_id/:option_id/select', to: 'options#select'
+
     # Assignment/Submission routes
     get    '/:assignment_id/search',  to: 'submissions#search'
     get    '/:assignment_id', to: 'submissions#new'
     post   '/:assignment_id', to: 'submissions#create'
     post   '/users/:user_id/courses/:id/assignments/:assignment_id/submissions/:id/edit', to: 'submissions#update'
     get    '/users/:user_id/courses/:course_id/assignments/:id/submissions', to: 'assignments#submission_view'
-
-    # Poll routes
-    # TODO: check these, omg so unlikely to work
-    get    '/:poll_id', to: 'poll#student_show'
-    post   '/:poll_id/:option_id/select', to: 'option#select'
 
     resources :users do
         resources :courses do
@@ -35,7 +34,11 @@ Rails.application.routes.draw do
                 end
             end
             resources :polls do
-                resources :options
+                resources :options do
+                    member do
+                        post :select
+                    end
+                end
             end
             resources :assignments do
                 resources :submissions

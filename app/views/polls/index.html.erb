@@ -3,6 +3,7 @@
     <div>
         <h1>Polls for <%= @course.code %> <%= @course.title %></h1>
         <%= link_to "Back to Course", user_course_path(@user, @course), :class => "btn btn-danger" %>
+        <%= link_to "New Poll", new_user_course_poll_path(@user, @course), :class => "btn btn-danger" %>
         <table>
              <th class= "row">
                   <td class="col-lg-3">Name</td>

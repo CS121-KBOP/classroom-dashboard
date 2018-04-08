@@ -7,6 +7,14 @@ class OptionsController < ApplicationController
         @option = @poll.options.new
     end
 
+    def show
+        @user = User.find(params[:user_id])
+        ensure_proper_user(@user)
+        @course = @user.courses.find(params[:course_id])
+        @poll = @course.polls.find(params[:poll_id])
+        @option = @poll.options.find(params[:id])
+    end
+
     def create
         @user = User.find(params[:user_id])
         ensure_proper_user(@user)
@@ -55,13 +63,13 @@ class OptionsController < ApplicationController
 
     # Called when a student chooses the specific option from their screen
     def select
-        @poll = Polls.find(helpers.unhashTag(params[:poll_id]))
+        @poll = Poll.find(params[:poll_id])
         @option = @poll.options.find(params[:id])
         @option.votes = @option.votes + 1
         @option.save
 
         # TODO: Make this a "taken quiz path instead"
-        redirect_to user_course_poll_path(@user, @course, @poll)
+        redirect_to root_url
     end
 
     private
