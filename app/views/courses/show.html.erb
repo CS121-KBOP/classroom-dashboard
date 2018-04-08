@@ -34,40 +34,6 @@ var note_upload_url = "<%= url_for(controller:'courses', action:'updateNotes') %
             <% end %>
           </div>
         </div>
-        <div class="row">
-          <div class="col-lg-10 offset-lg-1">
-            <h4>Import Students</h4>
-            <%= form_tag import_user_course_students_path(@user, @course), class: "dropzone", multipart: true do %>
-              <%= submit_tag "Import Students" %>
-            <% end %>
-          </div>
-        </div>
-        <div class="row">
-          <h1>Student Roster</h1>
-          <table>
-            <tbody>
-              <% @course.students.each do |student| %>
-                <tr>
-                  <td><%= image_tag student.portrait.url(:small)%></td>
-                  <td><%= student.name %></td>
-                  <td><%= link_to "See Student", user_course_student_path(@user, @course, student) %></td>
-                </tr>
-              <% end %>
-            </tbody>
-          </table>
-          </div>
-  <div class = "container">
-    <div class="row">
-      <div class="col-lg-12">
-        <h3>Flashcards</h3>
-        <div class = "flashcard" id="flashcard-info">
-          <%= image_tag "/images/defaults/flashcard/missing.png", :id => "student-picture", :style => "width:300px;height:300px;" %>
-          <h4 id="student-name">Name</h4>
-          <textarea rows=5 id="student-notes" onkeyup="updateNotes()"></textarea>
-        </div>
-        <button type="button" class ="btn" onclick="drawFlashcard('dashboard')">Draw Flashcard</button>
       </div>
-    </div>
-  </div>
+    <br>
 </center>
-</br>

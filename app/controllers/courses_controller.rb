@@ -83,33 +83,25 @@ class CoursesController < ApplicationController
         @user = User.find(params[:user_id])
         ensure_proper_user(@user)
         @course = @user.courses.find(params[:id])
+
+        # Handles Equity Drawing of Flashcards
+
         # first see if there is a specified student to be selected
         # if there is, pick the first student from the list
         student_list = @course.flashcard_order.split("\n")
         if student_list.length == 0
             # if the list to draw from is empty, just randomly select one student from the course roster
-            @quiz_student = @course.students.where(in_quiz: true).sample
+            @flashcard_student = @course.students.where(in_flashcards: true).sample
         else
             # Get the first name of the list, and remove any leading or trailing white space
             student_name = student_list[0].rstrip
             student_name = student_name.lstrip
-            @quiz_student = Student.find_by(name: student_name)
+            @flashcard_student = Student.find_by(name: student_name)
             # Remove this student from the ordering
             new_flashcard_order = student_list[1..-1].join("\n")
             @course.flashcard_order = new_flashcard_order
             @course.save
         end
-        # if there is a student to show
-        if @quiz_student != nil
-            # convert the student object to a hash
-            @quiz_student_hash = @quiz_student.attributes
-            # add the student's portrait url to the hash
-            @quiz_student_hash[:portrait_url] = @quiz_student.portrait.url(:flashcard)
-        else
-            # otherwise send back an empty object
-            @quiz_student_hash = {};
-        end
-        @flashcard_student = @course.students.where(in_flashcards: true).sample
         # if there is a student to show
         if @flashcard_student != nil
             # convert the student object to a hash
@@ -119,6 +111,20 @@ class CoursesController < ApplicationController
         else
             # otherwise send back an empty object
             @flashcard_student_hash = {};
+        end
+
+        # Handles Quiz Drawing of Flashcards
+
+        @quiz_student = @course.students.where(in_quiz: true).sample
+        # if there is a student to show
+        if @quiz_student != nil
+            # convert the student object to a hash
+            @quiz_student_hash = @quiz_student.attributes
+            # add the student's portrait url to the hash
+            @quiz_student_hash[:portrait_url] = @quiz_student.portrait.url(:flashcard)
+        else
+            # otherwise send back an empty object
+            @quiz_student_hash = {};
         end
         # send the json back to the client
         render(json:  {"equity": @flashcard_student_hash,  "quiz": @quiz_student_hash})
