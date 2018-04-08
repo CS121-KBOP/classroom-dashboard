@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class FlashcardsControllerTest < ActionDispatch::IntegrationTest
+class SubmissionTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

@@ -1,0 +1,33 @@
+<center>
+    <br>
+    <div>
+        <hr>
+        <%= csrf_meta_tag %>
+		<script>
+		searchURL = "<%= url_for(controller: 'submissions', action: 'search') %>";
+		submitURL = "<%= url_for(controller: 'submissions', action: 'create') %>";
+		var page = "submission"; // for checking in shared html
+		</script>
+		<% if @assignment.active %>
+			<h1><%= @assignment.name %></h1>
+			<p>enter part of your name and tap your name when it appears</p>
+			<div class="alert alert-danger hidden" id="alert"></div>
+			<div id="suggestions">
+			  No Names Found
+			</div>
+			<table>
+			    <tr class="field">
+			      <td><label class="control-label" for="search">Search Name</label></td>
+			      <td><input class="name" type="name" name="search" id="search"/></td>
+			    </tr>
+			    <tr class="field">
+			      <td><label class="control-label" for="file">Image</label></td>
+			      <td><input class="name" type="file" name="file" id="answer_file"/></td>
+			    </tr>
+			</table>
+			<a class="btn btn-danger" onclick="submitForm()" id="submit">Submit</a>
+		<% else %>
+			This assignment is currently inactive. Please talk to your prof.
+		<% end %>
+    </div>
+</center>

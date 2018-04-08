@@ -18,11 +18,11 @@ $darkerpurple: #4c4361;
 body {
     background-color:$background-color;
     color: $darkerpurple;
-    background-image: url("paper_texture_10.png");
+    background-image: url("pattern.jpg");
     font-family: Arial, Geneva, Tahoma, sans-serif;
     height: 100%;
     margin: 0;
-    background-repeat: no-repeat;
+    //background-repeat: no-repeat;
     background-attachment: fixed;
   }
 
@@ -70,7 +70,6 @@ body {
     border: solid;
     border-width: thin;
     hover{
-      color: $darkerpurple;
       background-color: $purple;
     }
   }
@@ -130,4 +129,7 @@ body {
 .display-3{
   color: whitesmoke;
   text-shadow: -4px 0 black, 0 3px $darkerpurple, 1px 0 black, 0 -1px black;
+}
+.selectors{
+  font-size: 30px;
 }

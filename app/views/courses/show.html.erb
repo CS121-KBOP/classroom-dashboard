@@ -6,22 +6,7 @@ var note_upload_url = "<%= url_for(controller:'courses', action:'updateNotes') %
 </script>
 
 <%= javascript_include_tag "dropzone.js" %>
-
-
-
-<center>
-  <div class = "jumbotron">
-    <h1 class="display-3"> <%= @course.code %>: <%= @course.title %></h1>
-    
-  </div>
-  <ul class="nav nav-pills nav-justified">
-    <li class = "active "><%= link_to "Course", user_course_path(@user, @course) %><br></li>
-    <li><%= link_to "Edit Course", edit_user_course_path(@user, @course) %><br></li>
-    <li><%= link_to "Student Roster", {controller:"courses", action:"student_index"} %><br></li>
-    <li><%= link_to "Face/Name Quiz", {controller:"courses", action:"quiz"} %><br></li>
-    <li><%= link_to "Assignments", {controller:"courses", action:"quiz"} %><br></li>
-  </ul>
-</center>
+<%= render 'header', course: "active", edit: "", students: "", quiz: "", assignments: "" %>
 <center>
   <div class = "container">
     <div class="row">
@@ -30,7 +15,6 @@ var note_upload_url = "<%= url_for(controller:'courses', action:'updateNotes') %
         <div class = "flashcard" id="flashcard-info">
           <%= image_tag "/images/defaults/flashcard/missing.png", :id => "student-picture", :style => "width:300px;height:300px;" %>
           <h4 id="student-name">Name</h4>
-          <p id="student-info">info</p>
           <textarea rows=5 id="student-notes" onkeyup="updateNotes()"></textarea>
         </div>
         <button type="button" class ="btn" onclick="drawFlashcard('dashboard')">Draw Flashcard</button>

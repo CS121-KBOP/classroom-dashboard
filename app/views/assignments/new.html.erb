@@ -1,8 +1,8 @@
-<%= render 'header', course: "", edit: "active", students: "", quiz: "", assignments: "" %>
+<%= render 'courses/header', course: "", edit: "", students: "", quiz: "", assignments: "active" %>
 <center>
     <br>
     <div>
-        <h1>Edit Course</h1>
+        <h1>New Assignment</h1>
         <hr>
         <%= render partial: 'form', locals: {cancel_path: user_course_path(@user, @course), cancel_text: "Cancel"} %>
     </div>
