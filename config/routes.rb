@@ -14,6 +14,8 @@ Rails.application.routes.draw do
     get    '/users/:user_id/courses/:id/flashcard',  to: 'courses#flashcard'
     get    '/users/:user_id/courses/:id/quiz',  to: 'courses#quiz'
     post   '/users/:user_id/courses/:id/update_notes',  to: 'courses#updateNotes'
+    post   '/users/:user_id/courses/:id', to: 'courses#edit_flashcard_order'
+
 
     # Poll routes
     get    '/poll/:poll_id', to: 'polls#student_show'

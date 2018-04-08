@@ -17,10 +17,32 @@ var note_upload_url = "<%= url_for(controller:'courses', action:'updateNotes') %
           <%= image_tag "/images/defaults/flashcard/missing.png", :id => "student-picture", :style => "width:300px;height:300px;" %>
           <h4 id="student-name">Name</h4>
           <textarea rows=5 id="student-notes" onkeyup="updateNotes()"></textarea>
+  <br>
+    <div>
+      <div class = "container">
+        <div class="row">
+          <div class = "col-lg-4"></div>
+            <div class = "col-lg-4">
+            <h3>Flashcards</h3>
+              <div class = "flashcard" id="flashcard-info">
+                <%= image_tag "/images/defaults/flashcard/missing.png", :id => "student-picture", :style => "width:300px;height:300px;" %>
+                <h4 id="student-name">Name</h4>
+                <p id="student-info">info</p>
+                <textarea rows=5 id="student-notes" onkeyup="updateNotes()"></textarea>
+              </div>
+              <button type="button" class ="btn" onclick="drawFlashcard('dashboard')">Draw Flashcard</button>
+            </div>
+          </div>
         </div>
-        <button type="button" class ="btn" onclick="drawFlashcard('dashboard')">Draw Flashcard</button>
+        <div class="row">
+          <div class="col-lg-10 offset-lg-1">
+            <h4>Order Students</h4>
+            <%= form_tag user_course_path(@user, @course) do %>
+              <%= text_area :flashcard_order, :edit_flashcard_order %>
+              <%= submit_tag "Order Students" %>
+            <% end %>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
+    <br>
 </center>
-</br>
