@@ -1,62 +1,72 @@
-<center>
 <%= render 'header', course: "", edit: "", students: "active", quiz: "", assignments: "" %>
 <div class="container-fluid">
-<div class="row">
-  <div class="col-lg-8 col-md-8 col-sm-8 col-xs-6"><h1>Student Roster</h1></div>
-  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6" >
-    <h1 class="right-align"><%= link_to "Add Student", new_user_course_student_path(@user, @course), :class => 'btn'%></h1>
-  </div>
-</div>
-
-<body>
-
-<table class="table table-hover table-responsive">
-  <tr class="medium-purple">
-    <th class="col-lg-3 col-md-3 col-sm-4">Name</th>
-    <th class="col-lg-6 col-md-6 col-sm-4">Notes</th>
-    <th class="col-lg-3 col-md-3 col-sm-4" > <center>Options</center></th>
-  </tr>
-
-  <% @course.students.each do |student| %>
-    <tr >
-      <td class="col-lg-3 col-md-3 col-sm-4">
-        <%= image_tag student.portrait.url(:small)%>
-        <%= student.name %>
-      </td>
-      <td class="col-lg-6 col-md-6 col-sm-4"><%= student.notes %></td>
-      <td class="col-lg-3 col-md-3 col-sm-4" align="center">
-        <div class="row">
-          <a class="col-4"><%= link_to user_course_student_path(@user, @course, student) do %>  
-            <span class="glyphicon glyphicon-eye-open"></span>
-          <% end %></a>
-          <a class="col-4"><%= link_to edit_user_course_student_path(@user, @course, student) do %>
-            <span class="glyphicon glyphicon-edit" ></span>
-          <% end %></a>
-          <a class="col-4"><%= link_to user_course_student_path(@user, @course, student),
-              method: :delete,
-              data: { confirm: 'Are you sure?' } do %>
-                  <span class="glyphicon glyphicon-trash" ></span>
-                <% end %></a>
-          </div>
-      </td>
-    </tr>
-    <% end %>
-  </tbody>
-</table>
-</div>
-     
-  </br>
-</center>
-<center>
-    <h4>Import Students</h4>
-    <div class = "drop-area">
-      <%= form_tag import_user_course_students_path(@user, @course), 
-        :class => "dropzone",
-        multipart: true do %>
+  <div class="row">
+    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-6"><h1>Student Roster</h1></div>
+    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6" >
+      <h1 class="right-align"><%= link_to "Add Student", new_user_course_student_path(@user, @course), :class => 'btn'%></h1>
     </div>
-      <%= submit_tag "Import" %>
+  </div>
+<center>
+  <body>
+    <table class="table table-hover table-responsive">
+      <tr class="medium-purple">
+        <th class="col-lg-3 col-md-3 col-sm-4">Name</th>
+        <th class="col-lg-6 col-md-6 col-sm-4">Notes</th>
+        <th class="col-lg-3 col-md-3 col-sm-4" > <center>Options</center></th>
+      </tr>
+      <% @course.students.each do |student| %>
+        <tr>
+          <td class="col-lg-3 col-md-3 col-sm-4">
+            <%= image_tag student.portrait.url(:small)%>
+            <%= student.name %>
+          </td>
+          <td class="col-lg-6 col-md-6 col-sm-4"><%= student.notes %></td>
+          <td class="col-lg-3 col-md-3 col-sm-4" align="center">
+            <div class="row">
+              <a class="col-4"><%= link_to user_course_student_path(@user, @course, student) do %>  
+                <span class="glyphicon glyphicon-eye-open"></span>
+              <% end %></a>
+              <a class="col-4"><%= link_to edit_user_course_student_path(@user, @course, student) do %>
+                <span class="glyphicon glyphicon-edit" ></span>
+              <% end %></a>
+              <a class="col-4"><%= link_to user_course_student_path(@user, @course, student),
+                  method: :delete,
+                  data: { confirm: 'Are you sure?' } do %>
+                     <span class="glyphicon glyphicon-trash" ></span>
+                    <% end %></a>
+              <br>
+              <%= form_for [@user, @course, student], local: true, html: {:class => "form-horizontal"} do |form| %>
+              <table>
+                <td class="col-6">
+                    <%= form.check_box :in_flashcards, :checked => student.in_flashcards %>
+                    <%= form.label :in_flashcards, "Include in flashcards", :class => "control-label"  %>
+                    <br>
+                    <%= form.check_box :in_quiz, :checked => student.in_quiz %> 
+                    <%= form.label :in_quiz, "Include in quiz", :class => "control-label"  %> 
+                </td>
+                <td class="col-6">
+                  <%= form.submit "Confirm", :class => "btn"  %>
+                <% end %> 
+                </td>
+              </table>
+            </div>     
+          </td>
+        </tr>
       <% end %>
-    <br>
-    <br>
+    </table>
+  </body>
 </center>
-
+</div>     
+</br>
+<center>
+  <h4>Import Students</h4>
+  <div class = "drop-area">
+    <%= form_tag import_user_course_students_path(@user, @course), 
+      :class => "dropzone",
+      multipart: true do %>
+  </div>
+    <%= submit_tag "Import" %>
+    <% end %>
+  <br>
+  <br>
+</center>

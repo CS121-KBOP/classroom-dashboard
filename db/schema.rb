@@ -35,6 +35,8 @@ ActiveRecord::Schema.define(version: 20180224101324) do
     t.string "name"
     t.string "email"
     t.text "notes"
+    t.boolean "in_flashcards", default: true
+    t.boolean "in_quiz", default: true
     t.integer "course_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

@@ -6,7 +6,13 @@ function drawFlashcard(source) {
   $.get(flashcard_url, function(data, status){
     if (status == "success") {
       // send the returned student object to the populate function
-      populateFlashcard(data, source);
+      console.log(data);
+      if (source=="quiz")
+
+        populateFlashcard(data.quiz, source);
+      else
+        populateFlashcard(data.equity, source);
+      end
     }
   });
 }

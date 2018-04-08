@@ -74,19 +74,30 @@ class CoursesController < ApplicationController
         ensure_proper_user(@user)
         @course = @user.courses.find(params[:id])
         # randomly select one student from the course roster
-        @student = @course.students.sample
+        @quiz_student = @course.students.where(in_quiz: true).sample
         # if there is a student to show
-        if @student != nil
+        if @quiz_student != nil
             # convert the student object to a hash
-            @student_hash = @student.attributes
+            @quiz_student_hash = @quiz_student.attributes
             # add the student's portrait url to the hash
-            @student_hash[:portrait_url] = @student.portrait.url(:flashcard)
+            @quiz_student_hash[:portrait_url] = @quiz_student.portrait.url(:flashcard)
         else
             # otherwise send back an empty object
-            @student_hash = {};
+            @quiz_student_hash = {};
+        end
+        @flashcard_student = @course.students.where(in_flashcards: true).sample
+        # if there is a student to show
+        if @flashcard_student != nil
+            # convert the student object to a hash
+            @flashcard_student_hash = @flashcard_student.attributes
+            # add the student's portrait url to the hash
+            @flashcard_student_hash[:portrait_url] = @flashcard_student.portrait.url(:flashcard)
+        else
+            # otherwise send back an empty object
+            @flashcard_student_hash = {};
         end
         # send the json back to the client
-        render(json:  @student_hash.to_json)
+        render(json:  {"equity": @flashcard_student_hash,  "quiz": @quiz_student_hash})
     end
 
     def updateNotes
