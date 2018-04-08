@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(version: 20180407224136) do
   create_table "courses", force: :cascade do |t|
     t.string "title"
     t.string "code"
+    t.text "flashcard_order"
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -54,6 +55,8 @@ ActiveRecord::Schema.define(version: 20180407224136) do
     t.string "name"
     t.string "email"
     t.text "notes"
+    t.boolean "in_flashcards", default: true
+    t.boolean "in_quiz", default: true
     t.integer "course_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

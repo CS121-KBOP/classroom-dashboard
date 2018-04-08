@@ -69,7 +69,7 @@ class OptionsController < ApplicationController
         @option.save
 
         # TODO: Make this a "taken quiz path instead"
-        redirect_to root_url
+        render 'options/select'
     end
 
     private
