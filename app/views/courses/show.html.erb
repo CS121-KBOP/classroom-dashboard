@@ -9,14 +9,6 @@ var note_upload_url = "<%= url_for(controller:'courses', action:'updateNotes') %
 <%= render 'header', course: "active", edit: "", students: "", quiz: "", assignments: "" %>
 <center>
   <%= link_to "Go to Polls", user_course_polls_path(@user, @course) %>
-  <div class = "container">
-    <div class="row">
-      <div class="col-lg-12">
-        <h3>Flashcards</h3>
-        <div class = "flashcard" id="flashcard-info">
-          <%= image_tag "/images/defaults/flashcard/missing.png", :id => "student-picture", :style => "width:300px;height:300px;" %>
-          <h4 id="student-name">Name</h4>
-          <textarea rows=5 id="student-notes" onkeyup="updateNotes()"></textarea>
   <br>
     <div>
       <div class = "container">
