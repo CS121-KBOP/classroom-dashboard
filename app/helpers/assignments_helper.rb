@@ -1,6 +1,6 @@
 module AssignmentsHelper
-	MAX = 26**4-1; # the maximum number that can be hashed to
-    CODESTRING = "ydlgknmzxjbctfiaqsrwoevuhp"; # random ordering of the alphabet
+	MAX = 20**4-1; # the maximum number that can be hashed to
+    CODESTRING = "dlgknmzxjbctfqsrwvhp"; # random ordering of the alphabet
 
 	# a helper function that hashes an assignment number into a tag
     def hashID(number)
@@ -17,8 +17,8 @@ module AssignmentsHelper
     	result = "";
     	puts newnumber;
     	for i in 1..4
-    		result += CODESTRING[newnumber % 26];
-    		newnumber /= 26;
+    		result += CODESTRING[newnumber % 20];
+    		newnumber /= 20;
     	end
   		
   		return (result[2]+result[0]+result[3]+result[1]).upcase
@@ -29,7 +29,7 @@ module AssignmentsHelper
     	hash = (hash[1]+hash[3]+hash[0]+hash[2]).downcase;
     	newnumber = 0;
     	for i in (3).downto(0)
-    		newnumber *= 26;
+    		newnumber *= 20;
     		newnumber += CODESTRING.index(hash[i]);
     	end
     	if (newnumber <= MAX/4)
