@@ -21,8 +21,7 @@ module PollsHelper
             newnumber /= 26;
         end
 
-        # All poll hashes end in 1, to distinguish from assignments
-        return (result[2]+result[0]+result[3]+result[1]+"1").upcase
+        return (result[2]+result[0]+result[3]+result[1]).upcase
     end
 
     # a helper function that unhashes a poll tag

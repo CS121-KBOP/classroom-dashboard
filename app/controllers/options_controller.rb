@@ -48,7 +48,6 @@ class OptionsController < ApplicationController
     end
 
     def update
-        # TODO: This might need to take a select style path where students can access it
         @user = User.find(params[:user_id])
         ensure_proper_user(@user)
         @course = @user.courses.find(params[:course_id])
@@ -68,7 +67,6 @@ class OptionsController < ApplicationController
         @option.votes = @option.votes + 1
         @option.save
 
-        # TODO: Make this a "taken quiz path instead"
         redirect_to root_url
     end
 
