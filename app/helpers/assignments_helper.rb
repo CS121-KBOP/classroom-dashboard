@@ -20,8 +20,9 @@ module AssignmentsHelper
     		result += CODESTRING[newnumber % 26];
     		newnumber /= 26;
     	end
-  		
-  		return (result[2]+result[0]+result[3]+result[1]).upcase
+
+        # All assignment hashes end in 0, to distinguish from polls
+  		return (result[2]+result[0]+result[3]+result[1]+"0").upcase
     end
 
       # a helper function that unhashes an assignment tag

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180224101324) do
+ActiveRecord::Schema.define(version: 20180407224136) do
 
   create_table "assignments", force: :cascade do |t|
     t.string "name"
@@ -29,6 +29,25 @@ ActiveRecord::Schema.define(version: 20180224101324) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_courses_on_user_id"
+  end
+
+  create_table "options", force: :cascade do |t|
+    t.string "label"
+    t.text "description"
+    t.integer "votes", default: 0
+    t.integer "poll_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["poll_id"], name: "index_options_on_poll_id"
+  end
+
+  create_table "polls", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.integer "course_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["course_id"], name: "index_polls_on_course_id"
   end
 
   create_table "students", force: :cascade do |t|
