@@ -16,8 +16,7 @@ Rails.application.routes.draw do
     post   '/users/:user_id/courses/:id/update_notes',  to: 'courses#updateNotes'
 
     # Poll routes
-    get    '/:poll_id', to: 'polls#student_show'
-    post   '/:poll_id/:option_id/select', to: 'options#select'
+    get    '/poll/:poll_id', to: 'polls#student_show'
 
     # Assignment/Submission routes
     get    '/:assignment_id/search',  to: 'submissions#search'

@@ -21,8 +21,7 @@ module AssignmentsHelper
     		newnumber /= 26;
     	end
 
-        # All assignment hashes end in 0, to distinguish from polls
-  		return (result[2]+result[0]+result[3]+result[1]+"0").upcase
+  		return (result[2]+result[0]+result[3]+result[1]).upcase
     end
 
       # a helper function that unhashes an assignment tag
