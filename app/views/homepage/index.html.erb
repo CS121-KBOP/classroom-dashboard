@@ -7,11 +7,10 @@
     <div align="center">
       <% if logged_in? %>
         <h1><%= current_user["name"] %></h1>
-        <h4><%= current_user["email"] %></h4>
         <%= link_to "View All Courses", user_courses_path(current_user["id"]), :class => "btn btn-lg" %>
         <br>
         <%= link_to "Log Out", logout_path, :class => "btn btn-danger" %>
-        
+
       <% else %>
         <%= link_to "Login", login_path, :class => "btn btn-lg" %>
       <% end %>
