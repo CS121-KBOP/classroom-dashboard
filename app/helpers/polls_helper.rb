@@ -1,4 +1,4 @@
-module AssignmentsHelper
+module PollsHelper
     MAX = 20**4-1; # the maximum number that can be hashed to
     CODESTRING = "dlgknmzxjbctfqsrwvhp"; # random ordering of the alphabet
 

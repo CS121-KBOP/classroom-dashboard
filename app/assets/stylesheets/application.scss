@@ -71,10 +71,10 @@ body {
   .btn {
     
     background-color: $darkerpurple;
-    color: whitesmoke;
+    color: whitesmoke !important;
     border: solid;
     border-width: thin;
-    hover{
+    :hover{
       background-color: $purple;
     }
   }
