@@ -63,6 +63,11 @@ body {
     color: whitesmoke;
   }
 
+  .table-header{
+    background-color: $darkpurple !important;
+    color: whitesmoke;
+  }
+
   .btn {
     
     background-color: $darkerpurple;
@@ -74,11 +79,9 @@ body {
     }
   }
   
-
   .navbar-default {
     .h{
         color: whitesmoke;
-        
     }
     background-color: $darkerpurple;
     height: 54px;
