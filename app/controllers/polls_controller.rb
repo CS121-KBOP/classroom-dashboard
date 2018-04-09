@@ -33,6 +33,10 @@ class PollsController < ApplicationController
         @poll = @course.polls.find(params[:id])
         @pollTag = helpers.hashID(@poll.id)
         @options = @poll.options
+        @data = Hash.new(0)
+        @options.each do |option|
+            @data[option.label] = option.votes
+        end
     end
 
     # For the students on their phones
