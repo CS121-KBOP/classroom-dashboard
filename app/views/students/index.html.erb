@@ -22,7 +22,7 @@
     <tr >
       <td class="col-lg-3 col-md-3 col-sm-4">
         <%= image_tag student.portrait.url(:small)%>
-        <%= student.name %>
+        <%= "student.name" link_to user_course_student_path(@user, @course, student) %>
       </td>
       <td class="col-lg-6 col-md-6 col-sm-4"><%= student.notes %></td>
       <td class="col-lg-3 col-md-3 col-sm-4" align="center">

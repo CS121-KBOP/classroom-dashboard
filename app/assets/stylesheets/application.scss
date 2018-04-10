@@ -71,6 +71,7 @@ body {
     border-width: thin;
     hover{
       background-color: $purple;
+      color: whitesmoke;
     }
   }
   
@@ -121,7 +122,7 @@ body {
 
 .jumbotron{
   background-image: url("5.png");
-  padding:55px;
+  padding:30px;
   margin: 0;
   color:whitesmoke;
 }

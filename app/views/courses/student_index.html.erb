@@ -1,4 +1,4 @@
-<center>
+
 <%= render 'header', course: "", edit: "", students: "active", quiz: "", assignments: "" %>
 <div class="container-fluid">
 <div class="row">
@@ -21,18 +21,15 @@
     <tr >
       <td class="col-lg-3 col-md-3 col-sm-4">
         <%= image_tag student.portrait.url(:small)%>
-        <%= student.name %>
+        <a><%= link_to student.name, user_course_student_path(@user, @course, student) %></a>
       </td>
       <td class="col-lg-6 col-md-6 col-sm-4"><%= student.notes %></td>
       <td class="col-lg-3 col-md-3 col-sm-4" align="center">
         <div class="row">
-          <a class="col-4"><%= link_to user_course_student_path(@user, @course, student) do %>  
-            <span class="glyphicon glyphicon-eye-open"></span>
-          <% end %></a>
-          <a class="col-4"><%= link_to edit_user_course_student_path(@user, @course, student) do %>
+          <a class="col-6"><%= link_to edit_user_course_student_path(@user, @course, student) do %>
             <span class="glyphicon glyphicon-edit" ></span>
           <% end %></a>
-          <a class="col-4"><%= link_to user_course_student_path(@user, @course, student),
+          <a class="col-6"><%= link_to user_course_student_path(@user, @course, student),
               method: :delete,
               data: { confirm: 'Are you sure?' } do %>
                   <span class="glyphicon glyphicon-trash" ></span>
@@ -45,8 +42,6 @@
 </table>
 </div>
      
-  </br>
-</center>
 <center>
     <h4>Import Students</h4>
     <div class = "drop-area">
