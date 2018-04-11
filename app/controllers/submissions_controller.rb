@@ -2,8 +2,14 @@ class SubmissionsController < ApplicationController
     include Hasher
 
     def new
-        @assignment = Assignment.find(unhashTagtoID(params[:access_tag]))
-        @submission = @assignment.submissions.new
+        id = unhashTagtoID(params[:access_tag])
+        if Assignment.exists?(id)
+            @assignment = Assignment.find(id)
+            @submission = @assignment.submissions.new
+        else
+            render "homepage/invalid_tag"
+        end
+        
     end
 
     def create
@@ -49,11 +55,7 @@ class SubmissionsController < ApplicationController
     end
 
     def search
-    	begin
-        	@assignment = Assignment.find(params[:access_tag])
-        rescue
-        	@assignment = Assignment.find(helpers.unhashTag(params[:access_tag]))
-		end
+        @assignment = Assignment.find(unhashTagtoID(params[:access_tag]))
         @students = @assignment.course.students.where('name LIKE ?', "%#{params[:name]}%").order('name ASC').limit(5)
         render(json:  @students.to_json)
     end

@@ -1,7 +1,7 @@
 class HasherTest < ActionView::TestCase
   include Hasher
   test "assignment hashes should be unique" do
-    max_value = (20**5-1)/2 # 5 letters, 20 options, 0 indexed, split across assignments and polls
+    max_value = (20**5)/2 - 1 # 5 letters, 20 options, 0 indexed, split across assignments and polls
     # collect all hashes
   	hashes = Array.new
   	for i in 0..max_value
@@ -12,7 +12,7 @@ class HasherTest < ActionView::TestCase
   end
 
   test "poll hashes should be unique" do
-    max_value = (20**5-1)/2 # 5 letters, 20 options, 0 indexed, split across assignments and polls
+    max_value = (20**5)/2 - 1 # 5 letters, 20 options, 0 indexed, split across assignments and polls
     # collect all hashes
     hashes = Array.new
     for i in 0..max_value
@@ -23,7 +23,7 @@ class HasherTest < ActionView::TestCase
   end
 
   test "should hash and unhash assignments properly" do
-  	max_value = (20**5-1)/2 # 5 letters, 20 options, 0 indexed, split across assignments and polls
+  	max_value = (20**5)/2 - 1 # 5 letters, 20 options, 0 indexed, split across assignments and polls
   	# make sure every number hashes to itself
   	for i in 0..max_value
 	    hashed = hashIDtoTag(i, false) # not a poll
@@ -33,7 +33,7 @@ class HasherTest < ActionView::TestCase
   end
 
   test "should hash and unhash polls properly" do
-    max_value = (20**5-1)/2 # 5 letters, 20 options, 0 indexed, split across assignments and polls
+    max_value = (20**5)/2 - 1 # 5 letters, 20 options, 0 indexed, split across assignments and polls
     # make sure every number hashes to itself
     for i in 0..max_value
       hashed = hashIDtoTag(i, true) # a poll

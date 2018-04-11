@@ -44,8 +44,13 @@ class PollsController < ApplicationController
     # For the students on their phones
     def student_show
         @access_tag = params[:access_tag]
-        @poll = Poll.find(unhashTagtoID(@access_tag))
-        @options = @poll.options
+        id = unhashTagtoID(@access_tag)
+        if Poll.exists?(id)
+            @poll = Poll.find(id)
+            @options = @poll.options
+        else
+            render "homepage/invalid_tag"
+        end
     end
 
     def destroy

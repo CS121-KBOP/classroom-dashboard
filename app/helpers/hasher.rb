@@ -8,13 +8,14 @@ module Hasher
 
 
 	MAX = 20**5-1; # the maximum number that can be hashed to
+	POLLSSTARTID = (MAX+1)/2 # the first ID that corresponds to a poll
     CODESTRING = "dlgknmzxjbctfqsrwvhp"; # random ordering of the alphabet
 
 	# a helper function that hashes an id number into an access tag
 	# the poll variable is whether or not this is a poll, which if true, will offset the id hashed
     def hashIDtoTag(number, poll)
     	if poll
-    		number = number + MAX/2
+    		number = number + POLLSSTARTID
     	end
     	newnumber = (number / 4).to_i
     	if (number % 4 == 0)
@@ -39,8 +40,8 @@ module Hasher
     # a helper that gets a proper poll or assignment ID from an access tag
     def unhashTagtoID(tag)
     	id = unhashTag(tag)
-    	if id >= MAX/2
-    		id = id - MAX/2
+    	if id >= POLLSSTARTID
+    		id = id - POLLSSTARTID
     	end
     	return id
     end
@@ -48,7 +49,7 @@ module Hasher
     # a helper that returns true if a tag corresponds to a helper id
     def isPollTag(tag)
     	id = unhashTag(tag)
-    	return (id >= MAX/2)
+    	return (id >= POLLSSTARTID)
     end
 
 
