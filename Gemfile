@@ -22,8 +22,8 @@ gem 'uglifier', '>= 1.3.0'
 gem 'omniauth'
 gem 'omniauth-google-oauth2'
 
-# gem for csv upload
-gem 'roo'
+# used for chart creation
+gem "chartkick"
 
 
 # Use CoffeeScript for .coffee assets and views

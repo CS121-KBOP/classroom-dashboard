@@ -1,0 +1,15 @@
+<center>
+  <br>
+    <div>
+      <h2><%= @poll.name %></h2>
+      <p><%= @poll.description %></p>
+      <hr>
+      <% @options.each do |option| %>
+        <tr class= "row">
+          <td class="col-lg-2" align="center">
+                <%= button_to option.label, select_user_course_poll_option_path(@poll.course.user, @poll.course, @poll, option) %>
+          </td>
+        </tr>
+      <% end %>
+      <br><br><br>
+    </div>

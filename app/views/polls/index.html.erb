@@ -1,0 +1,31 @@
+<center>
+    <br>
+    <div>
+        <h1>Polls for <%= @course.code %> <%= @course.title %></h1>
+        <%= link_to "Back to Course", user_course_path(@user, @course), :class => "btn btn-danger" %>
+        <%= link_to "New Poll", new_user_course_poll_path(@user, @course), :class => "btn btn-danger" %>
+        <table>
+             <th class= "row">
+                  <td class="col-lg-3">Name</td>
+                  <td class="col-lg-5">Description</td>
+                  <td class="col-lg-2">Date Created</td>
+                  <td class="col-lg-2"></td>
+              </th>
+              <% @polls.each do |poll| %>
+                <tr class= "row">
+                  <td class="col-lg-3"><%= poll.name %></td>
+                  <td class="col-lg-5"><%= poll.description %></td>
+                  <td class="col-lg-2"><%= poll.created_at.strftime("%A, %B %-d, %Y") %></td>
+                  <td class="col-lg-2" align="center">
+                        <a ><%= link_to 'Show', user_course_poll_path(@user, @course, poll) %></a>
+                        <a ><%= link_to 'Edit', edit_user_course_poll_path(@user, @course, poll) %></a>
+                        <a ><%= link_to 'Destroy', user_course_poll_path(@user, @course, poll),
+                          method: :delete,
+                          data: { confirm: 'Are you sure?' } %> </a>
+                  </td>
+
+                </tr>
+              <% end %>
+            </table>
+    </div>
+</center>

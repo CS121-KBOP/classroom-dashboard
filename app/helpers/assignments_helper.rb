@@ -20,7 +20,7 @@ module AssignmentsHelper
     		result += CODESTRING[newnumber % 20];
     		newnumber /= 20;
     	end
-  		
+
   		return (result[2]+result[0]+result[3]+result[1]).upcase
     end
 
