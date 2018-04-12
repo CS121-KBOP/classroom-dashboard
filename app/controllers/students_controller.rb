@@ -85,7 +85,13 @@ class StudentsController < ApplicationController
             student.save
         end
 
-        redirect_to user_course_path(@user, @course)
+        render json: {
+            "name" => :portrait_file_name,
+            "size" => :portrait_file_size,
+            "url" => student.portrait.url(:small),
+            "delete_url" => student.portrait.url(:small),
+            "delete_type" => "DELETE"
+         }
     end
 
     private
