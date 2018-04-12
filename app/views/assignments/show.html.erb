@@ -3,7 +3,7 @@ var submissionURL = '<%= url_for(controller: 'assignments', action: 'submission_
 var numSubs = <%= @assignment.submissions.length %>;
 var page = "assignment";
 </script>
-<%= render 'courses/header', course: "", edit: "", students: "", quiz: "", assignments: "active" %>
+<%= render 'courses/header', course: "", edit: "", students: "", quiz: "", assignments: "active", polls: "" %>
 <center>
     <div>
       <%= link_to "Edit Assignment", edit_user_course_assignment_path(@user, @course, @assignment), :class=> "btn"%>
