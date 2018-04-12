@@ -1,4 +1,6 @@
 class PollsController < ApplicationController
+    include Hasher
+
     def index
         @user = User.find(params[:user_id])
         ensure_proper_user(@user)
@@ -31,7 +33,7 @@ class PollsController < ApplicationController
         ensure_proper_user(@user)
         @course = @user.courses.find(params[:course_id])
         @poll = @course.polls.find(params[:id])
-        @pollTag = helpers.hashID(@poll.id)
+        @pollTag = hashIDtoTag(@poll.id, true) # this is a poll
         @options = @poll.options
         @data = Hash.new(0)
         @options.each do |option|
@@ -41,8 +43,14 @@ class PollsController < ApplicationController
 
     # For the students on their phones
     def student_show
-        @poll = Poll.find(helpers.unhashTag(params[:poll_id]))
-        @options = @poll.options
+        @access_tag = params[:access_tag]
+        id = unhashTagtoID(@access_tag)
+        if Poll.exists?(id)
+            @poll = Poll.find(id)
+            @options = @poll.options
+        else
+            render "homepage/invalid_tag"
+        end
     end
 
     def destroy

@@ -1,6 +1,4 @@
 Rails.application.routes.draw do
-    get 'homepage/index'
-
     # Login/OAuth routes
     get "/login", to: redirect("/auth/google_oauth2")
     get "/auth/google_oauth2/callback", to: "sessions#create"
@@ -18,14 +16,20 @@ Rails.application.routes.draw do
 
 
     # Poll routes
-    get    '/poll/:poll_id', to: 'polls#student_show'
+    get    '/p/:access_tag', to: 'polls#student_show'
+    post    '/p/:access_tag/o/:option_id/select', to: 'options#select'
 
-    # Assignment/Submission routes
-    get    '/:assignment_id/search',  to: 'submissions#search'
-    get    '/:assignment_id', to: 'submissions#new'
-    post   '/:assignment_id', to: 'submissions#create'
+
+    # Assignment routes
+    get    '/a/:access_tag/search',  to: 'submissions#search'
+    get    '/a/:access_tag', to: 'submissions#new'
+    post   '/a/:access_tag', to: 'submissions#create'
     post   '/users/:user_id/courses/:id/assignments/:assignment_id/submissions/:id/edit', to: 'submissions#update'
     get    '/users/:user_id/courses/:course_id/assignments/:id/submissions', to: 'assignments#submission_view'
+
+    # frontpage/submission routes
+    get 'homepage/index'
+    get    '/:access_tag', to: 'homepage#access_submission_page'
 
     resources :users do
         resources :courses do
@@ -35,11 +39,7 @@ Rails.application.routes.draw do
                 end
             end
             resources :polls do
-                resources :options do
-                    member do
-                        post :select
-                    end
-                end
+                resources :options
             end
             resources :assignments do
                 resources :submissions
