@@ -38,6 +38,22 @@
     <% end %>
   </table>
 </div>
+
+<br><br><br>
+<br><br><br>
+<div class="container">
+  <div class="row">
+    <div class-"col-lg-6">
+      <%= pie_chart @data, width: "50%" %>
+    </div>
+    <div class-"col-lg-6">
+    <%= bar_chart @data, width: "50%" %>
+  </div>
+  </div>
+</div>
+<br><br><br>
+</div>
+
 <%= link_to 'Destroy Poll', user_course_poll_path(@user, @course, @poll),
           method: :delete,
           data: { confirm: 'Are you sure?' }, :class =>"btn btn-danger"  %>
