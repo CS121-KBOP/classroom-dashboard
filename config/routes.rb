@@ -29,11 +29,10 @@ Rails.application.routes.draw do
 
     resources :users do
         resources :courses do
-            resources :students do
-                collection do
-                    post :import
-                end
+            member do
+                post :import
             end
+            resources :students
             resources :polls do
                 resources :options do
                     member do

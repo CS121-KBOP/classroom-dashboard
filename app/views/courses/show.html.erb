@@ -5,7 +5,6 @@ var flashcard_url = "<%= url_for(controller:'courses', action:'flashcard') %>";
 var note_upload_url = "<%= url_for(controller:'courses', action:'updateNotes') %>";
 </script>
 
-<%= javascript_include_tag "dropzone.js" %>
 <%= render 'header', course: "active", edit: "", students: "", quiz: "", assignments: "" %>
 <center>
   <%= link_to "Go to Polls", user_course_polls_path(@user, @course) %>
