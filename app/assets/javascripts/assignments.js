@@ -25,7 +25,7 @@ function getData() {
       currentData = data;
       populateTable();
       setDisplay(currentSubmission);
-      timer = setTimeout(getData, 3000);
+      timer = setTimeout(getData, 5000);
     }
   });
 }

@@ -1,8 +1,6 @@
 <script>
-var submissionURL = '<%= url_for(controller: 'assignments', action: 'get_submission_data') %>';
-var numSubs = <%= @assignment.submissions.length %>;
-var page = "assignment";
-getData();
+  var submissionURL = '<%= url_for(controller: 'assignments', action: 'get_submission_data') %>';
+  getData(); // initial data call
 </script>
 <%= render 'courses/header', course: "", edit: "", students: "", quiz: "", assignments: "active", polls: "" %>
 <center>
