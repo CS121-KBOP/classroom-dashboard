@@ -10,6 +10,7 @@ var page = "assignment";
       <%= link_to 'Delete Assignment', user_course_assignment_path(@user, @course, @assignment),
               method: :delete,
               data: { confirm: 'Are you sure?' }, :class=> "btn"%>
+      <%= link_to "Who Has Submitted?", student_submission_lists_user_course_assignment_path(@user, @course, @assignment) %>
       <h2><%= @assignment.name %></h2>
       <p><% if @assignment.active %>Currently Active<% else %>Currently Inactive<% end %></p>
       <p>ACCESS TAG: <%= @submissionTag %></p>
@@ -33,4 +34,5 @@ var page = "assignment";
       </div>
       <br><br><br>
     </div>
+
 

@@ -90,6 +90,32 @@ class AssignmentsController < ApplicationController
         render(json:  @submission_hash.to_json)
     end
 
+    # Allow user to see who has and has not submitted something for this assignment
+    def student_submission_lists
+        @user = User.find(params[:user_id])
+        ensure_proper_user(@user)
+        @course = @user.courses.find(params[:course_id])
+        @students = @course.students
+        @assignment = @course.assignments.find(params[:id])
+        @submissionTag = helpers.hashID(@assignment.id)
+        @submissions = @assignment.submissions
+
+        # Create an array that contains all students with a submission for the assignment
+        @submitted_students = Array.new
+        @submissions.each do |submission|
+            student = submission.student
+            @submitted_students = @submitted_students.push(student)
+        end
+
+        # Create an array that contains all students without a submission for the assignment
+        @not_submitted_students = Array.new
+        @students.each do |student|
+            if !@submitted_students.include? student
+                @not_submitted_students = @not_submitted_students.push(student)
+            end
+        end
+    end
+
     private
         def assignment_params
             params.require(:assignment).permit(:name, :description, :active)
