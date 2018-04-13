@@ -25,7 +25,7 @@ Rails.application.routes.draw do
     get    '/a/:access_tag', to: 'submissions#new'
     post   '/a/:access_tag', to: 'submissions#create'
     post   '/users/:user_id/courses/:id/assignments/:assignment_id/submissions/:id/edit', to: 'submissions#update'
-    get    '/users/:user_id/courses/:course_id/assignments/:id/submissions', to: 'assignments#submission_view'
+    get    '/users/:user_id/courses/:course_id/assignments/:id/submissions', to: 'assignments#get_submission_data'
 
     # frontpage/submission routes
     get 'homepage/index'

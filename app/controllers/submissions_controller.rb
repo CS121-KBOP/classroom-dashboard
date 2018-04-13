@@ -15,18 +15,20 @@ class SubmissionsController < ApplicationController
     def create
         @assignment = Assignment.find(unhashTagtoID(params[:access_tag]))
         @student = @assignment.course.students.find(params[:student_id])
+        # find old submission, if applicable
+        @submission = @assignment.submissions.select { |submission| submission.student_id == params[:student_id]}
+
         # if this student has already submitted for this assignment
-        if @assignment.submissions.exists?(:student_id => params[:student_id].to_i)
+        if @submission != []
             # find and update that record
-            @submission = @assignment.submissions.where(:student_id => params[:student_id].to_i)
-            if @submission.update(:answer => params[:answer])
+            if @submission[0].update(:answer => params[:answer])
                 render(json:  {status: "ok"})
             else
                 render(json:  {status: "failure"})
             end
         else
             # create a new assignment
-            @submission = @assignment.submissions.create(:answer => params[:answer], :student_id => params[:student_id].to_i)
+            @submission = @assignment.submissions.create(:answer => params[:answer], :student_id => params[:student_id])
             if @submission.save
                 render(json:  {status: "ok"})
             else
