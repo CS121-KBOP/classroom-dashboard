@@ -7,7 +7,7 @@
       <% @options.each do |option| %>
         <tr class= "row">
           <td class="col-lg-2" align="center">
-                <%= button_to option.label, select_user_course_poll_option_path(@poll.course.user, @poll.course, @poll, option) %>
+                <%= button_to option.label, url_for(controller: "options", action:"select", access_tag: @access_tag, option_id: option.id) %>
           </td>
         </tr>
       <% end %>

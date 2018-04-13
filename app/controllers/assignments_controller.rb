@@ -1,4 +1,5 @@
 class AssignmentsController < ApplicationController
+    include Hasher
     def index
         @user = User.find(params[:user_id])
         ensure_proper_user(@user)
@@ -30,7 +31,7 @@ class AssignmentsController < ApplicationController
         ensure_proper_user(@user)
         @course = @user.courses.find(params[:course_id])
         @assignment = @course.assignments.find(params[:id])
-        @submissionTag = helpers.hashID(@assignment.id)
+        @submissionTag = hashIDtoTag(@assignment.id, false) # this is not a poll
     end
 
     def destroy

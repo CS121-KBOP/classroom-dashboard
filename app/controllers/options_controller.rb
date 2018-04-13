@@ -1,4 +1,5 @@
 class OptionsController < ApplicationController
+    include Hasher
     def new
         @user = User.find(params[:user_id])
         ensure_proper_user(@user)
@@ -62,8 +63,8 @@ class OptionsController < ApplicationController
 
     # Called when a student chooses the specific option from their screen
     def select
-        @poll = Poll.find(params[:poll_id])
-        @option = @poll.options.find(params[:id])
+        @poll = Poll.find(unhashTagtoID(params[:access_tag]))
+        @option = @poll.options.find(params[:option_id])
         @option.votes = @option.votes + 1
         @option.save
 
