@@ -63,6 +63,17 @@ body {
     color: whitesmoke;
   }
 
+  .flashcard-info {
+    height: 170px;
+    margin-top: 20px;
+    padding-top: -20px;
+  }
+
+  .flashcard-info textarea{
+    color: black;
+    width: 100%;
+  }
+
   .btn {
     
     background-color: $darkerpurple;

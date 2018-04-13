@@ -29,8 +29,10 @@ function populateFlashcard(student, source) {
     $("#student-picture").attr("alt", student.name);
     // if this is on the quiz, hide the name and email immediately. 
     if (source == "quiz") {
+      $("#student-name").html(current_student.name);
+      $("#student-notes").val(current_student.notes);
       hide();
-    } else if (source == "dashboard") {
+    } else if (source == "equity") {
       $("#student-notes").val(student.notes);
     }
   }
@@ -45,19 +47,15 @@ function toggleShow(){
   }
 }
 
-// show the name, email, and notes
+// show the name and notes
 function show(){
-  $("#student-name").html(current_student.name);
-  $("#student-info").html(current_student.email);
-  $("#student-notes").html(current_student.notes);
+  $("#flashcard-info").removeClass("hidden");
   shown = true;
 }
 
-// hide the name, email, and notes
+// hide the name and notes
 function hide(){
-  $("#student-name").html(".");
-  $("#student-info").html(".");
-  $("#student-notes").html(".");
+  $("#flashcard-info").addClass("hidden");
   shown = false;
 }
 
