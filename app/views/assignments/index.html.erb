@@ -19,7 +19,7 @@
                   <td class="col-lg-1"><% if !assignment.active %>Inactive<% end %></td>
 
                   <td class="col-lg-2"><%= assignment.created_at.strftime("%A, %B %-d, %Y") %></td>
-                  <td class="col-lg-2" align="center"> 
+                  <td class="col-lg-2" align="center">
                         <a ><%= link_to 'Show', user_course_assignment_path(@user, @course, assignment) %></a>
                         <a ><%= link_to 'Edit', edit_user_course_assignment_path(@user, @course, assignment) %></a>
                         <a ><%= link_to 'Destroy', user_course_assignment_path(@user, @course, assignment),
@@ -29,6 +29,6 @@
 
                 </tr>
               <% end %>
-            </table>
+        </table>
     </div>
 </center>

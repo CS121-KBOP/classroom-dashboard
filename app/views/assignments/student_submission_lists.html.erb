@@ -1,0 +1,24 @@
+<%= render 'courses/header', course: "", edit: "", students: "", quiz: "", assignments: "active" %>
+<center>
+    <div>
+        <h1>Submissions Bookkeeping</h1>
+        <%= link_to "Back to Course", user_course_path(@user, @course), :class => "btn " %>
+        <%= link_to "Back to Assignment", user_course_assignment_path(@user, @course, @assignment), :class => "btn " %>
+        <h2>Students With Submissions</h2>
+        <table>
+              <% @submitted_students.each do |student| %>
+                <tr class= "row">
+                  <td class="col-lg-3"><%= student.name %></td>
+                </tr>
+              <% end %>
+        </table>
+        <h2>Students Without Submissions</h2>
+        <table>
+              <% @not_submitted_students.each do |student| %>
+                <tr class= "row">
+                  <td class="col-lg-3"><%= student.name %></td>
+                </tr>
+              <% end %>
+        </table>
+    </div>
+</center>

@@ -42,6 +42,9 @@ Rails.application.routes.draw do
                 end
             end
             resources :assignments do
+                member do
+                    get :student_submission_lists
+                end
                 resources :submissions
             end
         end
