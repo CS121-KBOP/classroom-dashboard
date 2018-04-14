@@ -63,22 +63,25 @@ body {
     color: whitesmoke;
   }
 
+  .table-header{
+    background-color: $darkpurple !important;
+    color: whitesmoke;
+  }
+
   .btn {
     
     background-color: $darkerpurple;
-    color: whitesmoke;
+    color: whitesmoke !important;
     border: solid;
     border-width: thin;
-    hover{
+    :hover{
       background-color: $purple;
     }
   }
   
-
   .navbar-default {
     .h{
         color: whitesmoke;
-        
     }
     background-color: $darkerpurple;
     height: 54px;
@@ -140,3 +143,14 @@ body {
     font-size: 30px;
     margin-bottom: 10px;
   }
+
+.submission-table{
+  padding-left: 150px;
+}
+
+.submission-table-name{
+    text-align: right;
+}
+.submission-table-check{
+    text-align: center;
+}

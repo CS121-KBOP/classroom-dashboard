@@ -64,30 +64,46 @@ class AssignmentsController < ApplicationController
         end
     end
 
-    def submission_view
+    def get_submission_data
         @user = User.find(params[:user_id])
         ensure_proper_user(@user)
         @course = @user.courses.find(params[:course_id])
+        @students = @course.students.order(:name)
         @assignment = @course.assignments.find(params[:id])
-        @sub_number = params[:submission].to_i
-        @submission = @assignment.submissions[@sub_number]
-    	if @submission != nil
-            @submission_hash = {}
-            @submission_hash[:picture_url] = @submission.answer.url()
-            @submission_hash[:student_name] = Student.find(@submission.student_id).name
-            @submission_hash[:created] = @submission.created_at.strftime("Submitted: %A, %B %-d, %Y at %I:%M %p")
-            if @submission.created_at !=  @submission.updated_at
-				@submission_hash[:edited] = @submission.updated_at.strftime("Edited at: %A, %B %-d, %Y at %I:%M %p")
-			else
-				@submission_hash[:edited] = "Not edited since submission"
-			end
-            @submission_hash[:url] = user_course_assignment_submission_path(@user, @course, @assignment, @submission)
 
-        else
-            @submission_hash = {};
-        end
+        # to hold the hashes
+        @submissions = Array.new
+
+        # for each student
+        @students.each {|student| 
+            @submission = @assignment.submissions.select { |submission| submission.student_id == student.id}
+            @submission_hash = {}
+            if @submission != []
+                @submission = @submission[0]
+                # this student has submitted
+                @submission_hash[:submitted] = true
+                @submission_hash[:picture_url] = @submission.answer.url()
+                @submission_hash[:student_name] = student.name
+                @submission_hash[:created] = @submission.created_at.strftime("Submitted: %A, %B %-d, %Y at %I:%M %p")
+                if @submission.created_at !=  @submission.updated_at
+                    @submission_hash[:edited] = @submission.updated_at.strftime("Edited at: %A, %B %-d, %Y at %I:%M %p")
+                else
+                    @submission_hash[:edited] = "Not edited since submission"
+                end
+                @submission_hash[:url] = user_course_assignment_submission_path(@user, @course, @assignment, @submission)
+
+            else
+                # this student has not submitted
+                @submission_hash[:submitted] = false
+                @submission_hash[:student_name] = student.name
+
+            end
+
+            # add this hash to the list
+            @submissions.push(@submission_hash)
+        }
         # send the json back to the client
-        render(json:  @submission_hash.to_json)
+        render(json:  @submissions.to_json)
     end
 
     private

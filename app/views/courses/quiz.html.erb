@@ -1,13 +1,13 @@
 <script> var flashcard_url = "<%= url_for(controller:'courses', action:'flashcard') %>"; </script>
 <center>
     <div>
-    <%= render 'header', course: "", edit: "", students: "", quiz: "active", assignments: "" %>
+    <%= render 'header', course: "", edit: "", students: "", quiz: "active", assignments: "", polls: "" %>
     <center>
       <div class = "container">
         <div class="row">
           <div class = "col-lg-4"></div>
             <div class = "col-lg-4">
-            <h3>Flashcards</h3>
+            <h3>Quiz</h3>
               <div class = "flashcard" id="flashcard-info">
                 <%= image_tag "/images/defaults/flashcard/missing.png", :id => "student-picture", :style => "width:300px;height:300px;" %>
                 <h4 id="student-name">Name</h4>

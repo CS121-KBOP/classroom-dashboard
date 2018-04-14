@@ -1,45 +1,61 @@
+<%= link_to "Back to Course", user_course_path(@user, @course), :class =>"btn btn-lg btn-primary" %>
 <center>
-  <br>
-    <div>
-      <%= link_to "Edit Poll", edit_user_course_poll_path(@user, @course, @poll) %>
-      <%= link_to "Add Option", new_user_course_poll_option_path(@user, @course, @poll) %>
-      <%= link_to "Back to Course", user_course_path(@user, @course) %>
-      <%= link_to "Account", user_path(@user) %>
-      <%= link_to 'Obliterate', user_course_poll_path(@user, @course, @poll),
-              method: :delete,
-              data: { confirm: 'Are you sure?' } %>
-      <h2><%= @poll.name %></h2>
-      <p>ACCESS TAG: <%= @pollTag %></p>
-      <p><%= @poll.description %></p>
-      <hr>
-      <% @options.each do |option| %>
-        <tr class= "row">
-                  <td class="col-lg-3"><%= option.label %></td>
-                  <td class="col-lg-5"><%= option.description %></td>
-                  <td class="col-lg-2"><%= option.votes %></td>
-                  <td class="col-lg-2" align="center">
-                        <a ><%= link_to 'Show', user_course_poll_option_path(@user, @course, @poll, option) %></a>
-                        <a ><%= link_to 'Edit', edit_user_course_poll_option_path(@user, @course, @poll, option) %></a>
-                        <a ><%= link_to 'Destroy', user_course_poll_option_path(@user, @course, @poll, option),
-                          method: :delete,
-                          data: { confirm: 'Are you sure?' } %> </a>
-                  </td>
+<h1><%= @poll.name %> 
+  <a class="col-4"><%= link_to edit_user_course_poll_path(@user, @course, @poll) do %>
+    <span class="glyphicon glyphicon-edit" ></span>
+    <% end %></a></h1>
+<h4>ACCESS TAG: <%= @pollTag %></h4>
+<p><%= @poll.description %></p>
 
-                </tr>
-      <% end %>
+<div class="container">
+  <table class="table table-hover table-responsive">
+    <tr class="table-header">
+      <td class="col-lg-3">Option</td>
+      <td class="col-lg-5">Descritption</td>
+      <td class="col-lg-2">Votes</td>
+      <td class="col-lg-2">
+        <center>
+        <%= link_to "Add Option", new_user_course_poll_option_path(@user, @course, @poll), :class =>"btn btn-sm"%>
+      </center>
+      </td>
+    </tr>
+    <% @options.each do |option| %>
+      <tr>
+        <td class="col-lg-3"><%= option.label %></td>
+        <td class="col-lg-5"><%= option.description %></td>
+        <td class="col-lg-2"><%= option.votes %></td>
+        <td class="col-lg-2" align="center">
+          <a class="col-6"><%= link_to edit_user_course_poll_option_path(@user, @course, @poll, option) do %>
+            <span class="glyphicon glyphicon-edit" ></span>
+            <% end %></a>
+          <a class="col-6"><%= link_to  user_course_poll_option_path(@user, @course, @poll, option),
+            method: :delete,
+            data: { confirm: 'Are you sure?' } do %>
+               <span class="glyphicon glyphicon-trash" ></span>
+              <% end %></a>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+</div>
 
-      <br><br><br>
-      <br><br><br>
-      <div class="container">
-        <div class="row">
-          <div class-"col-lg-6">
-            <%= pie_chart @data, width: "50%" %>
-          </div>
-          <div class-"col-lg-6">
-          <%= bar_chart @data, width: "50%" %>
-        </div>
-        </div>
-      </div>
-      <br><br><br>
+<br><br><br>
+<br><br><br>
+<div class="container">
+  <div class="row">
+    <div class-"col-lg-6">
+      <%= pie_chart @data, width: "50%" %>
     </div>
+    <div class-"col-lg-6">
+    <%= bar_chart @data, width: "50%" %>
+  </div>
+  </div>
+</div>
+<br><br><br>
+</div>
 
+<%= link_to 'Destroy Poll', user_course_poll_path(@user, @course, @poll),
+          method: :delete,
+          data: { confirm: 'Are you sure?' }, :class =>"btn btn-danger"  %>
+</center>
+<br><br><br>
