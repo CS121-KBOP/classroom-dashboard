@@ -2,7 +2,11 @@ class CoursesController < ApplicationController
     def index
         @user = User.find(params[:user_id])
         ensure_proper_user(@user)
-        @courses = @user.courses
+        courses = @user.courses
+        courses
+        @ordered_courses = Array.new
+        @ordered_courses = courses.sort_by {|course| [course.year, course.semester.downcase, course.code.downcase, course.section]}
+        @ordered_courses = @ordered_courses.reverse
     end
 
     def student_index
@@ -151,7 +155,7 @@ class CoursesController < ApplicationController
 
     private
         def course_params
-            params.require(:course).permit(:title, :code)
+            params.require(:course).permit(:title, :code, :semester, :section, :year)
         end
 
 end

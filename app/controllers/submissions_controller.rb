@@ -15,13 +15,27 @@ class SubmissionsController < ApplicationController
     def create
         @assignment = Assignment.find(unhashTagtoID(params[:access_tag]))
         @student = @assignment.course.students.find(params[:student_id])
-        @submission = @assignment.submissions.create(:answer => params[:answer], :student_id => params[:student_id])
-        logger.debug "New submission: #{@submission.attributes.inspect}"
-        if @submission.save
-            render(json:  {status: "ok"})
+        # find old submission, if applicable
+        @submission = @assignment.submissions.select { |submission| submission.student_id == params[:student_id]}
+
+        # if this student has already submitted for this assignment
+        if @submission != []
+            # find and update that record
+            if @submission[0].update(:answer => params[:answer])
+                render(json:  {status: "ok"})
+            else
+                render(json:  {status: "failure"})
+            end
         else
-            render(json:  {status: "failure"})
+            # create a new assignment
+            @submission = @assignment.submissions.create(:answer => params[:answer], :student_id => params[:student_id])
+            if @submission.save
+                render(json:  {status: "ok"})
+            else
+                render(json:  {status: "failure"})
+            end
         end
+        
     end
 
     def destroy

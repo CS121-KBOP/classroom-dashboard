@@ -6,33 +6,31 @@
 </script>
 
 <%= javascript_include_tag "dropzone.js" %>
-<%= render 'header', course: "active", edit: "", students: "", quiz: "", assignments: "" %>
+<%= render 'header', course: "active", edit: "", students: "", quiz: "", assignments: "", polls: "" %>
 <center>
-  <%= link_to "Go to Polls", user_course_polls_path(@user, @course) %>
-  <br>
-    <div>
-      <div class = "container">
-        <div class="row">
-          <div class = "col-lg-4"></div>
-            <div class = "col-lg-4">
-            <h1>Equity Cards</h1>
-              <div class = "flashcard" id="flashcard-info">
-                <%= image_tag "/images/defaults/flashcard/missing.png", :id => "student-picture", :style => "width:300px;height:300px;" %>
-                <h3 id="student-name">Name</h3>
-              </div>
-              <button type="button" class ="btn" onclick="drawFlashcard('equity')">Next Student</button>
-            </div>
+<br>
+<div>
+  <div class = "container">
+    <div class="row">
+      <div class = "col-lg-4"></div>
+        <div class = "col-lg-4">
+        <h1>Equity Cards</h1>
+          <div class = "flashcard" id="flashcard-info">
+            <%= image_tag "/images/defaults/flashcard/missing.png", :id => "student-picture", :style => "width:300px;height:300px;" %>
+            <h3 id="student-name">Name</h3>
           </div>
-        </div>
-        <div class="row">
-          <div class="col-lg-10 offset-lg-1">
-            <h4>Order Students</h4>
-            <%= form_tag user_course_path(@user, @course) do %>
-              <%= text_area :flashcard_order, :edit_flashcard_order %>
-              <%= submit_tag "Order Students" %>
-            <% end %>
-          </div>
+          <button type="button" class ="btn" onclick="drawFlashcard('equity')">Next Student</button>
         </div>
       </div>
-    <br>
+    </div>
+    <div class="row">
+      <div class="col-lg-10 offset-lg-1">
+        <h4>Order Students</h4>
+        <%= form_tag user_course_path(@user, @course) do %>
+          <%= text_area :flashcard_order, :edit_flashcard_order %>
+          <%= submit_tag "Order Students" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
 </center>

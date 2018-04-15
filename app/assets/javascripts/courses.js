@@ -7,12 +7,11 @@ function drawFlashcard(source) {
     if (status == "success") {
       // send the returned student object to the populate function
       console.log(data);
-      if (source=="quiz")
-
+      if (source=="quiz") {
         populateFlashcard(data.quiz, source);
-      else
+      } else {
         populateFlashcard(data.equity, source);
-      end
+      }
     }
   });
 }
