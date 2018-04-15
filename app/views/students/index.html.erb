@@ -21,14 +21,11 @@
     <tr >
       <td class="col-lg-3 col-md-3 col-sm-4">
         <%= image_tag student.portrait.url(:small)%>
-        <%= "student.name" link_to user_course_student_path(@user, @course, student) %>
+        <%= link_to "student.name", user_course_student_path(@user, @course, student) %>
       </td>
       <td class="col-lg-6 col-md-6 col-sm-4"><%= student.notes %></td>
       <td class="col-lg-3 col-md-3 col-sm-4" align="center">
         <div class="row">
-          <a class="col-4"><%= link_to user_course_student_path(@user, @course, student) do %>  
-            <span class="glyphicon glyphicon-eye-open"></span>
-          <% end %></a>
           <a class="col-4"><%= link_to edit_user_course_student_path(@user, @course, student) do %>
             <span class="glyphicon glyphicon-edit" ></span>
           <% end %></a>

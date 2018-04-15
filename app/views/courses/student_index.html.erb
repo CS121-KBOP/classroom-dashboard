@@ -1,4 +1,4 @@
-<%= render 'header', course: "", edit: "", students: "active", quiz: "", assignments: "" %>
+<%= render 'header', course: "", students: "active", quiz: "", assignments: "" %>
 <div class="container-fluid">
   <div class="row">
     <div class="col-lg-8 col-md-8 col-sm-8 col-xs-6"><h1>Student Roster</h1></div>
@@ -6,42 +6,6 @@
       <h1 class="right-align"><%= link_to "Add Student", new_user_course_student_path(@user, @course), :class => 'btn'%></h1>
     </div>
   </div>
-</div>
-
-<body>
-
-<table class="table table-hover table-responsive">
-  <tr class="medium-purple">
-    <th class="col-lg-3 col-md-3 col-sm-4">Name</th>
-    <th class="col-lg-6 col-md-6 col-sm-4">Notes</th>
-    <th class="col-lg-3 col-md-3 col-sm-4" > <center>Options</center></th>
-  </tr>
-
-  <% @course.students.each do |student| %>
-    <tr >
-      <td class="col-lg-3 col-md-3 col-sm-4">
-        <%= image_tag student.portrait.url(:small)%>
-        <a><%= link_to student.name, user_course_student_path(@user, @course, student) %></a>
-      </td>
-      <td class="col-lg-6 col-md-6 col-sm-4"><%= student.notes %></td>
-      <td class="col-lg-3 col-md-3 col-sm-4" align="center">
-        <div class="row">
-          <a class="col-6"><%= link_to edit_user_course_student_path(@user, @course, student) do %>
-            <span class="glyphicon glyphicon-edit" ></span>
-          <% end %></a>
-          <a class="col-6"><%= link_to user_course_student_path(@user, @course, student),
-              method: :delete,
-              data: { confirm: 'Are you sure?' } do %>
-                  <span class="glyphicon glyphicon-trash" ></span>
-                <% end %></a>
-          </div>
-      </td>
-    </tr>
-    <% end %>
-  </tbody>
-</table>
-</div>
-     
 <center>
   <body>
     <table class="table table-hover table-responsive">
@@ -54,14 +18,11 @@
         <tr>
           <td class="col-lg-3 col-md-3 col-sm-4">
             <%= image_tag student.portrait.url(:small)%>
-            <%= student.name %>
+            <%= link_to student.name, user_course_student_path(@user, @course, student) %>
           </td>
           <td class="col-lg-6 col-md-6 col-sm-4"><%= student.notes %></td>
           <td class="col-lg-3 col-md-3 col-sm-4" align="center">
             <div class="row">
-              <a class="col-4"><%= link_to user_course_student_path(@user, @course, student) do %>  
-                <span class="glyphicon glyphicon-eye-open"></span>
-              <% end %></a>
               <a class="col-4"><%= link_to edit_user_course_student_path(@user, @course, student) do %>
                 <span class="glyphicon glyphicon-edit" ></span>
               <% end %></a>

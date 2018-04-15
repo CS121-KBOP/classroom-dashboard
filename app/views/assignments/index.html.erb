@@ -1,34 +1,41 @@
-<%= render 'courses/header', course: "", edit: "", students: "", quiz: "", assignments: "active" %>
+<%= render 'courses/header', course: "", students: "", quiz: "", assignments: "active" %>
 <center>
     <div>
         <h1>Assignments</h1>
         <%= link_to "Back to Course", user_course_path(@user, @course), :class => "btn " %>
         <%= link_to "New Assignment", new_user_course_assignment_path(@user, @course), :class => "btn" %>
-        <table>
-        	 <th class= "row">
-                  <td class="col-lg-3">Name</td>
-                  <td class="col-lg-4">Description</td>
-                  <td class="col-lg-1"></td>
-                  <td class="col-lg-2">Date Created</td>
-                  <td class="col-lg-2"></td>
-              </th>
-              <% @assignments.each do |assignment| %>
-                <tr class= "row">
-                  <td class="col-lg-3"><%= assignment.name %></td>
-                  <td class="col-lg-4"><%= assignment.description %></td>
-                  <td class="col-lg-1"><% if !assignment.active %>Inactive<% end %></td>
 
-                  <td class="col-lg-2"><%= assignment.created_at.strftime("%A, %B %-d, %Y") %></td>
-                  <td class="col-lg-2" align="center"> 
-                        <a ><%= link_to 'Show', user_course_assignment_path(@user, @course, assignment) %></a>
-                        <a ><%= link_to 'Edit', edit_user_course_assignment_path(@user, @course, assignment) %></a>
-                        <a ><%= link_to 'Destroy', user_course_assignment_path(@user, @course, assignment),
-                          method: :delete,
-                          data: { confirm: 'Are you sure?' } %> </a>
-                  </td>
+        <table class="table table-hover table-responsive">
+          <thead >
+            <tr class= "row"; style="background-color:rgb(78,55,100,.5);">
+              <th class="col-lg-3">Name</td>
+              <th class="col-lg-4">Description</td>
+              <th class="col-lg-1"></td>
+              <th class="col-lg-2">Date Created</td>
+              <th class="col-lg-2"></td>
+            </tr>
+          </thead>
+          <% @assignments.each do |assignment| %>
+            <tr class= "row">
+              <td class="col-lg-3"> <a ><%= link_to assignment.name, user_course_assignment_path(@user, @course, assignment) %></a></td>
 
-                </tr>
-              <% end %>
-            </table>
+              <td class="col-lg-4"><%= assignment.description %></td>
+              <td class="col-lg-1"><% if !assignment.active %>Inactive<% end %></td>
+
+              <td class="col-lg-2"><%= assignment.created_at.strftime("%A, %B %-d, %Y") %></td>
+              <td class="col-lg-2" align="center">   
+                <%= link_to edit_user_course_assignment_path(@user, @course, assignment) do %>
+                  <span class="glyphicon glyphicon-edit" ></span>
+                <% end %>
+                <%= link_to user_course_assignment_path(@user, @course, assignment),
+                    method: :delete,
+                    data: { confirm: 'Are you sure?' } do %>
+                  <span class="glyphicon glyphicon-trash" ></span>
+                <% end %>  
+              </td>
+            </tr>
+          <% end %>
+        </table>
     </div>
 </center>
+

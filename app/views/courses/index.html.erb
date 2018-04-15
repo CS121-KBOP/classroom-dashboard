@@ -15,13 +15,9 @@
 
   <% @courses.each do |course| %>
     <tr class= "row">
-      <td class="col-lg-4"><%= course.title %></td>
+      <td class="col-lg-4"><a><%= link_to course.title, user_course_path(@user, course) %></a></td>
       <td class="col-lg-4"><%= course.code %></td>
       <td class="col-lg-4" align="center"> 
-            <%= link_to user_course_path(@user, course) do %>
-              <span class="glyphicon glyphicon-eye-open"></span>
-            <% end %>
-
             <%= link_to edit_user_course_path(@user, course) do %>
               <span class="glyphicon glyphicon-edit" ></span>
             <% end %>
