@@ -4,7 +4,7 @@ class Course < ApplicationRecord
     has_many :assignments, dependent: :destroy
     has_many :polls, dependent: :destroy
     validates :semester, presence: true,
-                         inclusion: {in: ["SP", "FA", "sp", "fa"]}
+                         inclusion: {in: ["SP", "FA"]}
     validates :year, presence: true,
                      format: {with: /\d\d\d\d/}
     validates :code, presence: true,
