@@ -86,9 +86,15 @@ class CoursesController < ApplicationController
 
         # Handles Equity Drawing of Flashcards
 
+        # If the user has never ordered the flashcards, flashcard_order will be nil.
+        if @course.flashcard_order != nil
+            student_list = @course.flashcard_order.split("\n")
+        else
+            student_list = Array.new
+        end
+
         # first see if there is a specified student to be selected
         # if there is, pick the first student from the list
-        student_list = @course.flashcard_order.split("\n")
         if student_list.length == 0
             # if the list to draw from is empty, just randomly select one student from the course roster
             @flashcard_student = @course.students.where(in_flashcards: true).sample

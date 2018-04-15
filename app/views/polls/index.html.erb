@@ -1,0 +1,33 @@
+<%= render 'courses/header', course: "", edit: "", students: "", quiz: "", assignments: "", polls: "active" %>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-6"><h1>Polls</h1></div>
+    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6" >
+      <h1 class="right-align"><%= link_to "New Poll", new_user_course_poll_path(@user, @course), :class => "btn" %></h1>
+    </div>
+  </div>
+    <center>
+      <table class="table table-hover table-responsive">
+        <tr class="table-header">
+          <th class="col-lg-3 col-md-3 col-sm-3">Name</th>
+          <th class="col-lg-5 col-md-5 col-sm-5">Description</th>
+          <th class="col-lg-2 col-md-2 col-sm-2" >Date Created</th>
+          <th class="col-lg-2 col-md-2 col-sm-2" > <center>Options</center></th>
+        </tr>  
+        <% @polls.each do |poll| %>
+          <tr>
+            <td class="col-lg-3"><%= poll.name %></td>
+            <td class="col-lg-5"><%= poll.description %></td>
+            <td class="col-lg-2"><%= poll.created_at.strftime("%A, %B %-d, %Y") %></td>
+            <td class="col-lg-2" align="center">
+                  <a ><%= link_to 'Show', user_course_poll_path(@user, @course, poll) %></a>
+                  <a ><%= link_to 'Edit', edit_user_course_poll_path(@user, @course, poll) %></a>
+                  <a ><%= link_to 'Destroy', user_course_poll_path(@user, @course, poll),
+                    method: :delete,
+                    data: { confirm: 'Are you sure?' } %> </a>
+            </td>
+          </tr>
+        <% end %>
+      </center>
+    </body>
+</center>

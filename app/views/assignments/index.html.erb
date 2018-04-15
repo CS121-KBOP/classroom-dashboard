@@ -2,8 +2,20 @@
 <center>
     <div>
         <h1>Assignments</h1>
-        <%= link_to "Back to Course", user_course_path(@user, @course), :class => "btn " %>
         <%= link_to "New Assignment", new_user_course_assignment_path(@user, @course), :class => "btn" %>
+        <table>
+        	 <th class= "row table-header">
+                  <td class="col-lg-3">Name</td>
+                  <td class="col-lg-4">Description</td>
+                  <td class="col-lg-1"></td>
+                  <td class="col-lg-2">Date Created</td>
+                  <td class="col-lg-2"></td>
+              </th>
+              <% @assignments.each do |assignment| %>
+                <tr class= "row">
+                  <td class="col-lg-3"><%= assignment.name %></td>
+                  <td class="col-lg-4"><%= assignment.description %></td>
+                  <td class="col-lg-1"><% if !assignment.active %>Inactive<% end %></td>
 
         <table class="table table-hover table-responsive">
           <thead >

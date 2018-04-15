@@ -1,4 +1,5 @@
 class AssignmentsController < ApplicationController
+    include Hasher
     def index
         @user = User.find(params[:user_id])
         ensure_proper_user(@user)
@@ -30,7 +31,7 @@ class AssignmentsController < ApplicationController
         ensure_proper_user(@user)
         @course = @user.courses.find(params[:course_id])
         @assignment = @course.assignments.find(params[:id])
-        @submissionTag = helpers.hashID(@assignment.id)
+        @submissionTag = hashIDtoTag(@assignment.id, false) # this is not a poll
     end
 
     def destroy
@@ -39,6 +40,7 @@ class AssignmentsController < ApplicationController
         @course = @user.courses.find(params[:course_id])
         @assignment = @course.assignments.find(params[:id])
         @assignment.destroy
+
         redirect_to user_course_assignments_path(@user, @course)
     end
 
@@ -54,7 +56,7 @@ class AssignmentsController < ApplicationController
         ensure_proper_user(@user)
         @course = @user.courses.find(params[:course_id])
         @assignment = @course.assignments.find(params[:id])
-     
+
         if @assignment.update(assignment_params)
             redirect_to user_course_assignment_path(@user, @course, @assignment)
         else
@@ -87,7 +89,7 @@ class AssignmentsController < ApplicationController
         # send the json back to the client
         render(json:  @submission_hash.to_json)
     end
-     
+
     private
         def assignment_params
             params.require(:assignment).permit(:name, :description, :active)

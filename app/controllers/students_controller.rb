@@ -38,7 +38,7 @@ class StudentsController < ApplicationController
         @course = @user.courses.find(params[:course_id])
         @student = @course.students.find(params[:id])
         @student.destroy
-        redirect_to user_course_students_path(@user, @course)
+        redirect_to controller: 'courses', action: 'student_index', user_id: @user, id: @course
     end
 
     def edit
@@ -55,7 +55,7 @@ class StudentsController < ApplicationController
         @student = @course.students.find(params[:id])
 
         if @student.update(student_params)
-            redirect_to user_course_students_path(@user, @course)
+            redirect_to controller: 'courses', action: 'student_index', user_id: @user, id: @course
         else
             render 'edit'
         end
@@ -76,11 +76,12 @@ class StudentsController < ApplicationController
         # Check that an image was actually grabbed by ensuring name is not empty or nil
         if student.name != "" and student.name != nil
             # Replace all underscores with spaces, as file names convert spaces to underscores
-            if student.name.include? '_'
-                student.name.gsub!('_', ' ')
+            if student.name.include? "_"
+                student.name.gsub!("_", " ")
             end
             # Get rid of the file extension
-            student.name = student.name.split('.')[0]
+            name_array = student.name.split(".")[0..-2]
+            student.name = name_array.join(".")
             student.save
         end
 
@@ -89,7 +90,7 @@ class StudentsController < ApplicationController
 
     private
         def student_params
-            params.require(:student).permit(:name, :email, :portrait, :notes, 
+            params.require(:student).permit(:name, :email, :portrait, :notes,
                                             :in_flashcards, :in_quiz)
         end
 end

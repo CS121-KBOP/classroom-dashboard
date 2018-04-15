@@ -1,11 +1,19 @@
 class SubmissionsController < ApplicationController
+    include Hasher
+
     def new
-        @assignment = Assignment.find(helpers.unhashTag(params[:assignment_id]))
-        @submission = @assignment.submissions.new
+        id = unhashTagtoID(params[:access_tag])
+        if Assignment.exists?(id)
+            @assignment = Assignment.find(id)
+            @submission = @assignment.submissions.new
+        else
+            render "homepage/invalid_tag"
+        end
+        
     end
 
     def create
-        @assignment = Assignment.find(helpers.unhashTag(params[:assignment_id]))
+        @assignment = Assignment.find(unhashTagtoID(params[:access_tag]))
         @student = @assignment.course.students.find(params[:student_id])
         @submission = @assignment.submissions.create(:answer => params[:answer], :student_id => params[:student_id])
         logger.debug "New submission: #{@submission.attributes.inspect}"
@@ -47,11 +55,7 @@ class SubmissionsController < ApplicationController
     end
 
     def search
-    	begin
-        	@assignment = Assignment.find(params[:assignment_id])
-        rescue
-        	@assignment = Assignment.find(helpers.unhashTag(params[:assignment_id]))
-		end
+        @assignment = Assignment.find(unhashTagtoID(params[:access_tag]))
         @students = @assignment.course.students.where('name LIKE ?', "%#{params[:name]}%").order('name ASC').limit(5)
         render(json:  @students.to_json)
     end

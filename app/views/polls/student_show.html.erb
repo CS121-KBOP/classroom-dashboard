@@ -1,0 +1,15 @@
+<center>
+  <br>
+    <div>
+      <h2><%= @poll.name %></h2>
+      <p><%= @poll.description %></p>
+      <hr>
+      <% @options.each do |option| %>
+        <tr class= "row">
+          <td class="col-lg-2" align="center">
+                <%= button_to option.label, url_for(controller: "options", action:"select", access_tag: @access_tag, option_id: option.id) %>
+          </td>
+        </tr>
+      <% end %>
+      <br><br><br>
+    </div>
