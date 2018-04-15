@@ -1,36 +1,36 @@
 <%= csrf_meta_tag %>
 <script>
-// so we can access the correct urls in the .js files
-var flashcard_url = "<%= url_for(controller:'courses', action:'flashcard') %>";
-var note_upload_url = "<%= url_for(controller:'courses', action:'updateNotes') %>";
+  // so we can access the correct urls in the .js files
+  var flashcard_url = "<%= url_for(controller:'courses', action:'flashcard') %>";
+  drawFlashcard('equity'); // draw initial card
 </script>
 
 <%= javascript_include_tag "dropzone.js" %>
 <%= render 'header', course: "active", edit: "", students: "", quiz: "", assignments: "", polls: "" %>
 <center>
+<br>
+<div>
   <div class = "container">
     <div class="row">
       <div class = "col-lg-4"></div>
         <div class = "col-lg-4">
-        <h3>Flashcards</h3>
+        <h1>Equity Cards</h1>
           <div class = "flashcard" id="flashcard-info">
             <%= image_tag "/images/defaults/flashcard/missing.png", :id => "student-picture", :style => "width:300px;height:300px;" %>
-            <h4 id="student-name">Name</h4>
-            <p id="student-info">Info</p>
-            <textarea rows=5 id="student-notes" onkeyup="updateNotes()"></textarea>
+            <h3 id="student-name">Name</h3>
           </div>
-          <button type="button" class ="btn" onclick="drawFlashcard('dashboard')">Draw Flashcard</button>
+          <button type="button" class ="btn" onclick="drawFlashcard('equity')">Next Student</button>
         </div>
       </div>
     </div>
+    <div class="row">
+      <div class="col-lg-10 offset-lg-1">
+        <h4>Order Students</h4>
+        <%= form_tag user_course_path(@user, @course) do %>
+          <%= text_area :flashcard_order, :edit_flashcard_order %>
+          <%= submit_tag "Order Students" %>
+        <% end %>
+      </div>
+    </div>
   </div>
-<br>
-<br>
-  <h4>Order Students</h4>
-  <%= form_tag user_course_path(@user, @course) do %>
-    <%= text_area :flashcard_order, :edit_flashcard_order %>
-    <br>
-    <%= submit_tag "Confirm" %>
-  <% end %>
-  <br>
 </center>
