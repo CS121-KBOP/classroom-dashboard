@@ -28,7 +28,7 @@
     </tr>
     <tr class="field">
       <td><%= form.label :year,  :class => "control-label"  %></td>
-      <td><%= form.number_field :year %></td>
+      <td><%= form.number_field :year, :value => Date.today.year %></td>
     </tr>
     <tr class="field">
       <td><%= form.label :semester,  :class => "control-label"  %></td>

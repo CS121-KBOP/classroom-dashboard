@@ -27,7 +27,7 @@ ActiveRecord::Schema.define(version: 20180407224136) do
     t.string "code"
     t.integer "section"
     t.text "semester"
-    t.integer "year", default: 2018
+    t.integer "year"
     t.text "flashcard_order"
     t.integer "user_id"
     t.datetime "created_at", null: false
