@@ -43,11 +43,11 @@
 <br><br><br>
 <div class="container">
   <div class="row">
-    <div class-"col-lg-6">
-      <%= pie_chart @data, width: "50%" %>
+    <div class="col-lg-6">
+      <%= pie_chart url_for(controller:'polls', action:'get_data'), refresh: 5%>
     </div>
-    <div class-"col-lg-6">
-    <%= bar_chart @data, width: "50%" %>
+    <div class="col-lg-6">
+    <%= bar_chart url_for(controller:'polls', action:'get_data'), refresh: 5%>
   </div>
   </div>
 </div>
