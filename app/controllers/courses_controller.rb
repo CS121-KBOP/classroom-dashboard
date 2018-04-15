@@ -5,7 +5,7 @@ class CoursesController < ApplicationController
         courses = @user.courses
         courses
         @ordered_courses = Array.new
-        @ordered_courses = courses.sort_by {|course| [course.year, course.semester, course.code, course.section]}
+        @ordered_courses = courses.sort_by {|course| [course.year, course.semester.downcase, course.code.downcase, course.section]}
         @ordered_courses = @ordered_courses.reverse
     end
 
