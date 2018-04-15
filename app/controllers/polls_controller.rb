@@ -35,10 +35,21 @@ class PollsController < ApplicationController
         @poll = @course.polls.find(params[:id])
         @pollTag = hashIDtoTag(@poll.id, true) # this is a poll
         @options = @poll.options
+    end
+
+    # for getting the json data
+    def get_data
+        @user = User.find(params[:user_id])
+        ensure_proper_user(@user)
+        @course = @user.courses.find(params[:course_id])
+        @poll = @course.polls.find(params[:id])
+        @options = @poll.options
         @data = Hash.new(0)
         @options.each do |option|
-            @data[option.label] = option.votes
+            tag = option.label + ": " + option.description
+            @data[tag] = option.votes
         end
+        render(json: @data)
     end
 
     # For the students on their phones

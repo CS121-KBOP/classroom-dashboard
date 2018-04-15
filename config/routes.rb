@@ -18,6 +18,7 @@ Rails.application.routes.draw do
     # Poll routes
     get    '/p/:access_tag', to: 'polls#student_show'
     post    '/p/:access_tag/o/:option_id/select', to: 'options#select'
+    get    'user/:user_id/course/:course_id/poll/:id/data', to: 'polls#get_data'
 
 
     # Assignment routes
