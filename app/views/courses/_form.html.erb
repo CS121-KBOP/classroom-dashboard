@@ -22,8 +22,20 @@
       <td><%= form.label :code,  :class => "control-label"  %></td>
       <td><%= form.text_field :code, :class => "code" %></td>
     </tr>
+    <tr class="field">
+      <td><%= form.label :section,  :class => "control-label"  %></td>
+      <td><%= form.number_field :section %></td>
+    </tr>
+    <tr class="field">
+      <td><%= form.label :year,  :class => "control-label"  %></td>
+      <td><%= form.number_field :year %></td>
+    </tr>
+    <tr class="field">
+      <td><%= form.label :semester,  :class => "control-label"  %></td>
+      <td><%= form.text_field :semester %></td>
+    </tr>
   </table>
-  
+
   <%= form.submit "Confirm", :class => "btn" %>
   <%= link_to cancel_text, cancel_path, :class => "btn btn-danger" %>
 <% end %>
