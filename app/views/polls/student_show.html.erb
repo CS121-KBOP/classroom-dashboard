@@ -7,7 +7,7 @@
       <% @options.each do |option| %>
         <tr class= "row">
           <td class="col-lg-2" align="center">
-                <%= button_to option.label, url_for(controller: "options", action:"select", access_tag: @access_tag, option_id: option.id) %>
+                <%= link_to (option.label + ": " + truncate(option.description, length: 17, omission: '...')), url_for(controller: "options", action:"select", access_tag: @access_tag, option_id: option.id), class: "poll-option-button"%><br>
           </td>
         </tr>
       <% end %>
