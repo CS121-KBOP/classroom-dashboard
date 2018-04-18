@@ -165,3 +165,63 @@ body {
 .submission-table-check{
     text-align: center;
 }
+
+.name-search{
+  width: 340px;
+  height: 332px;
+  padding: 15px;
+  border: 5px solid $darkerpurple;
+}
+
+
+
+.submission-suggestion{
+  color: black;
+  width: 100%;
+  height: 40px;
+  line-height: 40px;
+  border: 1px solid $darkerpurple;
+  margin-top: 10px;
+  background: #e5e5e5;
+}
+
+.submission-suggestion-selected{
+  color: white;
+  background: $darkerpurple;
+}
+
+.submission-search{
+  text-align: center;
+  font-size: 25px;
+  width: 100%;
+}
+
+.submission-file-area{
+  width: 300px;
+  margin-top: 20px;
+}
+
+.submission-file{
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+}
+
+.submission-file + label {
+  width: 100%;
+  font-size: 20px;
+  padding: 10px;
+  font-weight: 100;
+  color: white;
+  background-color: $darkerpurple;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.submission-file:focus + label,
+.submission-file + label:hover {
+  background-color: $purple;
+}

@@ -10,6 +10,19 @@ $( document ).ready(function() {
     if (startingID != null){
       handleNameClick(startingID);
     }
+
+    // set the text of the file button
+    var fileLabel = $("label[for='answer_file']");
+    fileLabel.html(fileLabel.attr("empty-caption"));
+
+    // set the text of the file button to change when a file is uploaded
+    $("#answer_file").change(function(){
+      var submitButton = $("#answer_file");
+      if( submitButton[0].files && submitButton[0].files.length > 0 ){
+        var fileName = submitButton[0].files[0].name.split( '\\' ).pop();
+        $("label[for='answer_file']").html(fileName);
+      }
+    });
   }
 })
 
@@ -63,11 +76,15 @@ function submitForm(){
     // unhighlight all student names
     var previouslyHighlighted = $("#student-results-"+selectedStudent)
     if (previouslyHighlighted != null) {
-      previouslyHighlighted.attr("style", "color: black;");
+      previouslyHighlighted.removeClass("submission-suggestion-selected");
     }
     // reset ids and search bar
     selectedStudent = null;
     $("#name").val("");
+
+    // reset file button
+    var fileLabel = $("label[for='answer_file']");
+    fileLabel.html(fileLabel.attr("empty-caption"));
 
     searchStudents(); // reset search results
   });
@@ -75,7 +92,6 @@ function submitForm(){
 
 // send an AJAX request for a list of names corresponding to this name
 function searchStudents(){
-  console.log("hi");
   var searchTerm = $("#search").val();
   $.get(searchURL+'?name='+searchTerm, function(data, status){
     if (status == "success") {
@@ -88,29 +104,29 @@ function searchStudents(){
 function handleNameClick(id){
   var previouslyHighlighted = $("#student-results-"+selectedStudent)
   if (previouslyHighlighted != null) {
-    previouslyHighlighted.attr("style", "color: black;");
+    previouslyHighlighted.removeClass("submission-suggestion-selected");
   }
   selectedStudent = id;
   var previouslyHighlighted = $("#student-results-"+selectedStudent)
   if (previouslyHighlighted != null) {
-    previouslyHighlighted.attr("style", "color: red;");
+    previouslyHighlighted.addClass("submission-suggestion-selected");
   }
   $("#id-field").val(id);
 }
 // creates a line of html to be used in the results table
 function studentLine(id, name){
-  return "<tr id=student-results-"+id+" onclick='handleNameClick("+id+")'><td>"+name+"</td></tr>"
+  return "<div id=student-results-"+id+" class='submission-suggestion' onclick='handleNameClick("+id+")'>"+name+"</div>"
 }
 // populate the list with new entries
 function populateResults(students) {
   var html = "";
   if (students.length > 0) {
-    html = "<table>\n";
+    html = "";
     for (i = 0; i < students.length; i++) { 
       html += studentLine(students[i].id, students[i].name);
     }
   } else {
-    html = "No student matches that name"
+    html = "<br><br>No student matches that name"
   }
  $("#suggestions").html(html);
   if (selectedStudent != null) { handleNameClick(selectedStudent); } // make sure that reloading the list doesn't undo selection
