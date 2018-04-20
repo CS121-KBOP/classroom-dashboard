@@ -14,7 +14,7 @@ function toggleHide() {
 </script>
 
 <%= javascript_include_tag "dropzone.js" %>
-<%= render 'header', course: "active", students: "", quiz: "", assignments: "" %>
+<%= render 'header', course: "active", students: "", quiz: "", assignments: "", polls: "" %>
 <center>
     <div>
       <div class = "container">
@@ -29,7 +29,7 @@ function toggleHide() {
               <p id="student-info">info</p>
               <textarea rows=5 id="student-notes" onkeyup="updateNotes()"></textarea>
             </div>
-            <div class ="btn" onclick="drawFlashcard('dashboard')">Draw Flashcard</div>  
+            <div class ="btn" onclick="drawFlashcard('dashboard')">Draw Flashcard</div>
           </div>
           <div class ="col-lag-4">
           <br>
