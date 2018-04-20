@@ -1,3 +1,5 @@
+require 'thread'
+
 class StudentsController < ApplicationController
     def index
         @user = User.find(params[:user_id])
@@ -7,10 +9,30 @@ class StudentsController < ApplicationController
     end
 
     def new
+        semaphore = Mutex.new
+        semaphore.lock
         @user = User.find(params[:user_id])
         ensure_proper_user(@user)
-        @course = @user.courses.find(params[:course_id])
-        @student = @course.students.new
+        @course = @user.courses.find(params[:id])
+        # Create a new student to be populated
+        student = Student.new
+        student.course_id = @course.id
+        student.portrait = params[:file]
+        # The name of the student is the name of the image
+        student.name = student.portrait_file_name
+        # Check that an image was actually grabbed by ensuring name is not empty or nil
+        if student.name != "" and student.name != nil
+            # Replace all underscores with spaces, as file names convert spaces to underscores
+            if student.name.include? "_"
+                student.name.gsub!("_", " ")
+            end
+            # Get rid of the file extension
+            name_array = student.name.split(".")[0..-2]
+            student.name = name_array.join(".")
+            student.save
+        end
+        semaphore.unlock
+        redirect_to user_course_students_path(@user, @course)
     end
 
     def create
@@ -64,6 +86,8 @@ class StudentsController < ApplicationController
     # Handles student upload from an image file. Called on a per file basis.
     # The name of the file (minus the file extension) will be the name of the student.
     def import
+        semaphore = Mutex.new
+        semaphore.lock
         @user = User.find(params[:user_id])
         ensure_proper_user(@user)
         @course = @user.courses.find(params[:course_id])
@@ -84,8 +108,8 @@ class StudentsController < ApplicationController
             student.name = name_array.join(".")
             student.save
         end
-
-        redirect_to user_course_path(@user, @course)
+        semaphore.unlock
+        redirect_to user_course_students_path(@user, @course)
     end
 
     private

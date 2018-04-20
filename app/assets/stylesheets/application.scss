@@ -1,3 +1,9 @@
+/*
+ *= require_tree .
+ *= require dropzone/dropzone
+ *= require_self
+ */
+
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
@@ -29,7 +35,7 @@ body {
   .nav-pills > li > a{
     color: whitesmoke;
     background-color: $darkerpurple;
-    -webkit-transition-duration: 0.5s; 
+    -webkit-transition-duration: 0.5s;
     transition-duration: 0.5s;
   }
 
@@ -69,12 +75,12 @@ body {
   }
 
   .btn {
-    
+
     background-color: $darkerpurple;
     color: whitesmoke !important;
     border: solid;
     border-width: thin;
-    -webkit-transition-duration: 0.5s; 
+    -webkit-transition-duration: 0.5s;
     transition-duration: 0.5s;
   }
 
@@ -82,7 +88,7 @@ body {
     background-color: $purple;
     color: whitesmoke;
   }
-  
+
   .btn:focus{
     background-color: $darkerpurple;
     color: whitesmoke;
@@ -104,7 +110,7 @@ body {
     border: none;
     margin: 0;
   }
-  
+
   .navbar-container {
     width: 800x;
     margin: 0 auto;
@@ -157,7 +163,7 @@ body {
   display: none;
 }
 #access-box{
-    text-align: center; 
+    text-align: center;
     width: 80%;
     font-size: 30px;
     margin-bottom: 10px;

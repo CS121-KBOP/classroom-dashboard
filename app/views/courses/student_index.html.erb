@@ -14,8 +14,9 @@
         <th class="col-lg-6 col-md-6 col-sm-4">Notes</th>
         <th class="col-lg-3 col-md-3 col-sm-4" > <center>Options</center></th>
       </tr>
+
       <% @course.students.each do |student| %>
-        <tr>
+        <tr data-link="<%= user_course_student_path(@user, @course, student) %>">
           <td class="col-lg-3 col-md-3 col-sm-4">
             <%= image_tag student.portrait.url(:small)%>
             <%= link_to student.name, user_course_student_path(@user, @course, student) %>
@@ -38,32 +39,40 @@
                     <%= form.check_box :in_flashcards, :checked => student.in_flashcards %>
                     <%= form.label :in_flashcards, "Include in flashcards", :class => "control-label"  %>
                     <br>
-                    <%= form.check_box :in_quiz, :checked => student.in_quiz %> 
-                    <%= form.label :in_quiz, "Include in quiz", :class => "control-label"  %> 
+                    <%= form.check_box :in_quiz, :checked => student.in_quiz %>
+                    <%= form.label :in_quiz, "Include in quiz", :class => "control-label"  %>
                 </td>
                 <td class="col-6">
                   <%= form.submit "Confirm", :class => "btn"  %>
-                <% end %> 
+                <% end %>
                 </td>
               </table>
-            </div>     
+            </div>
           </td>
         </tr>
       <% end %>
+      <script>
+        $("tr[data-link]").click(function() {
+          window.location = $(this).data("link")
+        });
+      </script>
     </table>
   </body>
 </center>
-</div>     
+</div>
 </br>
 <center>
   <h4>Import Students</h4>
-  <div class = "drop-area">
-    <%= form_tag import_user_course_students_path(@user, @course), 
-      :class => "dropzone",
-      multipart: true do %>
+  <%= form_for(new_user_course_student_path(@user, @course), html: { multipart: true, class: "dropzone"}) do |f|  %>
+  <div class="fallback">
+    <%= f.file_field :portrait %><br>
+    <%= f.submit "Upload Students" %>
   </div>
-    <%= submit_tag "Import" %>
-    <% end %>
+<% end %>
+
+<div class="index">
+  <%= render "index" %>
+</div>
   <br>
   <br>
 </center>

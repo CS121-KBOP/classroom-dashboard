@@ -7,6 +7,7 @@ Rails.application.routes.draw do
 
     # Student Roster routes
     get    '/users/:user_id/courses/:id/student_index', to: 'courses#student_index'
+    post    '/users/:user_id/courses/:id/student_index', to: 'students#new'
 
     # Flashcard routes
     get    '/users/:user_id/courses/:id/flashcard',  to: 'courses#flashcard'

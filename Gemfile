@@ -25,6 +25,8 @@ gem 'omniauth-google-oauth2'
 # used for chart creation
 gem "chartkick"
 
+# used for batch upload
+gem 'dropzonejs-rails', '~> 0.4.16'
 
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
