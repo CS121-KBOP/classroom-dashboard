@@ -1,6 +1,6 @@
 var box = null;
 
-$( document ).ready(function() {
+function loadHomepage() {
     box = $("#access-box");
     box.on("input", correctAccessTag);
     // if we press enter while in the box, submit
@@ -10,7 +10,7 @@ $( document ).ready(function() {
 	    return false;
 	  }
 	});
-});
+}
 
 
 function correctAccessTag(event){

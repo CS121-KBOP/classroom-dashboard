@@ -13,7 +13,7 @@
     </tr>
   </thead>
 
-  <% @courses.each do |course| %>
+  <% @ordered_courses.each do |course| %>
     <tr class= "row">
       <td class="col-lg-4"><a><%= link_to course.title, user_course_path(@user, course) %></a></td>
       <td class="col-lg-4"><%= course.code %></td>
@@ -31,6 +31,6 @@
 
     </tr>
   <% end %>
-  
+
 </table>
 </div>

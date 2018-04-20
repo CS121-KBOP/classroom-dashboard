@@ -2,7 +2,6 @@
 <script>
 // so we can access the correct urls in the .js files
 var flashcard_url = "<%= url_for(controller:'courses', action:'flashcard') %>";
-var note_upload_url = "<%= url_for(controller:'courses', action:'updateNotes') %>";
 function toggleHide() {
     var x = document.getElementById("toggleable");
     if (x.style.display === "none") {
@@ -11,6 +10,7 @@ function toggleHide() {
         x.style.display = "none";
     }
 }
+drawFlashcard('equity'); // draw initial card
 </script>
 
 <%= javascript_include_tag "dropzone.js" %>
@@ -26,10 +26,8 @@ function toggleHide() {
             <div class = "flashcard" id="flashcard-info">
               <%= image_tag "/images/defaults/flashcard/missing.png", :id => "student-picture", :style => "width:300px;height:300px;" %>
               <h4 id="student-name">Name</h4>
-              <p id="student-info">info</p>
-              <textarea rows=5 id="student-notes" onkeyup="updateNotes()"></textarea>
             </div>
-            <div class ="btn" onclick="drawFlashcard('dashboard')">Draw Flashcard</div>  
+            <div class ="btn" onclick="drawFlashcard('equity')">Draw Flashcard</div>  
           </div>
           <div class ="col-lag-4">
           <br>
