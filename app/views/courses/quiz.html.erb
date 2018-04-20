@@ -1,4 +1,8 @@
-<script> var flashcard_url = "<%= url_for(controller:'courses', action:'flashcard') %>"; </script>
+<script> 
+  var flashcard_url = "<%= url_for(controller:'courses', action:'flashcard') %>"; 
+  var note_upload_url = "<%= url_for(controller:'courses', action:'updateNotes') %>";
+  drawFlashcard('quiz'); // draw initial card
+</script>
 <center>
     <div>
     <%= render 'header', course: "", edit: "", students: "", quiz: "active", assignments: "", polls: "" %>
@@ -7,11 +11,16 @@
         <div class="row">
           <div class = "col-lg-4"></div>
             <div class = "col-lg-4">
-            <h3>Quiz</h3>
-              <div class = "flashcard" id="flashcard-info">
+            <h1>Face/Name Quiz</h1>
+              <div class = "flashcard">
                 <%= image_tag "/images/defaults/flashcard/missing.png", :id => "student-picture", :style => "width:300px;height:300px;" %>
-                <h4 id="student-name">Name</h4>
-                <p id="student-notes" style="height: 80px;">info</p>
+                <div class= "flashcard-info" id="flashcard-container">
+                  <div class= "flashcard-info" id="flashcard-info">
+                    <h2 id="student-name">Name</h2>
+                    <span>Notes:</span>
+                    <textarea rows=5 id="student-notes" onkeyup="updateNotes()"></textarea>
+                  </div>
+                </div>
               </div>
               <button type="button" class ="btn" onclick="toggleShow()">Show/Hide Info</button>
               <button type="button" class ="btn" onclick="drawFlashcard('quiz')">Draw Flashcard</button>
