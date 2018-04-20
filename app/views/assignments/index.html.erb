@@ -1,4 +1,4 @@
-<%= render 'courses/header', course: "", students: "", quiz: "", assignments: "active" %>
+<%= render 'courses/header', course: "", students: "", quiz: "", assignments: "active", polls: "" %>
 <center>
     <div>
         <h1>Assignments</h1>
@@ -16,6 +16,7 @@
                   <td class="col-lg-3"><%= assignment.name %></td>
                   <td class="col-lg-4"><%= assignment.description %></td>
                   <td class="col-lg-1"><% if !assignment.active %>Inactive<% end %></td>
+              <% end %>
 
         <table class="table table-hover table-responsive">
           <thead >
@@ -35,7 +36,7 @@
               <td class="col-lg-1"><% if !assignment.active %>Inactive<% end %></td>
 
               <td class="col-lg-2"><%= assignment.created_at.strftime("%A, %B %-d, %Y") %></td>
-              <td class="col-lg-2" align="center">   
+              <td class="col-lg-2" align="center">
                 <%= link_to edit_user_course_assignment_path(@user, @course, assignment) do %>
                   <span class="glyphicon glyphicon-edit" ></span>
                 <% end %>
@@ -43,7 +44,7 @@
                     method: :delete,
                     data: { confirm: 'Are you sure?' } do %>
                   <span class="glyphicon glyphicon-trash" ></span>
-                <% end %>  
+                <% end %>
               </td>
             </tr>
           <% end %>
