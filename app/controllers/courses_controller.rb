@@ -3,9 +3,6 @@ class CoursesController < ApplicationController
         @user = User.find(params[:user_id])
         ensure_proper_user(@user)
         courses = @user.courses
-        puts "\n\n\n\n\n=============\n\n\n\n\n"
-        puts courses
-        puts "\n\n\n\n\n=============\n\n\n\n\n"
         @ordered_courses = Array.new
         @ordered_courses = courses.sort_by {|course| [course.year, course.semester.downcase, course.code.downcase, course.section]}
         @ordered_courses = @ordered_courses.reverse
