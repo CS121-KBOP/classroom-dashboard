@@ -10,27 +10,13 @@ function toggleHide() {
     }
 }
 
-
-function loadShowPage(){
-  $(window).keypress(function (e) {
-    if (e.key === ' ' || e.key === 'Spacebar') {
-      // ' ' is standard, 'Spacebar' was used by IE9 and Firefox < 37
-      e.preventDefault()
-      drawFlashcard('equity');
-    }
-  })
-}
 // called when the "draw flashcard" button is pressed
 function drawFlashcard(source) {
   // send an AJAX GET request to the flashcard controller
-  $.get(flashcard_url, function(data, status){
+  $.get(flashcard_url+"?type="+source, function(data, status){
     if (status == "success") {
       // send the returned student object to the populate function
-      if (source=="quiz") {
-        populateFlashcard(data.quiz, source);
-      } else {
-        populateFlashcard(data.equity, source);
-      }
+      populateFlashcard(data, source);
     }
   });
 }
