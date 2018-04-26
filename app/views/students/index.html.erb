@@ -9,7 +9,6 @@
   </div>
 
 <body>
-
 <table class="table table-hover table-responsive">
   <tr class="medium-purple">
     <th class="col-lg-3 col-md-3 col-sm-4">Name</th>
@@ -21,14 +20,11 @@
     <tr >
       <td class="col-lg-3 col-md-3 col-sm-4">
         <%= image_tag student.portrait.url(:small)%>
-        <%= student.name %>
+        <%= link_to "student.name", user_course_student_path(@user, @course, student) %>
       </td>
       <td class="col-lg-6 col-md-6 col-sm-4"><%= student.notes %></td>
       <td class="col-lg-3 col-md-3 col-sm-4" align="center">
         <div class="row">
-          <a class="col-4"><%= link_to user_course_student_path(@user, @course, student) do %>  
-            <span class="glyphicon glyphicon-eye-open"></span>
-          <% end %></a>
           <a class="col-4"><%= link_to edit_user_course_student_path(@user, @course, student) do %>
             <span class="glyphicon glyphicon-edit" ></span>
           <% end %></a>
@@ -44,15 +40,15 @@
                 <%= form.check_box :in_flashcards, :checked => student.in_flashcards %>
                 <%= form.label :in_flashcards, "Include in flashcards", :class => "control-label"  %>
                 <br>
-                <%= form.check_box :in_quiz, :checked => student.in_quiz %> 
-                <%= form.label :in_quiz, "Include in quiz", :class => "control-label"  %> 
+                <%= form.check_box :in_quiz, :checked => student.in_quiz %>
+                <%= form.label :in_quiz, "Include in quiz", :class => "control-label"  %>
             </td>
             <td class="col-6">
               <%= form.submit "Confirm", :class => "btn"  %>
-            <% end %> 
+            <% end %>
             </td>
           </table>
-        </div>     
+        </div>
       </div>
         </div>
       </td>
@@ -64,7 +60,7 @@
 <center>
     <h4>Import Students</h4>
     <div class = "drop-area">
-      <%= form_tag import_user_course_students_path(@user, @course), 
+      <%= form_tag import_user_course_students_path(@user, @course),
         :class => "dropzone",
         multipart: true do %>
     </div>

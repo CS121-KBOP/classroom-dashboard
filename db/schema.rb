@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(version: 20180407224136) do
   create_table "courses", force: :cascade do |t|
     t.string "title"
     t.string "code"
-    t.integer "section"
+    t.integer "section", default: 1
     t.text "semester"
     t.integer "year"
     t.text "flashcard_order"

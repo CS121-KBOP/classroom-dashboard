@@ -9,4 +9,5 @@ class Course < ApplicationRecord
                      format: {with: /\d\d\d\d/}
     validates :code, presence: true,
                      length: { minimum: 3, maximum: 10 }
+    validates :section, presence: true
 end

@@ -20,7 +20,7 @@ class SessionsController < ApplicationController
 
         session[:user] = user
 
-        redirect_to root_path
+        redirect_to user_courses_path(user)
     end
 
     def destroy

@@ -23,7 +23,7 @@ class AssignmentsController < ApplicationController
             redirect_to user_course_assignment_path(@user, @course, @assignment)
         else
             render 'new'
-      end
+        end
     end
 
     def show
@@ -75,7 +75,7 @@ class AssignmentsController < ApplicationController
         @submissions = Array.new
 
         # for each student
-        @students.each {|student| 
+        @students.each {|student|
             @submission = @assignment.submissions.select { |submission| submission.student_id == student.id}
             @submission_hash = {}
             if @submission != []

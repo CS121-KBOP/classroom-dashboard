@@ -27,22 +27,16 @@
       <%= link_to "Classroom Dashboard", root_path %>
       </div>
     </div>
-
-    <div class="collapse navbar-collapse" id="bs-navbar-collapse-1" >
-      <ul class="nav navbar-nav navbar-right">
-        <li>
-        <%= link_to "Courses", user_courses_path(current_user["id"]) %>
-        </li>
-        <li>
-        <%= link_to "Profile", user_path(current_user["id"]) %>
-        </li>
-        <li>
-        <%= link_to "Log Out", "/logout", method: :delete %>
-        </li>
-        
-      </ul>
-      
-    </div>
+      <div class="collapse navbar-collapse" id="bs-navbar-collapse-1" >
+        <ul class="nav navbar-nav navbar-right">
+          <li>
+          <%= link_to "Courses", user_courses_path(current_user["id"]) %>
+          </li>
+          <li>
+          <%= link_to "Log Out", "/logout", method: :delete %>
+          </li>
+        </ul>
+      </div>
   </div>
 </nav>
 

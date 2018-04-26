@@ -29,8 +29,8 @@ body {
   .nav-pills > li > a{
     color: whitesmoke;
     background-color: $darkerpurple;
-    box-shadow: 2px 2px
-    
+    -webkit-transition-duration: 0.5s; 
+    transition-duration: 0.5s;
   }
 
   .nav-pills > li.active > a{
@@ -85,17 +85,29 @@ body {
     color: whitesmoke !important;
     border: solid;
     border-width: thin;
-    :hover{
-      background-color: $purple;
-    }
+    -webkit-transition-duration: 0.5s; 
+    transition-duration: 0.5s;
+  }
+
+  .btn:hover{
+    background-color: $purple;
+    color: whitesmoke;
   }
   
+  .btn:focus{
+    background-color: $darkerpurple;
+    color: whitesmoke;
+    border: solid;
+    border-width: thin;
+  }
+
   .navbar-default {
     .h{
         color: whitesmoke;
     }
     background-color: $darkerpurple;
     height: 54px;
+    padding-right: 15px;
     .navbar-nav li a {
       color: whitesmoke;
       background-color: $darkerpurple;
@@ -135,7 +147,7 @@ body {
 
 .jumbotron{
   background-image: url("5.png");
-  padding:55px;
+  padding:30px;
   margin: 0;
   color:whitesmoke;
 }
@@ -148,6 +160,13 @@ body {
   font-size: 30px;
 }
 
+.glyphicon {
+  font-size: 1.5em;
+}
+
+.toggleable{
+  display: none;
+}
 #access-box{
     text-align: center; 
     width: 80%;
