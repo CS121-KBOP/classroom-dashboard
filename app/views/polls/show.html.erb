@@ -1,6 +1,6 @@
 <%= link_to "Back to Course", user_course_path(@user, @course), :class =>"btn btn-lg btn-primary" %>
 <center>
-<h1><%= @poll.name %> 
+<h1><%= @poll.name %>
   <a class="col-4"><%= link_to edit_user_course_poll_path(@user, @course, @poll) do %>
     <span class="glyphicon glyphicon-edit" ></span>
     <% end %></a></h1>
@@ -11,7 +11,7 @@
   <table class="table table-hover table-responsive">
     <tr class="table-header">
       <td class="col-lg-3">Option</td>
-      <td class="col-lg-5">Descritption</td>
+      <td class="col-lg-5">Description</td>
       <td class="col-lg-2">Votes</td>
       <td class="col-lg-2">
         <center>
@@ -20,7 +20,7 @@
       </td>
     </tr>
     <% @options.each do |option| %>
-      <tr>
+      <tr data-link="<%= user_course_poll_option_path(@user, @course, @poll, option) %>">
         <td class="col-lg-3"><%= option.label %></td>
         <td class="col-lg-5"><%= option.description %></td>
         <td class="col-lg-2"><%= option.votes %></td>
@@ -36,6 +36,10 @@
         </td>
       </tr>
     <% end %>
+    <script> $("tr[data-link]").click(function() {
+                window.location = $(this).data("link")
+               })
+    </script>
   </table>
 </div>
 

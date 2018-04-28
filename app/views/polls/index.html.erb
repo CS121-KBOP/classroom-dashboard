@@ -13,9 +13,9 @@
           <th class="col-lg-5 col-md-5 col-sm-5">Description</th>
           <th class="col-lg-2 col-md-2 col-sm-2" >Date Created</th>
           <th class="col-lg-2 col-md-2 col-sm-2" > <center>Options</center></th>
-        </tr>  
+        </tr>
         <% @polls.each do |poll| %>
-          <tr>
+          <tr data-link="<%= user_course_poll_path(@user, @course, poll) %>">
             <td class="col-lg-3"><%= poll.name %></td>
             <td class="col-lg-5"><%= poll.description %></td>
             <td class="col-lg-2"><%= poll.created_at.strftime("%A, %B %-d, %Y") %></td>
@@ -28,6 +28,10 @@
             </td>
           </tr>
         <% end %>
+        <script> $("tr[data-link]").click(function() {
+                window.location = $(this).data("link")
+               })
+        </script>
       </center>
     </body>
 </center>

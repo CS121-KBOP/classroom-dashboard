@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
 
     def ensure_proper_user(user)
         if current_user["id"] != user.id
-            render 'sessions/unauthorized'
+            render "sessions/unauthorized"
         end
     end
 

@@ -1,28 +1,30 @@
 <%= render 'courses/header', course: "", students: "", quiz: "", assignments: "active", polls: "" %>
-<center>
-    <div>
-        <h1>Assignments</h1>
-        <%= link_to "New Assignment", new_user_course_assignment_path(@user, @course), :class => "btn" %>
-        
+    <div class="container-fluid">
+        <div class="row">
+          <div class="col-lg-8 col-md-8 col-sm-8 col-xs-6"><h1>Assignments</h1></div>
+          <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6" >
+            <h1 class="right-align"><%= link_to "New Assignment", new_user_course_assignment_path(@user, @course), :class => "btn" %></h1>
+          </div>
+        </div>
         <table class="table table-hover table-responsive">
-          <thead >
-            <tr class= "row"; style="background-color:rgb(78,55,100,.5);">
-              <th class="col-lg-3">Name</td>
-              <th class="col-lg-4">Description</td>
-              <th class="col-lg-1"></td>
-              <th class="col-lg-2">Date Created</td>
-              <th class="col-lg-2"></td>
+          <thead>
+            <tr class="table-header">
+              <th class="col-lg-3 col-md-3 col-sm-3">Name</th>
+              <th class="col-lg-4 col-md-4 col-sm-4">Description</th>
+              <th class="col-lg-1 col-md-1 col-sm-1"></th>
+              <th class="col-lg-2 col-md-2 col-sm-2">Date Created</th>
+              <th class="col-lg-2 col-md-2 col-sm-2"><center>Options</center></th>
             </tr>
           </thead>
           <% @assignments.each do |assignment| %>
-            <tr class= "row">
+            <tr data-link="<%= user_course_assignment_path(@user, @course, assignment) %>">
               <td class="col-lg-3"> <a ><%= link_to assignment.name, user_course_assignment_path(@user, @course, assignment) %></a></td>
 
               <td class="col-lg-4"><%= assignment.description %></td>
               <td class="col-lg-1"><% if !assignment.active %>Inactive<% end %></td>
 
               <td class="col-lg-2"><%= assignment.created_at.strftime("%A, %B %-d, %Y") %></td>
-              <td class="col-lg-2" align="center">   
+              <td class="col-lg-2" align="center">
                 <%= link_to edit_user_course_assignment_path(@user, @course, assignment) do %>
                   <span class="glyphicon glyphicon-edit" ></span>
                 <% end %>
@@ -30,11 +32,13 @@
                     method: :delete,
                     data: { confirm: 'Are you sure?' } do %>
                   <span class="glyphicon glyphicon-trash" ></span>
-                <% end %>  
+                <% end %>
               </td>
             </tr>
           <% end %>
+          <script> $("tr[data-link]").click(function() {
+                window.location = $(this).data("link")
+               })
+          </script>
         </table>
     </div>
-</center>
-

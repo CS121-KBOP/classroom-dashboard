@@ -85,7 +85,7 @@ class StudentsController < ApplicationController
             student.save
         end
 
-        redirect_to user_course_path(@user, @course)
+        redirect_to controller: 'courses', action: 'student_index', user_id: @user, id: @course
     end
 
     private
