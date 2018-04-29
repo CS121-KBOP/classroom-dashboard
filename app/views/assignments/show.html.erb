@@ -1,0 +1,52 @@
+<script>
+  var submissionURL = '<%= url_for(controller: 'assignments', action: 'get_submission_data') %>';
+  getData(); // initial data call
+</script>
+<%= render 'courses/header', course: "", edit: "", students: "", quiz: "", assignments: "active", polls: "" %>
+<center>
+    <div>
+      <h1><%= @assignment.name %></h1>
+      <h3><% if @assignment.active %>Currently Active<% else %>Currently Inactive<% end %></h3>
+      <h3>ACCESS TAG: <%= @submissionTag %></h3>
+      <p><%= @assignment.description %></p>
+      <%= link_to "Edit Assignment", edit_user_course_assignment_path(@user, @course, @assignment), :class=> "btn"%>
+      <%= link_to 'Delete Assignment', user_course_assignment_path(@user, @course, @assignment),
+              method: :delete,
+              data: { confirm: 'Are you sure?' }, :class=> "btn"%>
+      <hr>
+      <h2>Submissions</h2>
+      <br>
+      <div class="col-lg-6 submission-table">
+        <table class="table table-hover table-responsive" >
+          <thead >
+            <tr class= "row"; style="background-color:rgb(78,55,100,.5);">
+              <th class="col-lg-10 submission-table-name">Name</th>
+              <th class="col-lg-2">Submitted</th>
+            </tr>
+          </thead>
+          <tbody id="submission-table-body">
+
+          </tbody>
+          
+        </table>
+      </div>
+      <div class="col-lg-6">
+        <div class="selectors">
+          <span onclick="prevSub()"><</span>
+          <span onclick="nextSub()">></span>
+        </div>
+        <div>
+          <div style="height: 300px;">
+            <%= image_tag " ", :id => "submission-picture", :style => "height: 300px;"%>
+          </div>
+          <h3 id="submission-student">No Students Found</h3>
+          <p id="submission-created">Assignments don't work without students</p>
+          <p id="submission-edited">---</p>
+        <div style="height: 40px;">
+          <a class="btn btn-danger" id="edit-btn" href="#">Edit</a>
+          <a class="btn btn-danger" id="delete-btn" href="#" data-method="delete" data-confirm="Are you sure?" rel="nofollow">Delete</a>
+        </div>
+        <br><br><br>
+      </div>
+    </div>
+

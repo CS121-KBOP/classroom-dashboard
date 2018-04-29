@@ -30,10 +30,10 @@ class UsersController < ApplicationController
         ensure_proper_user(@user)
 
         if @user.update(user_params)
-            # updates user's name and email for duration of their session
+            # updates user's name for duration of their session
             # future sessions will be handled via database lookups
             current_user["name"] = user_params["name"]
-            current_user["email"] = user_params["email"]
+
             redirect_to @user
         else
             render 'edit'
@@ -49,6 +49,6 @@ class UsersController < ApplicationController
 
     private
         def user_params
-            params.require(:user).permit(:name, :email)
+            params.require(:user).permit(:name)
         end
 end

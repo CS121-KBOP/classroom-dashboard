@@ -1,0 +1,31 @@
+<center>
+    <br>
+    <div>
+        <hr>
+        <%= csrf_meta_tag %>
+		<script>
+		searchURL = "<%= url_for(controller: 'submissions', action: 'search') %>";
+		submitURL = "<%= url_for(controller: 'submissions', action: 'create') %>";
+		var page = "submission"; // for checking in shared html
+		</script>
+		<% if @assignment.active %>
+			<h1><%= @assignment.name %></h1>
+			<p>Enter part of your name and tap your name when it appears</p>
+			<div class="alert alert-danger hidden" id="alert"></div>
+			<div class="name-search">
+				<input class="submission-search" type="name" name="search" id="search" placeholder="Enter Name"/>
+				<div id="suggestions">
+				  No Names Found
+				</div>
+			</div>
+			<div class="submission-file-area">
+				<input class="submission-file" type="file" name="file" id="answer_file"/>
+				<label for="answer_file" empty-caption="<span class='glyphicon glyphicon-cloud-upload' ></span> Choose or Take a Photo <span class='glyphicon glyphicon-camera' ></span>"></label>
+			</div>
+			<a class="btn btn-lg" onclick="submitForm()" id="submit">Submit</a>
+		<% else %>
+			This assignment is currently inactive. Please talk to your prof.
+		<% end %>
+    </div>
+    <br><br><br>
+</center>

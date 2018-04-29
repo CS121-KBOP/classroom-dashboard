@@ -13,20 +13,28 @@
     </tr>
   </thead>
 
-  <% @courses.each do |course| %>
-    <tr class= "row">
-      <td class="col-lg-4"><%= course.title %></td>
+  <% @ordered_courses.each do |course| %>
+    <tr data-link="<%= user_course_path(@user, course) %>">
+      <td class="col-lg-4"><a><%= link_to course.title, user_course_path(@user, course) %></a></td>
       <td class="col-lg-4"><%= course.code %></td>
-      <td class="col-lg-4" align="center"> 
-            <a ><%= link_to 'Show', user_course_path(@user, course) %></a>
-            <a ><%= link_to 'Edit', edit_user_course_path(@user, course) %></a>
-            <a ><%= link_to 'Destroy', user_course_path(@user, course),
-              method: :delete,
-              data: { confirm: 'Are you sure?' } %> </a>
+      <td class="col-lg-4" align="center">
+            <%= link_to edit_user_course_path(@user, course) do %>
+              <span class="glyphicon glyphicon-edit" ></span>
+            <% end %>
+
+            <%= link_to user_course_path(@user, course),
+                method: :delete,
+                data: { confirm: 'Are you sure?' } do %>
+              <span class="glyphicon glyphicon-trash" ></span>
+            <% end %>
       </td>
 
     </tr>
   <% end %>
-  
+  <script>
+  $("tr[data-link]").click(function() {
+    window.location = $(this).data("link")
+  })
+</script>
 </table>
 </div>

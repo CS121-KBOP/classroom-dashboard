@@ -10,11 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180224101324) do
+ActiveRecord::Schema.define(version: 20180407224136) do
 
   create_table "assignments", force: :cascade do |t|
     t.string "name"
     t.text "description"
+    t.boolean "active", default: true
     t.integer "course_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -24,16 +25,41 @@ ActiveRecord::Schema.define(version: 20180224101324) do
   create_table "courses", force: :cascade do |t|
     t.string "title"
     t.string "code"
+    t.integer "section", default: 1
+    t.text "semester"
+    t.integer "year"
+    t.text "flashcard_order"
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_courses_on_user_id"
   end
 
+  create_table "options", force: :cascade do |t|
+    t.string "label"
+    t.text "description"
+    t.integer "votes", default: 0
+    t.integer "poll_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["poll_id"], name: "index_options_on_poll_id"
+  end
+
+  create_table "polls", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.integer "course_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["course_id"], name: "index_polls_on_course_id"
+  end
+
   create_table "students", force: :cascade do |t|
     t.string "name"
     t.string "email"
     t.text "notes"
+    t.boolean "in_flashcards", default: true
+    t.boolean "in_quiz", default: true
     t.integer "course_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -60,7 +86,6 @@ ActiveRecord::Schema.define(version: 20180224101324) do
   create_table "users", force: :cascade do |t|
     t.string "provider"
     t.string "name"
-    t.string "email"
     t.string "oauth_token"
     t.datetime "oauth_expires_at"
     t.integer "oauth_id", limit: 12

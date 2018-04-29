@@ -6,13 +6,24 @@
   <body>
     <div align="center">
       <% if logged_in? %>
-        <h1><%= current_user["name"] %></h1>
-        <h4><%= current_user["email"] %></h4>
-        <%= link_to "View All Courses", user_courses_path(current_user["id"]), :class => "btn btn-lg" %>
-        <br>
-        <%= link_to "Log Out", logout_path, :class => "btn btn-danger" %>
-        
+        <h1>Welcome Back, <%= current_user["name"] %></h1>
+        <%= link_to "View My Courses", user_courses_path(current_user["id"]), :class => "btn btn-lg" %>
+        <%= link_to "My Profile", user_path(current_user["id"]), :class => "btn btn-lg" %>
+        <%= link_to "Log Out", logout_path, :class => "btn btn-lg" %>
+
       <% else %>
+        <br>
+        <h1>Classroom Dashboard</h1>
+        <p>Classroom Interaction Platform</p>
+        <br><br>
+        <h1>Students</h1>
+        <p>Enter the 5-letter access tag given by your professor:</p> 
+        <input type="text" id="access-box" onkeydown="correctAccessTag()">
+        <br>
+        <a class="btn btn-lg" id="access-button" onclick="redirectToAssignment()">Go</a>
+        
+        <br><hr><br>
+        <h1>Professors</h1>
         <%= link_to "Login", login_path, :class => "btn btn-lg" %>
       <% end %>
       <div class="container">
@@ -26,3 +37,6 @@
     </div>
   </body>
 </html>
+<script>
+  loadHomepage();
+</script>

@@ -1,39 +1,39 @@
 <%= csrf_meta_tag %>
-<script>
-// so we can access the correct urls in the .js files
-var flashcard_url = "<%= url_for(controller:'courses', action:'flashcard') %>";
-var note_upload_url = "<%= url_for(controller:'courses', action:'updateNotes') %>";
-</script>
-
 <%= javascript_include_tag "dropzone.js" %>
-
+<%= render 'header', course: "active", students: "", quiz: "", assignments: "", polls: "" %>
 <center>
-  <br>
-    <div>
-      <h1> <%= @course.code %>: <%= @course.title %></h1>
-      <ul class="nav nav-pills nav-justified">
-        <li class = "active"><%= link_to "Course", user_course_path(@user, @course) %><br></li>
-        <li><%= link_to "Edit Course", edit_user_course_path(@user, @course) %><br></li>
-        <li><%= link_to "Student Roster", {controller:"courses", action:"student_index", id:@course} %><br></li>
-        <li><%= link_to "Face/Name Quiz", {controller:"courses", action:"quiz"} %><br></li>
-      </ul>
-      <div class = "container">
-        <div class="row">
-          <div class = "col-lg-4"></div>
-            <div class = "col-lg-4">
-            <h3>Flashcards</h3>
-              <div class = "flashcard" id="flashcard-info">
-                <%= image_tag "/images/defaults/flashcard/missing.png", :id => "student-picture", :style => "width:300px;height:300px;" %>
-                <h4 id="student-name">Name</h4>
-                <p id="student-info">info</p>
-                <textarea rows=5 id="student-notes" onkeyup="updateNotes()"></textarea>
-              </div>
-              <button type="button" class ="btn" onclick="drawFlashcard('dashboard')">Draw Flashcard</button>
-            </div>
-          </div>
+  <div>
+    <div class = "container">
+      <div class="row">
+        <div class = "col-lg-4">
         </div>
+        <div class = "col-lg-4">
+          <h3>Flashcards</h3>
+          <div class = "flashcard" id="flashcard-info" onclick="drawFlashcard('equity')">
+            <%= image_tag "/images/defaults/flashcard/missing.png", :id => "student-picture", :style => "width:300px;height:300px;" %>
+            <h4 id="student-name">Click to Draw</h4>
+          </div>
+          <div class ="btn" onclick="drawFlashcard('equity')">Draw Flashcard</div>  
+        </div>
+        <div class ="col-lg-4">
+          <br>
+          <br>
+          <a class = "btn" <%= link_to "Edit Course", edit_user_course_path(@user, @course) %></a>
+          <br>
+          <button class="btn" onclick="toggleHide()">Order Students</button>
+          <div id="toggleable"; style = "display:none">
+            <h4>Order Students</h4>
+            <%= form_tag user_course_path(@user, @course) do %>
+              <%= text_area :flashcard_order, :edit_flashcard_order %>
+              <%= submit_tag "Order Students" %>
+            <% end %>
+          </div>
         </div>
       </div>
     </div>
-  </br>
+  </div>
 </center>
+<script>
+  // so we can access the correct urls in the .js files
+  var flashcard_url = "<%= url_for(controller:'courses', action:'flashcard') %>";
+</script>

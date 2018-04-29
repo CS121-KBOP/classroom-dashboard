@@ -26,12 +26,22 @@
 
     <tr class="field">
       <td><%= form.label :notes,  :class => "control-label"  %></td>
-      <td><%= form.text_field :notes %></td>
+      <td><%= form.text_field :notes, :class => "notes" %></td>
     </tr>
 
     <tr class="field">
       <td><%= form.label :portrait,  :class => "control-label"  %></td>
-      <td><%= form.file_field :portrait %></td>
+      <td><%= form.file_field :portrait, :class => "portrait" %></td>
+    </tr>
+
+    <tr class="field">
+      <td align="right"><%= form.check_box :in_flashcards, :checked => @student.in_flashcards %> </td>
+      <td><%= form.label :in_flashcards, "Include in flashcards", :class => "control-label"  %> </td>
+    </tr>
+
+    <tr class="field">
+      <td align="right"><%= form.check_box :in_quiz, :checked => @student.in_quiz %> </td>
+      <td><%= form.label :in_quiz, "Include in quiz", :class => "control-label"  %> </td>
     </tr>
 
   </table>
@@ -43,7 +53,9 @@
 <br>
 <center>
 <h3>Batch Upload</h3>
-<%= form_tag import_user_course_students_path(@user, @course), class: "dropzone", multipart: true do %>
-  <%= submit_tag "Import Students" %>
+<div class="drop-area">
+  <%= form_tag import_user_course_students_path(@user, @course), :class => "dropzone", multipart: true do %>
+</div>
+  <%= submit_tag "Import" %>
 <% end %>
 </center>

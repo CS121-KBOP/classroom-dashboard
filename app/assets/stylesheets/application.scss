@@ -1,91 +1,270 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+$background-color: rgb(250, 250, 250);
+
+$darkpurple: #695573;
+$purple: #775bb5;
+$lightpink: #ffc4fd;
+$pink: #b853a2;
+$lightblue: #60ddfc;
+$blue: #3fa0d9;
+$darkerpurple: #4c4361;
+
+* {
+  border-radius: 0 !important;
+}
+
 body {
-    background-color: whitesmoke;
-    background-image: linear-gradient(rgb(236, 225, 248), whitesmoke);
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    background-color:$background-color;
+    color: $darkerpurple;
+    background-image: url("pattern.jpg");
+    font-family: Arial, Geneva, Tahoma, sans-serif;
+    height: 100%;
+    margin: 0;
+    //background-repeat: no-repeat;
+    background-attachment: fixed;
   }
 
   .nav-pills > li > a{
-    color:  rgb(78, 55, 100);
-    background-color: transparent;
-      
+    color: whitesmoke;
+    background-color: $darkerpurple;
+    -webkit-transition-duration: 0.5s; 
+    transition-duration: 0.5s;
   }
 
   .nav-pills > li.active > a{
-    color: rgb(236, 225, 248);
-    background-color: rgb(78, 55, 100);
+    color: whitesmoke;
+    background-color:$purple;
   }
   .nav-pills > li.active > a:hover{
-    color: rgb(236, 225, 248);
-    background-color: rgb(78, 55, 100);
+    color: whitesmoke;
+    background-color: $purple;
   }
 
   .nav-pills > li > a:hover{
-    background-color: rgb(78, 55, 100);
-    color: rgb(236, 225, 248);
+    color: whitesmoke;
+    background-color: $purple;
   }
 
   .navbar-brand {
     a {
       color: whitesmoke;
     }
-
+    background: transparent;
   }
 
   .flashcard {
     width: 340px;
     padding: 15px;
-    border: 5px solid rgb(78, 55, 100);
+    border: 5px solid $darkerpurple;
     margin: 0;
-    background-color: rgb(160,148,172);
+    background-color: $darkpurple;
+    color: whitesmoke;
+  }
+
+  .flashcard-info {
+    height: 170px;
+    margin-top: 20px;
+    padding-top: -20px;
+  }
+
+  .flashcard-info h2{
+    height: 33px;
+    overflow: hidden;
+  }
+
+  .flashcard-info textarea{
+    color: black;
+    width: 100%;
+
+  }
+  .table-header{
+    background-color: $darkpurple !important;
+    color: whitesmoke;
   }
 
   .btn {
     
-    background-color: rgb(78, 55, 100);
+    background-color: $darkerpurple;
+    color: whitesmoke !important;
+    border: solid;
+    border-width: thin;
+    -webkit-transition-duration: 0.5s; 
+    transition-duration: 0.5s;
+  }
+
+  .btn:hover{
+    background-color: $purple;
+    color: whitesmoke;
+  }
+  
+  .btn:focus{
+    background-color: $darkerpurple;
     color: whitesmoke;
     border: solid;
     border-width: thin;
-    
-  }
-  .btn:hover{
-    color: rgb(78, 55, 100);
-    background-color: rgb(236, 225, 248);
   }
 
   .navbar-default {
     .h{
         color: whitesmoke;
     }
-    background-color: rgb(78, 55, 100);
+    background-color: $darkerpurple;
     height: 54px;
+    padding-right: 15px;
     .navbar-nav li a {
       color: whitesmoke;
+      background-color: $darkerpurple;
     }
+    border: none;
+    margin: 0;
   }
   
   .navbar-container {
     width: 800x;
     margin: 0 auto;
+    border: none;
+    color: $darkerpurple;
   }
 
   html {
     height: 100%;
   }
-  
-  body {
-    height: 100%;
-    margin: 0;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-  }
 
-.row {
+.container {
   align-content: center;
+  float: none;
+  margin: 0 auto;
 }
 
-.col-lg-10 {
-  align-content: center;
+.drop-area {
+  min-height: 70px;
+  border: 2px solid rgba(0, 0, 0, 0.3);
+  background: rgb(200, 200, 200);
+  padding: 20px 20px;
+  margin: 20px 80px 20px 80px;
+}
+
+.right-align{
+  float: right
+}
+
+.jumbotron{
+  background-image: url("5.png");
+  padding:30px;
+  margin: 0;
+  color:whitesmoke;
+}
+
+.display-3{
+  color: whitesmoke;
+  text-shadow: -4px 0 black, 0 3px $darkerpurple, 1px 0 black, 0 -1px black;
+}
+.selectors{
+  font-size: 30px;
+}
+
+.glyphicon {
+  font-size: 1.5em;
+}
+
+.toggleable{
+  display: none;
+}
+#access-box{
+    text-align: center; 
+    width: 80%;
+    font-size: 30px;
+    margin-bottom: 10px;
+  }
+
+.submission-table{
+  padding-left: 150px;
+}
+
+.submission-table-name{
+    text-align: right;
+}
+.submission-table-check{
+    text-align: center;
+}
+
+.name-search{
+  width: 340px;
+  height: 332px;
+  padding: 15px;
+  border: 5px solid $darkerpurple;
+}
+
+
+
+.submission-suggestion{
+  color: black;
+  width: 100%;
+  height: 40px;
+  line-height: 40px;
+  border: 1px solid $darkerpurple;
+  margin-top: 10px;
+  background: #e5e5e5;
+}
+
+.submission-suggestion-selected{
+  color: white;
+  background: $darkerpurple;
+}
+
+.submission-search{
+  text-align: center;
+  font-size: 25px;
+  width: 100%;
+}
+
+.submission-file-area{
+  width: 300px;
+  margin-top: 20px;
+}
+
+.submission-file{
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+}
+
+.submission-file + label {
+  width: 100%;
+  font-size: 20px;
+  padding: 10px;
+  font-weight: 100;
+  color: white;
+  background-color: $darkerpurple;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.submission-file:focus + label,
+.submission-file + label:hover {
+  background-color: $purple;
+}
+
+.poll-option-button{
+  width: 300px;
+  height: 50px;
+  line-height: 50px;
+  background-color: $darkerpurple;
+  border: 1px solid $darkerpurple;
+  display: block;
+  color: white;
+  font-size: 20pt;
+  text-align: left;
+  padding-left: 20px;
+}
+
+.poll-option-button:hover{
+  background: $purple;
+  color: white;
+  text-decoration: none;
 }
