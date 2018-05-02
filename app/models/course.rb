@@ -10,4 +10,6 @@ class Course < ApplicationRecord
     validates :code, presence: true,
                      length: { minimum: 3, maximum: 10 }
     validates :section, presence: true
+    validates :title, presence: true,
+                     length: { minimum: 3, maximum: 50 }
 end
