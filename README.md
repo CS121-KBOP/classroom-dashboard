@@ -60,11 +60,15 @@ Polls operate much like assignments. Click on "Polls" in the toolbar to see a li
 
 
 
-## Known Problems
-1. Dropzones are currently unreliable, with a suspected race condition. If you drag-and-drop images into the dropzone, and then wait, many will produce long error messages and fail to upload. The dropzone js code is in the javascripts folder, and is borrowed code. The JS should be calling the import function in the student controller.
+## Known Problems / Future Work
+1. Dropzones are currently unreliable, with a suspected race condition. If you drag-and-drop images into the dropzone, and then wait, many will produce long error messages and fail to upload. The dropzone js code is in the javascripts folder, and is borrowed code. The JS should be calling the import function in the student controller. This entire section of code could be replaced, perhaps with the JQuery File Uploader (https://github.com/blueimp/jQuery-File-Upload)
 2. There have been strange bugs with JQuery onload or onready functions not being called when a page is first loaded. As a temporary fix, these functions are instead called from within script tags on their relevant pages. This smells bad.
 3. There are insufficient tests for most controllers, especially with batch upload, CRUD functionality, deletion dependencies, and other potential failure points.
 4. Page styling is a bit inconsistent. Some points of note: header text alignment, icon usage, and table row clickability.
+5. The bar chart on the poll page has rounding errors in the x-axis tick values. These will always be integer values anyways, so the tick marks should not show floats.
+6. On the student roster page, the exclusion from flashcard checkboxes should all be one form, with a single submit button. Alternativly, they could use JQuery/AJAX so that each change auto-updates the relevant student, without the need for a form.
+7. It might be worth it to add the ability to upload students via CSV, in a different sort of batch upload. This functionality was already added, and then removed. See https://github.com/CS121-KBOP/classroom-dashboard/pull/15 for details.
+
 
 ## Contributing
 
