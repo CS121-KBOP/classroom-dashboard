@@ -13,8 +13,8 @@
             <div class = "col-lg-4">
             <h1>Face/Name Quiz</h1>
               <div class = "flashcard">
-                <%= image_tag "/images/defaults/flashcard/missing.png", :id => "student-picture", :style => "width:300px;height:300px;" %>
-                <div class= "flashcard-info" id="flashcard-container">
+                <%= image_tag "/images/defaults/flashcard/missing.png", :id => "student-picture", :style => "width:300px;height:300px;", :onclick => "drawFlashcard('quiz')" %>
+                <div class= "flashcard-info" id="flashcard-container" onclick="show()">
                   <div class= "flashcard-info" id="flashcard-info">
                     <h2 id="student-name">Name</h2>
                     <span>Notes:</span>

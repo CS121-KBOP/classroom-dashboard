@@ -1,17 +1,22 @@
 var shown = false;
 var current_student = {};
+
+function toggleHide() {
+    var x = document.getElementById("toggleable");
+    if (x.style.display === "none") {
+        x.style.display = "block";
+    } else {
+        x.style.display = "none";
+    }
+}
+
 // called when the "draw flashcard" button is pressed
 function drawFlashcard(source) {
   // send an AJAX GET request to the flashcard controller
-  $.get(flashcard_url, function(data, status){
+  $.get(flashcard_url+"?type="+source, function(data, status){
     if (status == "success") {
       // send the returned student object to the populate function
-      console.log(data);
-      if (source=="quiz") {
-        populateFlashcard(data.quiz, source);
-      } else {
-        populateFlashcard(data.equity, source);
-      }
+      populateFlashcard(data, source);
     }
   });
 }
